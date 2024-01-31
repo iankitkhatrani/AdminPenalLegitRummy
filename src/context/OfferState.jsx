@@ -175,6 +175,43 @@ const OfferState = (props) => {
             console.log("e :", e)
         }
     }
+
+    
+    const TableEntryUpdate = async (data) => {
+        try {
+            console.log("PlayerList :::::::", host)
+            console.log("BotUpdate :::::::", data)
+
+            let gameURL = data.gamePlayType == "poolrummy" ? `${host}/admin/pool-lobbies`:  data.gamePlayType == "dealrummy" ? `${host}/admin/deal-lobbies` : data.gamePlayType == "pointrummy" ? `${host}/admin/lobbies` :`${host}/admin/deal-lobbies`
+            
+            console.log("gameURL :::::::", gameURL)
+
+            const response = await fetch(gameURL, {
+                method: 'put',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(d => d.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return {}
+            } else {
+                return json
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
     //========================================
 
     // ========= User Details =================
@@ -1856,7 +1893,7 @@ const OfferState = (props) => {
             AddMoney, DeductMoney, LogoutClick,
             DepositeList, DepositeAccptedList, DepositeRejectedList, DepositeAdd, UploadScreenshort, DepositeDelete, DepositeData, DepositeUpdate,
             PayoutList, PayoutAccptedList, PayoutRejectedList, PayoutUpdate, UploadScreenshortPayout,
-            GetDealBetList,addTableentryAPI,DeleteTableEntry
+            GetDealBetList,addTableentryAPI,DeleteTableEntry,TableEntryUpdate
         }}>
             {props.children}
         </offerContext.Provider>)

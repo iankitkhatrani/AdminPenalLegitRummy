@@ -12,6 +12,16 @@ function CustomerInfo({ gamePlayType, type, tableName, entryFee, maxSeat, status
   const { DeleteTableEntry } = context
 
 
+
+  const navigateToContactsEdit = (gamePlayType, tableName,entryFee,maxSeat,commission,status, id) => {
+    // 👇️ navigate to /contacts 
+    console.log("Point Table entery ",id)
+
+    navigate('/tableentryedit', {state:{gamePlayType, tableName,entryFee,maxSeat,commission,status, id,"tabletype":"poolrummy"}});
+  };
+
+
+
   const navigate = useNavigate();
   const navigateToContacts = () => {
     // 👇️ navigate to /contacts 
@@ -74,7 +84,7 @@ function CustomerInfo({ gamePlayType, type, tableName, entryFee, maxSeat, status
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"
-          }} onClick={() => navigateToContacts(gamePlayType, tableName, entryFee, maxSeat, commission, status, id)} >
+          }} onClick={() => navigateToContactsEdit(gamePlayType, tableName, entryFee, maxSeat, commission, status, id)} >
             <img style={{ "width": "15px", "height": "15px", "margin": "10px" }} src="https://cdn3.iconfinder.com/data/icons/feather-5/24/edit-512.png" />
           </button>
           <button styles={{

@@ -13,18 +13,23 @@ function CustomerInfo({ gamePlayType, tableName,entryFee,maxSeat,commission,stat
 
 
   const navigate = useNavigate();
-  const navigateToContacts = (gamePlayType, tableName,entryFee,maxSeat,status, id) => {
+  const navigateToContactsedit = (gamePlayType, tableName,entryFee,maxSeat,commission,status, id) => {
     // 👇️ navigate to /contacts 
     console.log("Point Table entery ",id)
 
-    navigate('/tableentryedit', {state:{gamePlayType, tableName,entryFee,maxSeat,status, id,"tabletype":"pointrummy"}});
+    navigate('/tableentryedit', {state:{gamePlayType, tableName,entryFee,maxSeat,commission,status, id,"tabletype":"pointrummy"}});
   };
+
+  const navigateToContacts = () => {
+    // 👇️ navigate to /contacts 
+    navigate('/TableEntry?gametype=pointrummy');
+  };
+
+
 
   const deleteTable = async (id) => {
     await DeleteTableEntry("admin/lobbies/"+id)
-
     navigateToContacts()
-
   };
 
   return (
@@ -71,7 +76,7 @@ function CustomerInfo({ gamePlayType, tableName,entryFee,maxSeat,commission,stat
           "border": "none",
           "padding": "5px 10px",
           "cursor": "pointer",
-          "border-radius": "4px"}} onClick={ () => navigateToContacts(gamePlayType, tableName,entryFee,maxSeat,commission,status, id) } >
+          "border-radius": "4px"}} onClick={ () => navigateToContactsedit(gamePlayType, tableName,entryFee,maxSeat,commission,status, id) } >
           <img style={{"width": "15px","height": "15px","margin": "10px"}} src="https://cdn3.iconfinder.com/data/icons/feather-5/24/edit-512.png" />
         </button>
         <button styles={{"margin": "1px",

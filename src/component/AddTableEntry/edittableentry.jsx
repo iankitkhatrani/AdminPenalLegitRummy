@@ -3,20 +3,20 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
 
-function botUpdate() {
+function pointTableUpdate() {
 
   const location = useLocation();
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
   const context = useContext(offerContext)
-  const { BotUpdate, host } = context
+  const { TableEntryUpdate, host } = context
 
-  
+  console.log("Botinfo ",Botinfo)
   const navigate = useNavigate();
   const navigateToContacts = () => {
       // 👇️ navigate to /contacts 
-      navigate('/botList');
+      navigate('/TableEntry?gametype='+Botinfo.gamePlayType);
   };
 
   let [userInfo, SetuserInfo] = useState({
@@ -55,9 +55,6 @@ function botUpdate() {
   const OnChange = (event) => {
     let { name, value } = event.target;
 
-    value = (value?.toLowerCase?.() === 'true') ? true : false
-
-
     SetuserInfo({
       ...userInfo,
       [name]: value,
@@ -90,12 +87,11 @@ function botUpdate() {
 
     console.log("userInfo ",userInfo)
 
-    return false
-    let res = await BotUpdate(userInfo)
+    let res = await TableEntryUpdate(userInfo)
 
-    console.log("REsponce ::::::::::::::::::::::",res)
+    console.log("responce ::::::::::::::::::::::",res)
 
-    if(res.status == "ok"){
+    if(res.status == 1){
         navigateToContacts()
     }else{
         alert("Error Please enter")
@@ -125,7 +121,8 @@ function botUpdate() {
             <input
               type="text"
               id="tableName"
-              placeholder="tableName"
+              placeholder={userInfo.tableName}
+              value={userInfo.tableName}
               name="tableName"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
@@ -142,14 +139,15 @@ function botUpdate() {
             <input
               type="text"
               id="commission"
-              placeholder="commission"
+              placeholder={userInfo.commission}
+              value={userInfo.commission}
               name="commission"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          {Botinfo.tabletype != "pointrummy" && Botinfo.tabletype != "poolrummy" ? <div className="flex flex-col gap-2">
             <label
               htmlFor="Title"
               className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
@@ -159,14 +157,15 @@ function botUpdate() {
             <input
               type="text"
               id="deal"
-              placeholder="deal"
+              placeholder={userInfo.deal}
+              value={userInfo.deal}
               name="deal"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
             />
-          </div>
+          </div> : ""}
 
-          <div className="flex flex-col gap-2">
+          {Botinfo.tabletype != "pointrummy" && Botinfo.tabletype != "dealrummy" ? <div className="flex flex-col gap-2">
             <label
               htmlFor="Title"
               className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
@@ -176,12 +175,13 @@ function botUpdate() {
             <input
               type="text"
               id="type"
-              placeholder="type"
+              placeholder={userInfo.type}
+              value={userInfo.type}
               name="type"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
             />
-          </div>
+          </div> : "" }
 
           <div className="flex flex-col gap-2">
             <label
@@ -193,7 +193,8 @@ function botUpdate() {
             <input
               type="text"
               id="entryFee"
-              placeholder="entryFee"
+              placeholder={userInfo.entryFee}
+              value={userInfo.entryFee}
               name="entryFee"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
@@ -211,7 +212,8 @@ function botUpdate() {
             <input
               type="text"
               id="maxSeat"
-              placeholder="maxSeat"
+              placeholder={userInfo.maxSeat}
+              value={userInfo.maxSeat}
               name="maxSeat"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
@@ -231,7 +233,7 @@ function botUpdate() {
                 type="radio"
                 value="Active"
                 name="status"
-                checked={tableInfo.status === true || tableInfo.status === "true" || tableInfo.status == "Active"}
+                checked={userInfo.status == "Active"}
                 onChange={OnChange}
               />
               Active
@@ -242,7 +244,7 @@ function botUpdate() {
                 type="radio"
                 value="DeActive"
                 name="status"
-                checked={tableInfo.status === false || tableInfo.status === "false" || tableInfo.status === "" || tableInfo.status == "DeActive"}
+                checked={userInfo.status == "DeActive"}
                 onChange={OnChange}
               />
                  Inactive
@@ -258,7 +260,7 @@ function botUpdate() {
             className="rounded-lg bg-success-300 text-white font-semibold mt-10 py-3.5 px-4"
             onClick={handleSubmit}
           >
-            Add Table
+            Edit Table
           </button>
         </div>
       </form>
@@ -269,4 +271,4 @@ function botUpdate() {
 }
 
 
-export default botUpdate;
+export default pointTableUpdate;
