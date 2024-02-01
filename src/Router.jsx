@@ -48,6 +48,7 @@ import TableEntryAdd from './pages/TableEntryAdd'
 import TableEntryAddPool from './pages/TableEntryAddPool'
 import TableEntryAddPoint from './pages/TableEntryAddPoint'
 import TableEntryEdit from './pages/TableEntryEdit'
+import Chnagepwd from './pages/Chnagepwd'
 
 
 const router = createBrowserRouter([
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
       {
         path: "/bannerlist",
         element: <BannerList />,
+      },
+      {
+        path: "/security",
+        element: <Chnagepwd />,
       },
       {
         path: "/settings",
