@@ -46,7 +46,7 @@ function gameLogic(gameName) {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                <label style={{"color":"white"}} htmlFor="noOneWillWin">No One Will Win</label>
+                <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">No One Will Win</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -68,7 +68,7 @@ function gameLogic(gameName) {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                <label style={{"color":"white"}} htmlFor="List Will Win">latest Amount Will Win</label>
+                <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">latest Amount Will Win</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -90,7 +90,7 @@ function gameLogic(gameName) {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                <label style={{"color":"white"}} htmlFor="normalgame">Normal Games</label>
+                <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Normal Games</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
