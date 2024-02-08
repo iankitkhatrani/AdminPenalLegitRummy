@@ -23,6 +23,7 @@ function Dashboard() {
     const submitdata = async () => {
       apiData = await dashboardData()
       
+      console.log("dashboardData ",apiData)
       if(apiData.totalUser != undefined)
       settotalUser(apiData.totalUser)
 

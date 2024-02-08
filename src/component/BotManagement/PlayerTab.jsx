@@ -374,13 +374,13 @@ function PlayerTab({ }) {
             
             <td className="px-6 py-5 xl:px-0"></td>
           </tr>
-          {filteredUsers?.map((user, index) =>
+          {usersOnCurrentPage?.map((user, index) =>
             pageSize
               ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
-                    img={user.profileUrl}
+                    img={user.avatar}
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
                     MainWallet={user.chips}
@@ -391,7 +391,7 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
-                    img={user.profileUrl}
+                    img={user.avatar}
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
                     MainWallet={user.chips}

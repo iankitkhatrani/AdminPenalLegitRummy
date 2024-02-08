@@ -1,45 +1,39 @@
 import ProtoTypes from "prop-types";
 
-function PlayerInfo({ datetime,UserName,MobileNo,roomid,amount,type,club}) {
+function PlayerInfo({ date,gamePlayType,commission,gameId,entryFee,maxSeat}) {
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
       
       <td className="px-6 py-5 xl:px-0">
         <div className="flex w-full items-center space-x-2.5">
-          
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {datetime}
+            {date}
           </p>
         </div>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {UserName}
+          {gamePlayType}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {MobileNo}
+          {commission}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {roomid}
+          {gameId}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-        ₹{amount}
+        ₹{entryFee}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {type}
-        </p>
-      </td>
-      <td className="px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {club}
+          {maxSeat}
         </p>
       </td>
       

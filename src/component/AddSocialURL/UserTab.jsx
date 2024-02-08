@@ -14,7 +14,7 @@ function UserTab({ pageSize }) {
       setSocialURLs(await SocailURLsList())
   }
   submitdata()
-  },[SocailURLsList]);
+  },[]);
 
   
   return (

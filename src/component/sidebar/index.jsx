@@ -22,7 +22,7 @@ function Sidebar({ handleActive }) {
 
   const backandwhitegame = (flags) => {
 
-    
+
     setActivebackandwhite(flags)
     setGamelist(true)
     console.log("gamelist ::::::::::::::::::::::::::", gamelist)
@@ -33,7 +33,7 @@ function Sidebar({ handleActive }) {
   return (
     <aside className="sidebar-wrapper fixed top-0 z-30 block h-full w-[308px] bg-white dark:bg-darkblack-600 sm:hidden xl:block">
       <div className="sidebar-header relative z-30 flex h-[108px] w-full items-center border-b border-r border-b-[#F7F7F7] border-r-[#F7F7F7] pl-[50px] dark:border-darkblack-400">
-        <Link to="/">
+        <Link to="/dashboard">
           <img src={logo} className="block dark:hidden" alt="logo" />
           <img src={logoW} className="hidden dark:block" alt="logo" />
         </Link>
@@ -312,7 +312,7 @@ function Sidebar({ handleActive }) {
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
                             }`}
                         >
-                         Point Table Entry 
+                          Point Table Entry
                         </Link>
                       </li>
                       <li>
@@ -321,7 +321,7 @@ function Sidebar({ handleActive }) {
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
                             }`}
                         >
-                         Deal Table Entry 
+                          Deal Table Entry
                         </Link>
                       </li>
                       <li>
@@ -330,7 +330,7 @@ function Sidebar({ handleActive }) {
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
                             }`}
                         >
-                         Pool Table Entry 
+                          Pool Table Entry
                         </Link>
                       </li>
                     </ul>
@@ -376,7 +376,7 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li>
-             
+
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/socialurl" ? "nav-active" : ""
                   } `}
@@ -528,7 +528,7 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li>
-             
+
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/notificationlist" ? "nav-active" : ""
                   } `}

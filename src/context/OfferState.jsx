@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-const host = "http://64.23.141.200:3000"//"http://13.50.221.113:2828";//
+const host ="http://64.23.141.200:3000";// "http://192.168.0.203:3000"//
 //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ5Y2NlM2JhNDA4YTJlMjg3ZjJlYzUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQHNpc3VnYW16LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHhZZzVMUlNRRWxiNENOZnVocjdncmUyUjNMOUQ5eDhaWmc0c0QxSW9uY1N6ZWFTSHgzMTIuIiwiY3JlYXRlZEF0IjoiMjAyMy0xMS0wN1QwNTozNjozNS42NjBaIiwibW9kaWZpZWRBdCI6IjIwMjMtMTEtMDdUMDU6MzY6MzUuNjYwWiIsImlhdCI6MTY5OTMzNTQxMywiZXhwIjoxNjk5OTQwMjEzfQ.NrLsWSnyD09P3h30rsng_R3bygn3TsKl8nXyD7qom4c";
 
 const OfferState = (props) => {
@@ -1292,7 +1292,7 @@ const OfferState = (props) => {
 
     const BotList = async () => {
         try {
-            console.log("PlayerList :::::::", `${host}/admin/bot/UserList`)
+            console.log("PlayerList :::::::", `${host}/admin/bot/BotList`)
             const response = await fetch(`${host}/admin/bot/BotList`, {
                 method: 'GET',
                 headers: {
@@ -1351,10 +1351,12 @@ const OfferState = (props) => {
 
     const UploadProfile = async (data) => {
         try {
-            console.log("PlayerList :::::::", host)
+            console.log("UploadProfile :::::::", host)
 
             const formData = new FormData();
             formData.append("image", data);
+            
+            console.log("formData ",formData)
 
             const response = await fetch(`${host}/admin/bot/ProfileUpload`, {
                 method: 'POST',
