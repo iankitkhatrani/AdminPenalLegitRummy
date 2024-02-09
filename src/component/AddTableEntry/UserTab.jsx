@@ -42,7 +42,7 @@ function UserTab({ pageSize,gameType }) {
         <tbody>
           <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
+            <td className="w-[165px] px-6 py-5 lg:w-auto xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Game Play Type
@@ -87,7 +87,7 @@ function UserTab({ pageSize,gameType }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Deal
@@ -132,7 +132,7 @@ function UserTab({ pageSize,gameType }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Table Name
@@ -177,7 +177,7 @@ function UserTab({ pageSize,gameType }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Entry Fee
@@ -222,7 +222,7 @@ function UserTab({ pageSize,gameType }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Max Seat
@@ -267,7 +267,7 @@ function UserTab({ pageSize,gameType }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
             <div className="flex w-full items-center space-x-2.5">
               <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
               Commission
@@ -311,8 +311,8 @@ function UserTab({ pageSize,gameType }) {
                 </svg>
               </span>
             </div>
-          </td>
-            <td className="px-6 py-5 xl:px-0">
+            </td>
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Status
@@ -357,10 +357,10 @@ function UserTab({ pageSize,gameType }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                Status
+                Action
                 </span>
                 <span>
                   <svg

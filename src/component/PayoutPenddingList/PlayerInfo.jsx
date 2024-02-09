@@ -47,70 +47,70 @@ function PlayerInfo({ id, name, email, mobileno, dateOfpayout, payoutamount, ban
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {id}
         </p>
       </td>
 
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           {name}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {email}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {mobileno}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           {dateOfpayout}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
         ₹{payoutamount}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {bankAc}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {IFSCcode}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {acname}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {upi_id}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {paymentmode}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
 
         <p style={styles}>
 
           {status == -1 ? "pendding" : status == 0 ? "Rejected" : "Success"}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex justify-center">
       
 
@@ -124,7 +124,7 @@ function PlayerInfo({ id, name, email, mobileno, dateOfpayout, payoutamount, ban
 
         </div>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex justify-center">
          
 

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-
 function PlayerInfo({ UserId, UserName, MobileNo, aviatorGamePlay, blackandwhiteGamePlay, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin,  status, profileUrl,email,uniqueId }) {
 
   const navigate = useNavigate();

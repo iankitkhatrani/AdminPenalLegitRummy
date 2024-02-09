@@ -152,7 +152,7 @@ function PlayerTab({ gameName }) {
         <tbody>
           <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                   Date Time
@@ -197,7 +197,7 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Game Play Type
@@ -242,7 +242,7 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 commission
@@ -422,7 +422,6 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0"></td>
           </tr>
           {usersOnCurrentPage?.map((user, index) =>
             pageSize

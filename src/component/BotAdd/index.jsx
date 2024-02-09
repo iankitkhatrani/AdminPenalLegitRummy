@@ -25,6 +25,19 @@ console.log("HRLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
     country:"india"
   })
 
+//   useEffect(() => {
+        
+//     const submitdata = async () => {
+//         SetuserInfo({
+//           name: Botinfo.UserName,
+//           profileUrl: Botinfo.img,
+//           status: Botinfo.Status,
+//           country:"india"
+//         })
+        
+//     }
+//     submitdata()
+// },[]);
 
   const OnChange = (event) => {
     let { name, value } = event.target;

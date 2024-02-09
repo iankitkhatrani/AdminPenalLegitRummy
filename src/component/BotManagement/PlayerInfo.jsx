@@ -77,6 +77,7 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
           "cursor": "pointer",
           "border-radius": "4px"}} onClick={ () => DeleteUser(UserId) } >
           <img style={{"width": "30px","height": "30px","margin": "10px"}} src={trash} />
+            
           </button>
         </div>
       </td>

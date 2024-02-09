@@ -37,40 +37,40 @@ function CustomerInfo({ gamePlayType, tableName,entryFee,maxSeat,commission,stat
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {gamePlayType}
         </p>
       </td>
       
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {tableName}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {entryFee}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {maxSeat}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {commission}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {status}
         </p>
       </td>
 
       
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
       <div className="flex justify-center">
           <button styles={{"margin": "1px",
           "background-color": "white",
