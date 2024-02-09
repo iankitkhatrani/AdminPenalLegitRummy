@@ -44,7 +44,7 @@ function HeaderTwo({ handleSidebar }) {
               </span>
             </button>
             <div>
-              <Link to="/">
+              <Link to="/dashboard">
                 <img src={logo} className="block dark:hidden" alt="logo" />
                 <img src={logoW} className="hidden dark:block" alt="logo" />
               </Link>
@@ -86,6 +86,21 @@ function HeaderTwo({ handleSidebar }) {
                 </p>
               </div>
             </div>
+
+          </div>
+        </div>
+      </header>
+     <ResProfilePopup isActive={activePopup} /> 
+    </div>
+  );
+}
+
+HeaderTwo.propTypes = {
+  handleSidebar: ProtoTypes.func,
+};
+
+export default HeaderTwo;
+/*
 
             <div className="profile-wrapper">
               <div
@@ -229,16 +244,4 @@ function HeaderTwo({ handleSidebar }) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </header>
-      <ResProfilePopup isActive={activePopup} />
-    </div>
-  );
-}
-
-HeaderTwo.propTypes = {
-  handleSidebar: ProtoTypes.func,
-};
-
-export default HeaderTwo;
+*/

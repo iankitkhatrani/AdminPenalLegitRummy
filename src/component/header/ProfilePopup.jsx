@@ -2,7 +2,7 @@ import ProtoTypes from "prop-types";
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import offerContext from '../../context/offerContext'
-
+import ModeToggler from "./ModeToggler";
 function ProfilePopup({ active }) {
 
   const context = useContext(offerContext)
@@ -55,6 +55,16 @@ function ProfilePopup({ active }) {
                     </div>
                   </div>
                 </Link>
+              </li>
+              <li className="w-full">
+              
+                  <div className="flex items-center space-x-[18px] rounded-lg p-[14px] text-success-300">
+                   
+                    <div className="flex-1">
+                     
+                        <ModeToggler/>
+                    </div>
+                  </div>
               </li>
             </ul>
           </div>

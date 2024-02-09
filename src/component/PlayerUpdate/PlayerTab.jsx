@@ -38,16 +38,17 @@ function PlayerTab({ UserId, gameName }) {
       // <HistoryTable gameName="Deposit"/>
       // <HistoryTable gameName="reffrel"/>
       console.log("gameName ",gameName)
-      if (gameName == "AviatorGame") {
+      if (gameName == "Rummy") {
        
-        setGameHistoryData(await aviatorHistoryData( Botinfo.UserId))
+        setGameHistoryData(await GetBlackandWhiteHistoryData(Botinfo.UserId))
 
         console.log("gameHistoryData ",gameHistoryData)
 
-      } else if (gameName == "BlackandWhite") {
-
-        setGameHistoryData(await GetBlackandWhiteHistoryData( Botinfo.UserId))
       }
+      // else if (gameName == "BlackandWhite") {
+
+      //   setGameHistoryData(await aviatorHistoryData( Botinfo.UserId))
+      // }
       // else if(gameName == "Withdrawal"){
 
       //   SetcompleteWithdrawal(await GetCompleteWithdrawalData())
