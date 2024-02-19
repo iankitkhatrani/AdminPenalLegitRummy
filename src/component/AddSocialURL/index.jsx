@@ -33,6 +33,7 @@ function addsocailurl() {
         setNewPlatform('');
         setNewURL('');
         navigateToContacts()
+        window.location.reload();
       } else {
         alert("Error Please enter")
       }

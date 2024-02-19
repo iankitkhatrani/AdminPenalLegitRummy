@@ -94,7 +94,7 @@ function pointTableUpdate() {
     if(res.status == 1){
         navigateToContacts()
     }else{
-        alert("Error Please enter")
+        alert(res.message)
     }
     console.log(userInfo);
 };

@@ -111,6 +111,32 @@ function PlayerTab({ UserId, gameName }) {
     setToDate("")
   }
   //-----------------------------------------------------------------------------------------------
+  const handleFromDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('From date cannot be beyond current date');
+    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
+      alert('From date must be earlier than To date');
+    } else {
+      
+      setFromDate(selectedDate);
+
+    
+    }
+  };
+
+  const handleToDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('To date cannot be beyond current date');
+    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
+      alert('To date must be later than From date');
+    } else {
+      setToDate(selectedDate);
+    }
+  };
 
 
   return (
@@ -162,13 +188,13 @@ function PlayerTab({ UserId, gameName }) {
             type="date"
             placeholder="From Date"
             value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
+            onChange={handleFromDateChange}
           />
           <input
             type="date"
             placeholder="To Date"
             value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
+            onChange={handleToDateChange}
             style={{ marginLeft: "1rem" }}
           />
           <button aria-label="none"
@@ -183,7 +209,7 @@ function PlayerTab({ UserId, gameName }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               
-              <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
+              <td className="w-[165px]  px-6 py-5 lg:w-auto xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Date Time
@@ -228,7 +254,7 @@ function PlayerTab({ UserId, gameName }) {
                   </span>
                 </div>
               </td>
-              <td className="px-6 py-5 xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Name
@@ -273,7 +299,7 @@ function PlayerTab({ UserId, gameName }) {
                   </span>
                 </div>
               </td>
-              <td className="px-6 py-5 xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Mobile Number

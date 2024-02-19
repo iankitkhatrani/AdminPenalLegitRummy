@@ -23,8 +23,7 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
   const DeleteUser = async (userid) =>{
     console.log("delete ::::::::::::::")
     await BotDelete(userid)
-
-    setUserData(await BotList())
+    window.location.reload();
   }
 
   return (

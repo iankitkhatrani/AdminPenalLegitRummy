@@ -35,6 +35,7 @@ function addmail() {
         setNewTitle('');
         setNewContent('');
         navigateToContacts()
+        window.location.reload();
       } else {
         alert("Error Please enter")
       }
@@ -92,7 +93,7 @@ function addmail() {
                 className="rounded-lg bg-success-300 text-white font-semibold mt-10 py-3.5 px-4"
                 onClick={addNotice}
               >
-                Add Notice Text
+                Add Mail
               </button>
             </div>
         </div>

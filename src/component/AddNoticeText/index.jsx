@@ -35,6 +35,7 @@ function addnoticetext() {
         setNewTitle('');
         setNewContent('');
         navigateToContacts()
+        window.location.reload();
       } else {
         alert("Error Please enter")
       }

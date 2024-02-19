@@ -36,6 +36,7 @@ function addbanner() {
           setNewTitle('');
           setNewLink('');
           setSelectedImage(null);
+          window.location.reload();
       }else{
           alert("Error Please enter")
       }

@@ -94,6 +94,32 @@ function PlayerTab({ UserId, gameName }) {
   }
   //-----------------------------------------------------------------------------------------------
 
+  const handleFromDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('From date cannot be beyond current date');
+    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
+      alert('From date must be earlier than To date');
+    } else {
+      
+      setFromDate(selectedDate);
+
+    
+    }
+  };
+
+  const handleToDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('To date cannot be beyond current date');
+    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
+      alert('To date must be later than From date');
+    } else {
+      setToDate(selectedDate);
+    }
+  };
 
   return (
     <>
@@ -144,13 +170,13 @@ function PlayerTab({ UserId, gameName }) {
             type="date"
             placeholder="From Date"
             value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
+            onChange={handleFromDateChange}
           />
           <input
             type="date"
             placeholder="To Date"
             value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
+            onChange={handleToDateChange}
             style={{ marginLeft: "1rem" }}
           />
           <button aria-label="none"

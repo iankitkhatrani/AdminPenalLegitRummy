@@ -4,7 +4,7 @@ function PlayerInfo({ datetime,UserName,MobileNo,roomid,amount,type,club}) {
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
       
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex w-full items-center space-x-2.5">
           
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
@@ -12,12 +12,12 @@ function PlayerInfo({ datetime,UserName,MobileNo,roomid,amount,type,club}) {
           </p>
         </div>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {UserName}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {MobileNo}
         </p>
@@ -27,17 +27,17 @@ function PlayerInfo({ datetime,UserName,MobileNo,roomid,amount,type,club}) {
           {roomid}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
         ₹{amount}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {type}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {club}
         </p>

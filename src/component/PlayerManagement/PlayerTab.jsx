@@ -37,7 +37,7 @@ function PlayerTab({ }) {
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   const filteredUsers = userData.filter((user) => {
-    console.log("dddd")
+    console.log("dddd",user)
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
@@ -71,6 +71,34 @@ function PlayerTab({ }) {
     setToDate("")
   }
   //-----------------------------------------------------------------------------------------------
+
+  const handleFromDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('From date cannot be beyond current date');
+    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
+      alert('From date must be earlier than To date');
+    } else {
+      
+      setFromDate(selectedDate);
+
+    
+    }
+  };
+
+  const handleToDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('To date cannot be beyond current date');
+    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
+      alert('To date must be later than From date');
+    } else {
+      setToDate(selectedDate);
+    }
+  };
+
 
   return (
     <>
@@ -121,13 +149,13 @@ function PlayerTab({ }) {
             type="date"
             placeholder="From Date"
             value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
+            onChange={handleFromDateChange}
           />
           <input
             type="date"
             placeholder="To Date"
             value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
+            onChange={handleToDateChange}
             style={{ marginLeft: "1rem" }}
           />
           <button aria-label="none"
@@ -235,54 +263,9 @@ function PlayerTab({ }) {
                 </div>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Aviator GamePlay
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
               <div className="flex items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Black and White GamePlay
+                  Rummy Game
                 </span>
                 <span>
                   <svg
@@ -648,8 +631,7 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.username}
                     MobileNo={user.mobileNumber}
-                    aviatorGamePlay={user.counters.totalMatch}
-                    blackandwhiteGamePlay={user.counters.totalMatch}
+                    totalMatch={user.counters.totalMatch}
                     MainWallet={user.chips}
                     WinWallet={user.winningChips}
                     BonusWallet={user.chips}
@@ -668,8 +650,7 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.username}
                     MobileNo={user.mobileNumber}
-                    aviatorGamePlay={user.counters.totalMatch}
-                    blackandwhiteGamePlay={user.counters.totalMatch}
+                    totalMatch={user.counters.totalMatch}
                     MainWallet={user.chips}
                     WinWallet={user.winningChips}
                     BonusWallet={user.chips}

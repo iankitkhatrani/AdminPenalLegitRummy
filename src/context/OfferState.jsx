@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-const host ="http://64.23.141.200:3000";// "http://192.168.0.203:3000"//
+const host = "http://64.23.141.200:3000";//"http://192.168.0.203:3000"//
 //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ5Y2NlM2JhNDA4YTJlMjg3ZjJlYzUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQHNpc3VnYW16LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHhZZzVMUlNRRWxiNENOZnVocjdncmUyUjNMOUQ5eDhaWmc0c0QxSW9uY1N6ZWFTSHgzMTIuIiwiY3JlYXRlZEF0IjoiMjAyMy0xMS0wN1QwNTozNjozNS42NjBaIiwibW9kaWZpZWRBdCI6IjIwMjMtMTEtMDdUMDU6MzY6MzUuNjYwWiIsImlhdCI6MTY5OTMzNTQxMywiZXhwIjoxNjk5OTQwMjEzfQ.NrLsWSnyD09P3h30rsng_R3bygn3TsKl8nXyD7qom4c";
 
 const OfferState = (props) => {
@@ -130,7 +130,7 @@ const OfferState = (props) => {
                     'token': cookies.get('token')
                 },
                 body: JSON.stringify(data)
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -159,7 +159,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -257,7 +257,7 @@ const OfferState = (props) => {
                     'token': cookies.get('token')
                 },
                 body: JSON.stringify(data)
-            }).then(d => d)
+            }).then(data => data.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -285,7 +285,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -569,10 +569,10 @@ const OfferState = (props) => {
     //======================
     // game History 
 
-    const BlackWhiteGameHistory = async () => {
+    const RummyGameHistory = async () => {
         try {
-            console.log("PlayerList :::::::", `${host}/admin/games/blackwhitegamehistory`)
-            const response = await fetch(`${host}/admin/games/blackwhitegamehistory`, {
+            console.log("PlayerList :::::::", `${host}/admin/games/rummygamehistory`)
+            const response = await fetch(`${host}/admin/games/rummygamehistory`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -757,7 +757,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -852,7 +852,7 @@ const OfferState = (props) => {
                         'Content-Type': 'application/json',
                         'token': cookies.get('token')
                     }
-                }).then(d => d)
+                }).then(d => d.json())
     
                 const json = response
                 console.log("data api from :latatestUser :::...", json)
@@ -943,7 +943,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1038,7 +1038,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1101,7 +1101,7 @@ const OfferState = (props) => {
                     'token': cookies.get('token')
                 },
                 body: JSON.stringify({ flag: data })
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1267,7 +1267,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1331,7 +1331,7 @@ const OfferState = (props) => {
                     'token': cookies.get('token')
                 },
                 body: JSON.stringify(data)
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1399,7 +1399,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1577,7 +1577,7 @@ const OfferState = (props) => {
                     'token': cookies.get('token')
                 },
                 body: JSON.stringify(data)
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1643,7 +1643,7 @@ const OfferState = (props) => {
                     'Content-Type': 'application/json',
                     'token': cookies.get('token')
                 }
-            }).then(d => d)
+            }).then(d => d.json())
 
             const json = response
             console.log("data api from :latatestUser :::...", json)
@@ -1915,7 +1915,7 @@ const OfferState = (props) => {
         <offerContext.Provider value={{
             host,
             adminname, adminEmail, dashboardData, latatestUser, PlayerList, PlayerData,
-            PlayerAdd, PlayerDelete, BlackWhiteGameHistory, AviatorGameHistory, GameLogicSet,GetGameLogic, GetBlackandWhiteHistoryData,aviatorHistoryData, GetCompleteWithdrawalData,
+            PlayerAdd, PlayerDelete, RummyGameHistory, AviatorGameHistory, GameLogicSet,GetGameLogic, GetBlackandWhiteHistoryData,aviatorHistoryData, GetCompleteWithdrawalData,
             GetCompleteDespositeData, GetRegisterReferralBonusData, GetMyReferralData,
             SocailURLsList, SocailURLsAdd, DeleteSocailURLs,
             CoinsList,CoinPackeAdd,DeleteCoinpack,

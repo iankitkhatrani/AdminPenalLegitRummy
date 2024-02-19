@@ -20,6 +20,7 @@ function CustomerInfo({ PlatForm, URL,id}) {
     await DeleteSocailURLs(id)
 
     navigateToContacts()
+    window.location.reload();
 
   };
 

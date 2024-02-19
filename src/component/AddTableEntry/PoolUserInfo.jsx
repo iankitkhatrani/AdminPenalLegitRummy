@@ -34,6 +34,7 @@ function CustomerInfo({ gamePlayType, type, tableName, entryFee, maxSeat, status
     await DeleteTableEntry("admin/pool-lobbies/" + id)
 
     navigateToContacts()
+    window.location.reload();
 
   };
 

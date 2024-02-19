@@ -10,15 +10,12 @@ function ListNotice({ pageSize,gameType }) {
   return (
     <div className="w-full rounded-lg bg-white px-[24px] py-[20px] dark:bg-darkblack-600">
       <div className="flex flex-col space-y-5">
-        <div className="flex h-[56px] w-full space-x-4">
-          <Search />
-          
-        </div>
+      
         {gameType == "dealrummy" ? <UserTab pageSize={pageSize} gameType={gameType}/> : " " }
         {gameType == "pointrummy" ? <PointUserTab pageSize={pageSize} gameType={gameType}/> : " " }
         {gameType == "poolrummy" ? <PoolUserTab pageSize={pageSize} gameType={gameType}/> : " " }
 
-        <Pagination />
+    
       </div>
     </div>
   );
@@ -29,3 +26,9 @@ ListNotice.propTypes = {
 };
 
 export default ListNotice;
+
+
+// <div className="flex h-[56px] w-full space-x-4">
+         
+          
+// </div>

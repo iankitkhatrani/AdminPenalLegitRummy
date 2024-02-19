@@ -75,6 +75,32 @@ function PlayerTab({ }) {
   }
   //-----------------------------------------------------------------------------------------------
 
+  const handleFromDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('From date cannot be beyond current date');
+    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
+      alert('From date must be earlier than To date');
+    } else {
+      
+      setFromDate(selectedDate);
+
+    
+    }
+  };
+
+  const handleToDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('To date cannot be beyond current date');
+    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
+      alert('To date must be later than From date');
+    } else {
+      setToDate(selectedDate);
+    }
+  };
 
   return (
     <>
@@ -125,20 +151,20 @@ function PlayerTab({ }) {
             type="date"
             placeholder="From Date"
             value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
+            onChange={handleFromDateChange}
           />
           <input
             type="date"
             placeholder="To Date"
             value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
+            onChange={handleToDateChange}
             style={{ marginLeft: "1rem" }}
           />
           <button aria-label="none"
           className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
           <button aria-label="none"
-          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add User</button>
+          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add Robot</button>
 
         </div>
       </div>

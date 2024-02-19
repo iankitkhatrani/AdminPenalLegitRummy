@@ -32,6 +32,7 @@ function CustomerInfo({ gamePlayType, deal, tableName, entryFee, maxSeat, commis
     await DeleteTableEntry("admin/deal-lobbies/" + id)
 
     navigateToContacts()
+    window.location.reload();
 
   };
 

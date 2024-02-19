@@ -18,6 +18,7 @@ function CustomerInfo({ title, imageUrl, date, id,link }) {
   const deleteBanner = async (id) => {
     await DeleteBanner(id)
     navigateToContacts()
+    window.location.reload();
   };
 
 

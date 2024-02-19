@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId, UserName, MobileNo, aviatorGamePlay, blackandwhiteGamePlay, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin,  status, profileUrl,email,uniqueId }) {
+function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin,  status, profileUrl,email,uniqueId }) {
 
   const navigate = useNavigate();
   const navigateToContacts = (UserId, UserName, MobileNo, aviatorGamePlay, blackandwhiteGamePlay, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl,email,uniqueId) => {
@@ -14,26 +14,21 @@ function PlayerInfo({ UserId, UserName, MobileNo, aviatorGamePlay, blackandwhite
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
       
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex w-full items-center space-x-2.5">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {UserName}
           </p>
         </div>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {MobileNo}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {aviatorGamePlay}
-        </p>
-      </td>
-      <td className="px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {blackandwhiteGamePlay}
+          {totalMatch}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -51,23 +46,23 @@ function PlayerInfo({ UserId, UserName, MobileNo, aviatorGamePlay, blackandwhite
         ₹{BonusWallet}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {RegistrationDate}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {LastLogin}
         </p>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {status}
         </p>
       </td>
 
-      <td className="px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex justify-center">
           <button styles={{
             "margin": "1px",

@@ -4,7 +4,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
 
 function playerAddinfo() {
-  console.log("HRLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+  
   const location = useLocation();
   //console.log("location ", location.state)
 
@@ -87,12 +87,13 @@ function playerAddinfo() {
 
     console.log("REsponce ::::::::::::::::::::::", res)
 
-    if (res.status == 200) {
+    if (res.restatus) {
       navigateToContacts()
     } else {
-      alert("Error Please enter")
+      alert(res.msg)
+    
     }
-    console.log(userInfo);
+    console.log("res ",res);
   };
 
 

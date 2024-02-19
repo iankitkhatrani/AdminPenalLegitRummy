@@ -22,7 +22,7 @@ function addtableentry() {
     deal:0,
     entryFee:0,
     maxSeat:0,
-    status:false,
+    status:'DeActive',
     commission:0
   })
 
@@ -68,12 +68,11 @@ const handleSubmit = async (event) => {
 
     console.log("REsponce ::::::::::::::::::::::",res)
 
-    if(res.status == 200){
+    if(res.status){
         navigateToContacts()
     }else{
-        alert("Error Please enter")
+        alert(res.message)
     }
-    console.log(userInfo);
 };
 
 

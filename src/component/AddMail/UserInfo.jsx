@@ -20,6 +20,7 @@ function CustomerInfo({ title, content, date, id }) {
     await DeleteMail(id)
 
     navigateToContacts()
+    window.location.reload();
 
   };
 

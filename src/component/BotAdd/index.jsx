@@ -95,12 +95,11 @@ console.log("HRLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
 
     console.log("REsponce ::::::::::::::::::::::",res)
 
-    if(res.status == 200){
+    if(res.status){
         navigateToContacts()
     }else{
-        alert("Error Please enter")
+        alert(res.message)
     }
-    console.log(userInfo);
 };
 
 

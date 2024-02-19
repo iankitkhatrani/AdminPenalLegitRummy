@@ -24,6 +24,7 @@ function CustomerInfo({ gamePlayType, tableName,entryFee,maxSeat,commission,stat
 
   const navigateToContacts = () => {
     // 👇️ navigate to /contacts 
+    console.log("Page Reload ::::::::::::::::")
     navigate('/TableEntry?gametype=pointrummy');
   };
 
@@ -32,6 +33,7 @@ function CustomerInfo({ gamePlayType, tableName,entryFee,maxSeat,commission,stat
   const deleteTable = async (id) => {
     await DeleteTableEntry("admin/lobbies/"+id)
     navigateToContacts()
+    window.location.reload();
   };
 
   return (

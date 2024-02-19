@@ -299,7 +299,7 @@ function Sidebar({ handleActive }) {
                     >
                       <li>
                         <Link
-                          to="/gamehistory?gamename=balckandwhite"
+                          to="/gamehistory?gamename=rummy"
                           className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                             }`}
                         >

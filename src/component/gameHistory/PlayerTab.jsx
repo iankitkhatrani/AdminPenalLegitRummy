@@ -25,29 +25,58 @@ function PlayerTab({ gameName }) {
   let [gameHistoryData, setGameHistoryData] = useState([]);
 
   const context = useContext(offerContext)
-  const { BlackWhiteGameHistory,AviatorGameHistory } = context
+  const { RummyGameHistory } = context
 
 
   useEffect( () => {
     const submitdata = async () => {
       setGameHistoryData([])
 
-      if(gameName == "balckandwhite"){
-        console.log("Black and White ")
-        setGameHistoryData(await BlackWhiteGameHistory())
-      }else{
-        console.log("AVIAOTR")
-        setGameHistoryData(await AviatorGameHistory())
-      }
+      if(gameName == "rummy"){
+        console.log("rummy ")
+        setGameHistoryData(await RummyGameHistory())
+      }// }else{
+      //   console.log("AVIAOTR")
+      //   setGameHistoryData(await AviatorGameHistory())
+      // }
   }
   submitdata()
   },[gameName]);
+
+
+  const handleFromDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('From date cannot be beyond current date');
+    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
+      alert('From date must be earlier than To date');
+    } else {
+      
+      setFromDate(selectedDate);
+
+    
+    }
+  };
+
+  const handleToDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0]; 
+    if (selectedDate > currentDate) {
+      alert('To date cannot be beyond current date');
+    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
+      alert('To date must be later than From date');
+    } else {
+      setToDate(selectedDate);
+    }
+  };
+
 
     //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   const filteredUsers = gameHistoryData.filter((user) => {
     
-    const registrationDate = new Date(user.DateTime);
+    const registrationDate = new Date(user.date);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
 
@@ -55,8 +84,8 @@ function PlayerTab({ gameName }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.PhoneNumber.includes(searchTerm))
+        user.gamePlayType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.maxSeat.toString().includes(searchTerm))
     );
   });
 
@@ -116,7 +145,7 @@ function PlayerTab({ gameName }) {
           <input
             type="text"
             id="listSearch"
-            placeholder="Search by name, email, or others..."
+            placeholder="Search by Game PlayType, maxSeat...."
             className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -131,13 +160,13 @@ function PlayerTab({ gameName }) {
         type="date"
         placeholder="From Date"
         value={fromDate}
-        onChange={(e) => setFromDate(e.target.value)}
+        onChange={handleFromDateChange} // => setFromDate(e.target.value)}
       />
       <input
         type="date"
         placeholder="To Date"
         value={toDate}
-        onChange={(e) => setToDate(e.target.value)}
+        onChange={handleToDateChange}// => setToDate(e.target.value)}
         style={{ marginLeft: "1rem" }}
       />
       <button aria-label="none"

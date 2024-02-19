@@ -147,8 +147,8 @@ function SidebarV2() {
                     <ul className="sub-menu min-w-[200px] rounded-lg border-l border-success-100 bg-white px-5 py-2 shadow-lg">
                       <li>
                         <Link
-                          to="/gamehistory?gamename=balckandwhite"
-                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "gamehistory?gamename=balckandwhite" ? "nav-active" : ""
+                          to="/gamehistory?gamename=rummy"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "gamehistory?gamename=rummy" ? "nav-active" : ""
                             } `}
                         >
                           Game History
