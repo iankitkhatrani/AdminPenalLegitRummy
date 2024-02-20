@@ -7,8 +7,8 @@ import trash from "../../assets/images/trash.png";
 function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin,  status, profileUrl,email,uniqueId }) {
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, UserName, MobileNo, aviatorGamePlay, blackandwhiteGamePlay, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl,email,uniqueId) => {
-    navigate('/playeredit', { state:{ UserId, UserName, MobileNo, aviatorGamePlay, blackandwhiteGamePlay, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl,email,uniqueId } });
+  const navigateToContacts = (UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl,email,uniqueId) => {
+    navigate('/playeredit', { state:{ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl,email,uniqueId } });
   }
 
   return (
@@ -72,7 +72,7 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"
-          }} onClick={() => navigateToContacts( UserId, UserName, MobileNo, aviatorGamePlay, blackandwhiteGamePlay, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl ,email,uniqueId)} >
+          }} onClick={() => navigateToContacts( UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl ,email,uniqueId)} >
           <img style={{"width": "30px","height": "30px","margin": "10px"}} src={edit} />
           </button>
 
