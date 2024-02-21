@@ -15,7 +15,7 @@ function playerUpdateinfo() {
       <section className="mb-6 2xl:mb-0 2xl:flex-1">
           <HistoryTable gameName="Rummy"/>
           <TransactionData gameName="Withdrawal"/>
-          <DepositData gameName="Deposite"/>
+          <DepositData gameName="Deposit"/>
           <DepositData gameName="Referral Bonus"/>
 
           

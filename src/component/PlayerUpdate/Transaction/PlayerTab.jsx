@@ -43,7 +43,7 @@ function PlayerTab({ UserId, gameName }) {
 
         console.log("gameHistoryData ",gameHistoryData)
 
-      } else if (gameName == "Deposite") {
+      } else if (gameName == "Deposit") {
 
         setGameHistoryData(await GetCompleteDespositeData( Botinfo.UserId))
       }

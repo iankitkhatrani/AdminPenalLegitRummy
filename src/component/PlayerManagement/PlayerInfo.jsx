@@ -4,16 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin,  status, profileUrl,email,uniqueId }) {
+function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId }) {
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl,email,uniqueId) => {
-    navigate('/playeredit', { state:{ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl,email,uniqueId } });
+  const navigateToContacts = (UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId) => {
+    navigate('/playeredit', { state: { UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId } });
   }
 
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-      
+
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <div className="flex w-full items-center space-x-2.5">
+          <p className="text-base font-semibold text-bgray-900 dark:text-white">
+            {UserId}
+          </p>
+        </div>
+      </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex w-full items-center space-x-2.5">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
@@ -33,17 +40,17 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-        ₹{MainWallet}
+          ₹{MainWallet}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-        ₹{WinWallet}
+          ₹{WinWallet}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-        ₹{BonusWallet}
+          ₹{BonusWallet}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -72,26 +79,26 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"
-          }} onClick={() => navigateToContacts( UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl ,email,uniqueId)} >
-          <img style={{"width": "30px","height": "30px","margin": "10px"}} src={edit} />
-          </button>
-
-          <button styles={{
-            "margin": "1px",
-            "background-color": "white",
-            "color": "white",
-            "border": "none",
-            "padding": "5px 10px",
-            "cursor": "pointer",
-            "border-radius": "4px"
-          }} onClick={() => DeleteUser(UserId)} >
-          <img style={{"width": "30px","height": "30px","margin": "10px"}} src={trash} />
+          }} onClick={() => navigateToContacts(UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId)} >
+            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
           </button>
         </div>
       </td>
     </tr>
   );
 }
+
+// <button styles={{
+//   "margin": "1px",
+//   "background-color": "white",
+//   "color": "white",
+//   "border": "none",
+//   "padding": "5px 10px",
+//   "cursor": "pointer",
+//   "border-radius": "4px"
+// }} onClick={() => DeleteUser(UserId)} >
+//   <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={trash} />
+// </button>
 
 // PlayerInfo.propTypes = {
 //   UserId:ProtoTypes.string,

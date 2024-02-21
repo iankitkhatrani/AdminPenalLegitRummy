@@ -410,7 +410,7 @@ function PlayerTab({ }) {
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
                     MainWallet={user.chips}
-                    Status={user.block_user ? 'Blocked' : 'Active'}
+                    Status={!user.status  || user.status == "false" ? 'Blocked' : 'Active'}
                   />
                 )
               : index < 3 && (
@@ -421,7 +421,7 @@ function PlayerTab({ }) {
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
                     MainWallet={user.chips}
-                    Status={user.block_user ? 'Blocked' : 'Active'}
+                    Status={!user.status  || user.status == "false"  ? 'Blocked' : 'Active'}
                   />
                 )
           )}
