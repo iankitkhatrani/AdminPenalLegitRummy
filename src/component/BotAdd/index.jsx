@@ -91,6 +91,13 @@ console.log("HRLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
 
     console.log("userInfo ",userInfo)
 
+    if(!/^[a-zA-Z\s]+$/.test(userInfo.name)){
+      alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
+      return false
+    }
+
+
+
     let res = await BotAdd(userInfo)
 
     console.log("REsponce ::::::::::::::::::::::",res)

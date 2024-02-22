@@ -14,7 +14,8 @@ function PlayerTab({ gameName }) {
     const [fromDate, setFromDate] = useState('');
     const [toDate, setToDate] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-  
+    const [sortDirection, setSortDirection] = useState('asc');
+
     const Dropdown = (item) => {
       setPageSize(item)
       setActive(!active)
@@ -85,6 +86,7 @@ function PlayerTab({ gameName }) {
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
         user.gamePlayType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.gameId.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.maxSeat.toString().includes(searchTerm))
     );
   });
@@ -109,6 +111,17 @@ function PlayerTab({ gameName }) {
     setToDate("")
   }
   //-----------------------------------------------------------------------------------------------
+
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...gameHistoryData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setGameHistoryData(sorted);
+    setSortDirection(direction);
+  };
 
 
   return (
@@ -145,7 +158,7 @@ function PlayerTab({ gameName }) {
           <input
             type="text"
             id="listSearch"
-            placeholder="Search by Game PlayType, maxSeat...."
+            placeholder="Search by Game PlayType,GameId maxSeat...."
             className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -181,7 +194,7 @@ function PlayerTab({ gameName }) {
         <tbody>
           <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('date')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                   Date Time
@@ -226,7 +239,7 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gamePlayType')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Game Play Type
@@ -271,7 +284,7 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('commission')}>
               <div className="flex items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 commission
@@ -316,7 +329,7 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 GameId
@@ -361,7 +374,7 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('entryFee')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Entry Fee

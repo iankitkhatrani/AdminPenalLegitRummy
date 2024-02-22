@@ -87,6 +87,17 @@ function pointTableUpdate() {
 
     console.log("userInfo ",userInfo)
 
+    if(!/^[a-zA-Z\s]+$/.test(userInfo.tableName)){
+      alert("Invalid Table name. Table name should only contain alphabetic characters and spaces.")
+      return false
+    }
+
+    
+    if(parseInt(userInfo.maxSeat) != 2 && parseInt(userInfo.maxSeat) != 6){
+      alert("Invalid Max Seat Must be 2 or 6.")
+      return false
+    }
+
     let res = await TableEntryUpdate(userInfo)
 
     console.log("responce ::::::::::::::::::::::",res)
@@ -126,6 +137,7 @@ function pointTableUpdate() {
               name="tableName"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -144,6 +156,7 @@ function pointTableUpdate() {
               name="commission"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -162,6 +175,7 @@ function pointTableUpdate() {
               name="deal"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
+              required
             />
           </div> : ""}
 
@@ -180,6 +194,7 @@ function pointTableUpdate() {
               name="type"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
+              required
             />
           </div> : "" }
 
@@ -198,6 +213,7 @@ function pointTableUpdate() {
               name="entryFee"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -217,6 +233,7 @@ function pointTableUpdate() {
               name="maxSeat"
               className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -235,6 +252,7 @@ function pointTableUpdate() {
                 name="status"
                 checked={userInfo.status == "Active"}
                 onChange={OnChange}
+                required
               />
               Active
             </label>
@@ -246,6 +264,7 @@ function pointTableUpdate() {
                 name="status"
                 checked={userInfo.status == "DeActive"}
                 onChange={OnChange}
+                required
               />
                  Inactive
             </label>

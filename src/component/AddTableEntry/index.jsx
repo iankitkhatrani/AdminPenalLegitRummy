@@ -64,6 +64,17 @@ const handleSubmit = async (event) => {
 
     console.log("tableInfo ",tableInfo)
 
+    if(!/^[a-zA-Z\s]+$/.test(tableInfo.tableName)){
+      alert("Invalid Table name. Table name should only contain alphabetic characters and spaces.")
+      return false
+    }
+
+    
+    if(parseInt(tableInfo.maxSeat) != 2 && parseInt(tableInfo.maxSeat) != 6){
+      alert("Invalid Max Seat Must be 2 or 6.")
+      return false
+    }
+
     let res = await addTableentryAPI(tableInfo,"admin/deal-lobbies")
 
     console.log("REsponce ::::::::::::::::::::::",res)
@@ -81,7 +92,7 @@ const handleSubmit = async (event) => {
     <div className="w-full rounded-lg bg-white px-[24px] py-[20px] dark:bg-darkblack-600">
       <div className="flex flex-col space-y-5">
         <h3 className="text-2xl font-bold pb-5 text-bgray-900 dark:text-white dark:border-darkblack-400 border-b border-bgray-200">
-          Dela Table Information's
+          Deal Table Information's
         </h3>
         <div className="mt-8">
           <form action="">
@@ -102,6 +113,7 @@ const handleSubmit = async (event) => {
                   name="tableName"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -119,6 +131,7 @@ const handleSubmit = async (event) => {
                   name="commission"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -136,6 +149,7 @@ const handleSubmit = async (event) => {
                   name="deal"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -153,6 +167,7 @@ const handleSubmit = async (event) => {
                   name="entryFee"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -171,6 +186,7 @@ const handleSubmit = async (event) => {
                   name="maxSeat"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -189,6 +205,7 @@ const handleSubmit = async (event) => {
                     name="status"
                     checked={tableInfo.status === true || tableInfo.status === "true" || tableInfo.status == "Active"}
                     onChange={OnChange}
+                    required
                   />
                   Active
                 </label>
@@ -200,6 +217,7 @@ const handleSubmit = async (event) => {
                     name="status"
                     checked={tableInfo.status === false || tableInfo.status === "false" || tableInfo.status === "" || tableInfo.status == "DeActive"}
                     onChange={OnChange}
+                    required
                   />
                      Inactive
                 </label>

@@ -13,7 +13,7 @@ function UserTab({ }) {
     const [fromDate, setFromDate] = useState('');
     const [toDate, setToDate] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-  
+    const [sortDirection, setSortDirection] = useState('asc');
     const Dropdown = (item) => {
       setPageSize(item)
       setActive(!active)
@@ -76,6 +76,16 @@ function UserTab({ }) {
   }
   //-----------------------------------------------------------------------------------------------
 
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...jsonData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setJsonData(sorted);
+    setSortDirection(direction);
+  };
 
   
   return (
@@ -85,7 +95,7 @@ function UserTab({ }) {
         <tbody>
           <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
+            <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0" onClick={() => handleSort('username')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                   Player Name
@@ -130,10 +140,10 @@ function UserTab({ }) {
                 </span>
               </div>
             </td>
-            <td className="px-6 py-5 xl:px-0">
+            <td className="px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Login Date and Time
+                  Created Date and Time
                 </span>
                 <span>
                   <svg

@@ -65,6 +65,17 @@ const handleSubmit = async (event) => {
 
     console.log("tableInfo ",tableInfo)
 
+    if(!/^[a-zA-Z\s]+$/.test(tableInfo.tableName)){
+      alert("Invalid Table name. Table name should only contain alphabetic characters and spaces.")
+      return false
+    }
+
+    
+    if(parseInt(tableInfo.maxSeat) != 2 && parseInt(tableInfo.maxSeat) != 6){
+      alert("Invalid Max Seat Must be 2 or 6.")
+      return false
+    }
+
     let res = await addTableentryAPI(tableInfo,"admin/pool-lobbies")
 
     console.log("REsponce ::::::::::::::::::::::",res)
@@ -103,6 +114,7 @@ const handleSubmit = async (event) => {
                   name="tableName"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -120,6 +132,7 @@ const handleSubmit = async (event) => {
                   name="commission"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -137,6 +150,7 @@ const handleSubmit = async (event) => {
                   name="type"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -154,6 +168,7 @@ const handleSubmit = async (event) => {
                   name="entryFee"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -172,6 +187,7 @@ const handleSubmit = async (event) => {
                   name="maxSeat"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required
                 />
               </div>
 

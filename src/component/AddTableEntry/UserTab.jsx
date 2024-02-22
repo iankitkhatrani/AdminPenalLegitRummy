@@ -15,6 +15,7 @@ function UserTab({gameType }) {
   const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortDirection, setSortDirection] = useState('asc');
 
   const Dropdown = (item) => {
     setPageSize(item)
@@ -47,7 +48,8 @@ function UserTab({gameType }) {
     return (
       (searchTerm === '' ||
         user.entryFee.toString().includes(searchTerm) ||
-        user.maxSeat.toString().includes(searchTerm))
+        user.maxSeat.toString().includes(searchTerm) || 
+        user.tableName.toString().includes(searchTerm))
     );
   });
 
@@ -72,6 +74,17 @@ function UserTab({gameType }) {
   }
   //-----------------------------------------------------------------------------------------------
 
+  
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...notices].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setNotices(sorted);
+    setSortDirection(direction);
+  };
 
   return (
     <>
@@ -80,7 +93,7 @@ function UserTab({gameType }) {
     <input
       type="text"
       id="listSearch"
-      placeholder="Search by Entry Fee, maxSeat...."
+      placeholder="Search by Entry Fee,Table Name, maxSeat...."
       className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
       onChange={(e) => setSearchTerm(e.target.value)}
     />
@@ -100,7 +113,7 @@ function UserTab({gameType }) {
         <tbody>
           <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="w-[165px] px-6 py-5 lg:w-auto xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gamePlayType')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Game Play Type
@@ -145,7 +158,7 @@ function UserTab({gameType }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('deal')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Deal
@@ -190,7 +203,7 @@ function UserTab({gameType }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('tableName')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Table Name
@@ -235,7 +248,7 @@ function UserTab({gameType }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('entryFee')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Entry Fee
@@ -280,7 +293,7 @@ function UserTab({gameType }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('maxSeat')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Max Seat
@@ -325,7 +338,7 @@ function UserTab({gameType }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('commission')}>
             <div className="flex w-full items-center space-x-2.5">
               <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
               Commission
@@ -370,7 +383,7 @@ function UserTab({gameType }) {
               </span>
             </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
+            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
               <div className="flex w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Status

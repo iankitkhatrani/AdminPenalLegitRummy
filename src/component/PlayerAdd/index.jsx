@@ -63,7 +63,12 @@ function playerAddinfo() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log("NAME :::::::::::::::::", value)
+    console.log("value :::::::::::::::::", value)
+    console.log("name :::::::::::::::::", name)
+
+
+  
+
     SetuserInfo({
       ...userInfo,
       [name]: value,
@@ -82,6 +87,28 @@ function playerAddinfo() {
     // This example just logs the data to the console
 
     console.log("userInfo ", userInfo)
+
+    if(!/^[a-zA-Z\s]+$/.test(userInfo.name)){
+      alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
+      return false
+    }
+
+    if(!/^[1-9]\d{9}$/.test(userInfo.mobileNumber)){
+      alert("Invalid mobile number. Mobile number should start with 1 and be exactly 10 digits long.")
+      return false
+    }
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email)){
+      alert("Invalid email format.")
+      return false
+    }
+    
+    if(userInfo.password.length < 8){
+      alert("Invalid passwordValue leangth Must be 8 characters.")
+      return false
+    }
+    
+
 
     let res = await PlayerAdd(userInfo)
 
@@ -121,7 +148,9 @@ function playerAddinfo() {
                   placeholder="Please Insert Name"
                   name="name"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+                  pattern="[A-Za-z\s]+"
                   onChange={handleChange}
+                  required
                 />
 
               </div>
@@ -143,6 +172,10 @@ function playerAddinfo() {
                   name="mobileNumber"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  minLength="10" // Minimum length of 10 characters
+                  maxLength="10" // Maximum length of 10 characters
+                  pattern="[1-9][0-9]{9}"
+                  required
                 />
 
               </div>
@@ -163,6 +196,7 @@ function playerAddinfo() {
                   name="email"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  required 
                 />
 
               </div>
@@ -184,6 +218,8 @@ function playerAddinfo() {
                   name="password"
                   className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
                   onChange={handleChange}
+                  minLength="8" 
+                  required 
                 />
 
               </div>

@@ -1,17 +1,16 @@
+import React, { useState, useContext, useEffect } from 'react';
 import ProtoTypes from "prop-types";
-import CustomerInfo from "./PointUserInfo";
-import users from "../../data/user";
-import offerContext from '../../context/offerContext'
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import CustomerInfo from "./PlayerInfo";
+import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
-
-function UserTab({ gameType }) {
-  const context = useContext(offerContext)
-  //=-----------------------------------------------------------
+function PlayerTab({ }) {
+  //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
   const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
 
@@ -19,37 +18,37 @@ function UserTab({ gameType }) {
     setPageSize(item)
     setActive(!active)
   }
-  //===========================================================
+  //------------------------------------------------------------------------------------------------------------
+  const navigate = useNavigate();
+  const navigateToUserRegister = () => {
+    navigate('/kycmanagement');
+  };
 
-  const { GetDealBetList } = context
-  const [notices, setNotices] = useState([]);
+  let [userData, setUserData] = useState([]);
+  const context = useContext(offerContext)
+  const { KYCPageList } = context
 
   useEffect(() => {
     const submitdata = async () => {
-      console.log("gameType ", gameType)
-
-      setNotices(await GetDealBetList(gameType))
+      setUserData(await KYCPageList())
     }
     submitdata()
   }, []);
 
-  const navigate = useNavigate();
-  const navigateToUserRegister = () => {
-    navigate('/pointtableentryadd');
-  };
-  console.log("notices pool ", notices)
-
-
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
-  const filteredUsers = notices.filter((user) => {
+  const filteredUsers = userData.filter((user) => {
+    console.log("dddd", user)
+    const registrationDate = new Date(user.createdAt);
+    const from = fromDate ? new Date(fromDate) : null;
+    const to = toDate ? new Date(toDate) : null;
 
     return (
+      (!from || registrationDate >= from) &&
+      (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.entryFee.toString().includes(searchTerm) ||
-        user.maxSeat.toString().includes(searchTerm) || 
-        user.tableName.toString().includes(searchTerm))
-
+        user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.adharcard.includes(searchTerm))
     );
   });
 
@@ -74,50 +73,120 @@ function UserTab({ gameType }) {
   }
   //-----------------------------------------------------------------------------------------------
 
+  const handleFromDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (selectedDate > currentDate) {
+      alert('From date cannot be beyond current date');
+    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
+      alert('From date must be earlier than To date');
+    } else {
+
+      setFromDate(selectedDate);
+
+
+    }
+  };
+
+  const handleToDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (selectedDate > currentDate) {
+      alert('To date cannot be beyond current date');
+    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
+      alert('To date must be later than From date');
+    } else {
+      setToDate(selectedDate);
+    }
+  };
+
+
   const handleSort = (key) => {
     const direction = sortDirection === 'asc' ? 'desc' : 'asc';
-    const sorted = [...notices].sort((a, b) => {
+    const sorted = [...userData].sort((a, b) => {
       if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
       if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
       return 0;
     });
-    setNotices(sorted);
+    setUserData(sorted);
     setSortDirection(direction);
   };
 
-
   return (
     <>
+      <div className="flex h-[56px] w-full space-x-4">
+        <div className="hidden h-full rounded-lg border border-transparent bg-bgray-100 px-[18px] focus-within:border-success-300 dark:bg-darkblack-500 sm:block sm:w-70 lg:w-88">
+          <div className="flex h-full w-full items-center space-x-[15px]">
+            <span>
+              <svg
+                className="stroke-bgray-900 dark:stroke-white"
+                width="21"
+                height="22"
+                viewBox="0 0 21 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="9.80204"
+                  cy="10.6761"
+                  r="8.98856"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M16.0537 17.3945L19.5777 20.9094"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <label htmlFor="listSearch" className="w-full">
+              <input
+                type="text"
+                id="listSearch"
+                placeholder="Search by Player Id, Aadhar , or others..."
+                className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </label>
+          </div>
+        </div>
+      </div>
       <div className="filter-content w-full">
-
-        <label htmlFor="listSearch" className="w-full">
-          <input
-            type="text"
-            id="listSearch"
-            placeholder="Search by Entry Fee, Table Name, maxSeat...."
-            className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </label>
-
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
+          <input
+            type="date"
+            placeholder="From Date"
+            value={fromDate}
+            onChange={handleFromDateChange}
+          />
+          <input
+            type="date"
+            placeholder="To Date"
+            value={toDate}
+            onChange={handleToDateChange}
+            style={{ marginLeft: "1rem" }}
+          />
+          <button aria-label="none"
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
           <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add Point Table Entry</button>
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
 
         </div>
       </div>
-
       <div className="table-content w-full overflow-x-auto">
         <table className="w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gamePlayType')}>
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Game Play Type
+                    Player Id
                   </span>
                   <span>
                     <svg
@@ -159,10 +228,11 @@ function UserTab({ gameType }) {
                   </span>
                 </div>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('tableName')}>
+
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('adharcard')}>
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Table Name
+                   Aadhaar Card
                   </span>
                   <span>
                     <svg
@@ -204,10 +274,10 @@ function UserTab({ gameType }) {
                   </span>
                 </div>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('entryFee')}>
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Entry Fee
+                    Created Date
                   </span>
                   <span>
                     <svg
@@ -249,10 +319,10 @@ function UserTab({ gameType }) {
                   </span>
                 </div>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('maxSeat')}>
-                <div className="flex w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('verified')}>
+                <div className="flex items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Max Seat
+                  Verified
                   </span>
                   <span>
                     <svg
@@ -294,167 +364,28 @@ function UserTab({ gameType }) {
                   </span>
                 </div>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('commission')}>
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Commission
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Status
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" >
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Action
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
+
+            
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
               pageSize
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    gamePlayType={user.gamePlayType}
-                    tableName={user.tableName}
-                    entryFee={user.entryFee}
-                    maxSeat={user.maxSeat}
-                    commission={user.commission}
-                    status={user.status}
-                    id={user._id}
+                    UserId={user.userId}
+                    adharcard={user.adharcard}
+                    createdAt={user.createdAt}
+                    verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
+
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    gamePlayType={user.gamePlayType}
-                    tableName={user.tableName}
-                    entryFee={user.entryFee}
-                    maxSeat={user.maxSeat}
-                    commission={user.commission}
-                    status={user.status}
-                    id={user._id}
-
+                    UserId={user.userId}
+                    adharcard={user.adharcard}
+                    createdAt={user.createdAt}
+                    verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
                   />
                 )
             )}
@@ -570,8 +501,8 @@ function UserTab({ gameType }) {
   );
 }
 
-UserTab.propTypes = {
+PlayerTab.propTypes = {
   pageSize: ProtoTypes.number,
 };
 
-export default UserTab;
+export default PlayerTab;

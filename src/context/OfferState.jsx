@@ -317,7 +317,7 @@ const OfferState = (props) => {
             }).then(data => data.json())
 
             const json = response
-            console.log("data api from :latatestUser :::...", json)
+            console.log("data api from :PlayerData :::...", json)
 
 
             if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
@@ -325,7 +325,7 @@ const OfferState = (props) => {
 
                 return {}
             } else {
-                return await json.userInfo
+                return await json
             }
 
         } catch (e) {
@@ -1911,6 +1911,42 @@ const OfferState = (props) => {
         }
     }
 
+    // KYC ::::::::::::::::::::::::::::::
+
+
+    const KYCPageList = async () => {
+        try {
+            console.log("KYCPageList :::::::", `${host}/admin/user/kycInfoList`)
+            const response = await fetch(`${host}/admin/user/kycInfoList`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :KYCPageList :::...", json)
+
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json.kycInfoList
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
+    //=====================
+
     return (
         <offerContext.Provider value={{
             host,
@@ -1929,7 +1965,8 @@ const OfferState = (props) => {
             DepositeList, DepositeAccptedList, DepositeRejectedList, DepositeAdd, UploadScreenshort, DepositeDelete, DepositeData, DepositeUpdate,
             PayoutList, PayoutAccptedList, PayoutRejectedList, PayoutUpdate, UploadScreenshortPayout,
             GetDealBetList,addTableentryAPI,DeleteTableEntry,TableEntryUpdate,
-             Chnageidpwd
+             Chnageidpwd,
+             KYCPageList
         }}>
             {props.children}
         </offerContext.Provider>)

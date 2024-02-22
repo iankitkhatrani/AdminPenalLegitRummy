@@ -18,9 +18,6 @@ function playerUpdateinfo() {
           <DepositData gameName="Deposit"/>
           <DepositData gameName="Referral Bonus"/>
 
-          
-
-
         </section>
         <section className="2xl:w-[400px] w-full flex flex-col lg:flex-row 2xl:space-x-0 2xl:flex-col lg:space-x-6 space-x-0">
           <UserInfoCard />

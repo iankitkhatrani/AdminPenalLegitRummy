@@ -18,7 +18,7 @@ function userInfo() {
   console.log("Player Info  ", Botinfo)
 
   const context = useContext(offerContext)
-  const { AddMoney, DeductMoney, host } = context
+  const { AddMoney, DeductMoney, host, PlayerData } = context
 
 
   const navigate = useNavigate();
@@ -27,50 +27,42 @@ function userInfo() {
     navigate('/transaction');
   };
 
-  let [userInfo, SetuserInfo] = useState({
-    userId: Botinfo.UserId,
-    UserName: Botinfo.UserName,
-    profileUrl: Botinfo.profileUrl,
-    status: Botinfo.status,
-    MobileNo: Botinfo.MobileNo,
-    totalMatch: Botinfo.totalMatch,
-    MainWallet: Botinfo.MainWallet,
-    WinWallet: Botinfo.WinWallet,
-    BonusWallet: Botinfo.BonusWallet,
-    RegistrationDate: Botinfo.RegistrationDate,
-    LastLogin: Botinfo.LastLogin,
-    Status: Botinfo.status,
-    email: Botinfo.email,
-    uniqueId: Botinfo.uniqueId,
+  let [userInfo, SetuserInfo] = useState({})
+  let [userkycInfo, SetkycuserInfo] = useState({})
 
-  })
 
   useEffect(() => {
 
     const submitdata = async () => {
-      SetuserInfo({
-        userId: Botinfo.UserId,
-        UserName: Botinfo.UserName,
-        profileUrl: Botinfo.img,
-        status: Botinfo.status,
-        MobileNo: Botinfo.MobileNo,
-        totalMatch: Botinfo.totalMatch,
-        MainWallet: Botinfo.MainWallet,
-        WinWallet: Botinfo.WinWallet,
-        BonusWallet: Botinfo.BonusWallet,
-        RegistrationDate: Botinfo.RegistrationDate,
-        LastLogin: Botinfo.LastLogin,
-        Status: Botinfo.status,
-        email: Botinfo.email,
-        uniqueId: Botinfo.uniqueId,
-      })
+
+      // SetuserInfo({
+      //   userId: Botinfo.UserId,
+      //   UserName: Botinfo.UserName,
+      //   profileUrl: Botinfo.img,
+      //   status: Botinfo.status,
+      //   MobileNo: Botinfo.MobileNo,
+      //   totalMatch: Botinfo.totalMatch,
+      //   MainWallet: Botinfo.MainWallet,
+      //   WinWallet: Botinfo.WinWallet,
+      //   BonusWallet: Botinfo.BonusWallet,
+      //   RegistrationDate: Botinfo.RegistrationDate,
+      //   LastLogin: Botinfo.LastLogin,
+      //   Status: Botinfo.status,
+      //   email: Botinfo.email,
+      //   uniqueId: Botinfo.uniqueId,
+      // })
+      let resData = await PlayerData(Botinfo.UserId)
+
+      await SetuserInfo(resData.userInfo)
+      await SetkycuserInfo(resData.UserOKYC)
+
 
     }
 
     submitdata()
-
     console.log("Player IG:::::::::::::::::", userInfo)
-  }, []);
+
+  }, [Botinfo.UserId]);
 
   const [amount, setAmount] = useState(0);
 
@@ -138,10 +130,14 @@ function userInfo() {
           </div>
         </div>
         <div className="w-full">
-
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Player Name :- {userInfo.UserName}
+              Player Name :- {userInfo.name != undefined?userInfo.name :""}
+            </p>
+          </div>
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              User Name :- {userInfo.username}
             </p>
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
@@ -158,77 +154,65 @@ function userInfo() {
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Mobile Number :- {userInfo.MobileNo}
+              Mobile Number :- {userInfo.mobileNumber}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Status :- {userInfo.Status}
+              Status :- {userInfo.status == "" || userInfo.status == "false" || userInfo.status == false ? "DeActive" : "Active"}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Main Wallet :- {userInfo.MainWallet}
+              Main Wallet :- {userInfo.chips}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Win Wallet :- {userInfo.WinWallet}
+              Win Wallet :- {userInfo.winningChips}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Bonus Wallet :- {userInfo.WinWaBonusWalletlet}
+              Bonus Wallet :- {userInfo.bonusChips}
             </p>
           </div>
-
-          <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+          <div className="flex h-[150px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Enter amount deposit
+              Aadhar_card Details
             </p>
+          
             <div className="flex h-[35px] w-full items-center justify-between">
-              <span className="text-2xl font-bold text-bgray-900 dark:text-white">
-              ₹
-              </span>
-              <label className="w-full">
-                <input
-                  type="text" onChange={handleAmount}
-                  className="w-full border-none p-0 text-2xl font-bold text-bgray-900 focus:outline-none focus:ring-0 dark:border-darkblack-400 dark:bg-darkblack-600 dark:text-white"
-                />
-              </label>
+              <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+                Aadhar Card :- {userkycInfo.adharcard}
+              </p>
+
+            </div>
+            <div className="flex h-[35px] w-full items-center justify-between">
+              <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+                Verified :- {userkycInfo.verified ? "Verified" : "UnVerified"}
+
+              </p>
+
+            </div>
+            <div className="flex h-[35px] w-full items-center justify-between">
+              <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+                Address :- {userkycInfo.userInfo}
+
+              </p>
+
             </div>
           </div>
-
-
-          <button aria-label="none" onClick={SaveChange}
-            className="mt-7 bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Add Money</button>
-
-
-
-          <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Enter amount Deduct
+              PanCard :- {"PAN CARD"}
             </p>
-            <div className="flex h-[35px] w-full items-center justify-between">
-              <span className="text-2xl font-bold text-bgray-900 dark:text-white">
-              ₹
-              </span>
-              <label className="w-full">
-                <input
-                  type="text" onChange={handleAmount}
-                  className="w-full border-none p-0 text-2xl font-bold text-bgray-900 focus:outline-none focus:ring-0 dark:border-darkblack-400 dark:bg-darkblack-600 dark:text-white"
-                />
-              </label>
-             </div>
           </div>
 
-          <button aria-label="none" onClick={SaveChangeDeduct}
-          className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Deduct Money</button>
-      
         </div>
       </div>
     </>
@@ -236,3 +220,47 @@ function userInfo() {
 }
 
 export default userInfo;
+
+
+// <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+//             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+//               Enter amount deposit
+//             </p>
+//             <div className="flex h-[35px] w-full items-center justify-between">
+//               <span className="text-2xl font-bold text-bgray-900 dark:text-white">
+//               ₹
+//               </span>
+//               <label className="w-full">
+//                 <input
+//                   type="text" onChange={handleAmount}
+//                   className="w-full border-none p-0 text-2xl font-bold text-bgray-900 focus:outline-none focus:ring-0 dark:border-darkblack-400 dark:bg-darkblack-600 dark:text-white"
+//                 />
+//               </label>
+//             </div>
+//           </div>
+
+
+//           <button aria-label="none" onClick={SaveChange}
+//             className="mt-7 bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Add Money</button>
+
+
+
+//           <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+//             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+//               Enter amount Deduct
+//             </p>
+//             <div className="flex h-[35px] w-full items-center justify-between">
+//               <span className="text-2xl font-bold text-bgray-900 dark:text-white">
+//               ₹
+//               </span>
+//               <label className="w-full">
+//                 <input
+//                   type="text" onChange={handleAmount}
+//                   className="w-full border-none p-0 text-2xl font-bold text-bgray-900 focus:outline-none focus:ring-0 dark:border-darkblack-400 dark:bg-darkblack-600 dark:text-white"
+//                 />
+//               </label>
+//              </div>
+//           </div>
+
+//           <button aria-label="none" onClick={SaveChangeDeduct}
+//           className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Deduct Money</button>

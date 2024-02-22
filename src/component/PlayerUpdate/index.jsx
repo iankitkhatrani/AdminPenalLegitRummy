@@ -102,6 +102,18 @@ function playerUpdate() {
 
     console.log("userInfo ",userInfo)
 
+    if(!/^[a-zA-Z\s]+$/.test(userInfo.username)){
+      alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
+      return false
+    }
+
+    if(!/^[1-9]\d{9}$/.test(userInfo.MobileNo)){
+      alert("Invalid mobile number. Mobile number should start with 1 and be exactly 10 digits long.")
+      return false
+    }
+
+  
+
     let res = await BotUpdate(userInfo)
 
     console.log("REsponce ::::::::::::::::::::::",res)
@@ -150,6 +162,7 @@ function playerUpdate() {
                   name="profileUrl"
                   id="profileUrl"
                   onChange={handleImage}
+                  required
                 />
 
               </div>
@@ -170,6 +183,7 @@ function playerUpdate() {
                     name="status"
                     checked={userInfo.status === true || userInfo.status === "true"}
                     onChange={OnChange}
+                    required
                   />
                   Active
                 </label>
