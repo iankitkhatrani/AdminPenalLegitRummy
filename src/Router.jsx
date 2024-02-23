@@ -50,7 +50,9 @@ import TableEntryAddPoint from './pages/TableEntryAddPoint'
 import TableEntryEdit from './pages/TableEntryEdit'
 import Chnagepwd from './pages/Chnagepwd'
 import KycManagement from './pages/KycManagement'
-import bankmanagement from './pages/BankDeatils'
+import Bankmanagement from './pages/BankDeatils'
+import StateManagment from './pages/StateManagment'
+
 
 
 
@@ -60,8 +62,12 @@ const router = createBrowserRouter([
     Component: Layout,
     children: [
       {
+        path: "/statemanagement",
+        element: <StateManagment />,
+      },
+      {
         path: "/bankmanagement",
-        element: <bankmanagement />,
+        element: <Bankmanagement />,
       },
       {
         path: "/kycmanagement",

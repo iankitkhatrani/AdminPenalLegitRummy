@@ -183,7 +183,7 @@ function PlayerTab({ }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
+              <td className="border-r w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Player Id

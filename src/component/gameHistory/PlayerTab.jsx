@@ -189,13 +189,13 @@ function PlayerTab({ gameName }) {
     </div>
   </div>
 
-    <div className="table-content w-full overflow-x-auto">
-      <table className="w-full">
+    <div className="text-center table-content w-full overflow-x-auto">
+      <table className="text-center table-content border-collapse border border-slate-400  w-full">
         <tbody>
           <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('date')}>
-              <div className="flex w-full items-center space-x-2.5">
+            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('date')}>
+              <div className="w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                   Date Time
                 </span>
@@ -239,8 +239,8 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gamePlayType')}>
-              <div className="flex w-full items-center space-x-2.5">
+            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gamePlayType')}>
+              <div className="w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Game Play Type
                 </span>
@@ -284,8 +284,8 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('commission')}>
-              <div className="flex items-center space-x-2.5">
+            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('commission')}>
+              <div className="w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 commission
                 </span>
@@ -329,8 +329,8 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
-              <div className="flex w-full items-center space-x-2.5">
+            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
+              <div className="w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 GameId
                 </span>
@@ -374,8 +374,8 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('entryFee')}>
-              <div className="flex w-full items-center space-x-2.5">
+            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('entryFee')}>
+              <div className="w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 Entry Fee
                 </span>
@@ -419,8 +419,8 @@ function PlayerTab({ gameName }) {
                 </span>
               </div>
             </td>
-            <td className="w-[165px] px-6 py-5 xl:px-0">
-              <div className="flex w-full items-center space-x-2.5">
+            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+              <div className="w-full items-center space-x-2.5">
                 <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                 maxSeat
                 </span>

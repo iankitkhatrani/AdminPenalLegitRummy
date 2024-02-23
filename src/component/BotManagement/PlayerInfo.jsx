@@ -27,8 +27,8 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
   }
 
   return (
-    <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-      <td className="px-6 py-5 xl:px-0">
+    <tr className="border border-slate-300 border-b border-bgray-300 dark:border-darkblack-400">
+      <td className="border border-slate-300 px-6 py-5 xl:px-0">
         <div className="flex w-full items-center space-x-2.5">
           <div className="h-10 w-10 overflow-hidden rounded-full">
             <img
@@ -42,22 +42,22 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
           </p>
         </div>
       </td>
-      <td className="px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {GamePlay}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
         ₹{MainWallet}
         </p>
       </td>     
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
       <p className="text-base font-semibold text-bgray-900 dark:text-white">
         {Status}
       </p>
     </td>  
-      <td className="px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 px-6 py-5 xl:px-0">
         <div className="flex justify-center">
             <button styles={{"margin": "1px",
             "background-color": "white",

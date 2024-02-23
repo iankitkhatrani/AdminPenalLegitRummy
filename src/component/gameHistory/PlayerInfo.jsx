@@ -2,36 +2,35 @@ import ProtoTypes from "prop-types";
 
 function PlayerInfo({ date,gamePlayType,commission,gameId,entryFee,maxSeat}) {
   return (
-    <tr className="border-b border-bgray-300 dark:border-darkblack-400">
+    <tr className="border border-slate-300 border-b border-bgray-300 dark:border-darkblack-400">
       
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex w-full items-center space-x-2.5">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {date}
           </p>
-        </div>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {gamePlayType}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {commission}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           {gameId}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
         ₹{entryFee}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {maxSeat}
         </p>

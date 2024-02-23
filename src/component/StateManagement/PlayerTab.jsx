@@ -144,56 +144,33 @@ const handleSort = (key) => {
                 />
               </svg>
             </span>
-            <label htmlFor="listSearch" className="w-full">
-              <input
-                type="text"
-                id="listSearch"
-                placeholder="Search by name, email, or others..."
-                className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </label>
+            
           </div>
         </div>
       </div>
       <div className="filter-content w-full">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
-          <input
-            type="date"
-            placeholder="From Date"
-            value={fromDate}
-            onChange={handleFromDateChange}
-          />
-          <input
-            type="date"
-            placeholder="To Date"
-            value={toDate}
-            onChange={handleToDateChange}
-            style={{ marginLeft: "1rem" }}
-          />
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
-
+        
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
 
         </div>
       </div>
-      <div className="text-center table-content w-full overflow-x-auto">
-        <table className="text-center table-content border-collapse border border-slate-400 w-full">
+      <div className="table-content w-full overflow-x-auto">
+        <table className="w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              <td className="border border-slate-300  w-[250px] px-6 py-5 xl:px-0">
-                <div className="w-full items-center space-x-2.9">
+              <td className="w-[250px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.9">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Player Id
                   </span>
                  
                 </div>
               </td>
-              <td className="border border-slate-300  w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Player Name
                   </span>
@@ -237,8 +214,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300  w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Mobile Number
                   </span>
@@ -282,8 +259,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300  w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
-                <div className=" items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
+                <div className="flex items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Rummy Game
                   </span>
@@ -327,8 +304,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300  w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Main Wallet
                   </span>
@@ -372,8 +349,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300  w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Win Wallet
                   </span>
@@ -417,8 +394,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300  w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Bonus Wallet
                   </span>
@@ -462,8 +439,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300  w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Registration Date
                   </span>
@@ -507,8 +484,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Last Login
                   </span>
@@ -552,8 +529,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Status
                   </span>
@@ -597,8 +574,8 @@ const handleSort = (key) => {
                   </span>
                 </div>
               </td>
-              <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
-                <div className=" w-full items-center space-x-2.5">
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Action
                   </span>
