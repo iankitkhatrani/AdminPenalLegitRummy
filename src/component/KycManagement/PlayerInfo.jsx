@@ -12,21 +12,17 @@ function PlayerInfo({ UserId, adharcard, createdAt, verified }) {
   }
 
   return (
-    <tr className="border-b border-bgray-300 dark:border-darkblack-400">
+    <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
 
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex w-full items-center space-x-2.5">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {UserId}
           </p>
-        </div>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex w-full items-center space-x-2.5">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {adharcard}
           </p>
-        </div>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">

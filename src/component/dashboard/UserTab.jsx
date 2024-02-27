@@ -91,25 +91,22 @@ function UserTab({ }) {
   return (
     <>
     <div className="text-center table-content w-full overflow-x-auto">
-      <table className="text-center table-content border-collapse border border-slate-400 w-full">
+      <table className="table-fixed hover:border-collapse text-center w-full">
         <tbody>
-          <tr className="text-center border-b border-bgray-300 dark:border-darkblack-400">
+          <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="text-center border border-slate-300 w-[250px] px-6 py-5 lg:w-auto xl:px-0" onClick={() => handleSort('username')}>
-              <div className="flex-auto w-full items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Player Name
+            <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
+             
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Player Name ⬆⬇
                 </span>
                
-              </div>
             </td>
-            <td className="border border-slate-300 px-6 py-50 xl:px-0" onClick={() => handleSort('createdAt')}>
-              <div className="flex-auto w-full items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Created Date and Time
+            <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
+              <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Created Date and Time ⬆⬇
                 </span>
                
-              </div>
             </td>
           </tr>
           {usersOnCurrentPage?.map((user, index) =>

@@ -12,61 +12,61 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
   }
 
   return (
-    <tr className="border border-slate-300 border-b border-bgray-300 dark:border-darkblack-400">
+    <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
 
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {UserId}
           </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {UserName}
           </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {MobileNo}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {totalMatch}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           ₹{MainWallet}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           ₹{WinWallet}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           ₹{BonusWallet}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {RegistrationDate}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {LastLogin}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {status}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex justify-center">
           <button styles={{
             "margin": "1px",

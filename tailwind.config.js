@@ -131,6 +131,11 @@ export default {
       },
     },
   },
+  variants: {
+    extend: {
+      borderCollapse: ['hover'],
+    },
+  },
   plugins: [
     fromPlugin,
     plugin(function ({ addVariant }) {
