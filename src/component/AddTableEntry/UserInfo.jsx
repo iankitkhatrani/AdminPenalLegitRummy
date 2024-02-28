@@ -39,7 +39,11 @@ function CustomerInfo({ gamePlayType, deal, tableName, entryFee, maxSeat, commis
 
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
-
+    <td className="w-[165px] px-6 py-5 xl:px-0">
+    <p className="text-base font-medium text-bgray-900 dark:text-white">
+      {id}
+    </p>
+  </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {gamePlayType}

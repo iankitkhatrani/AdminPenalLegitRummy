@@ -70,6 +70,12 @@ const handleSubmit = async (event) => {
       return false
     }
 
+
+    if(parseInt(tableInfo.type) != 101 && parseInt(tableInfo.type) != 201){
+      alert("Invalid Table Type. Table Type should only contain 101 or 201.")
+      return false
+    }
+
     
     if(parseInt(tableInfo.maxSeat) != 2 && parseInt(tableInfo.maxSeat) != 6){
       alert("Invalid Max Seat Must be 2 or 6.")

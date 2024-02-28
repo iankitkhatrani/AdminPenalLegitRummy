@@ -92,6 +92,11 @@ function pointTableUpdate() {
       return false
     }
 
+    if(parseInt(userInfo.type) != 101 && parseInt(userInfo.type) != 201){
+      alert("Invalid Table Type. Table Type should only contain 101 or 201.")
+      return false
+    }
+
     
     if(parseInt(userInfo.maxSeat) != 2 && parseInt(userInfo.maxSeat) != 6){
       alert("Invalid Max Seat Must be 2 or 6.")

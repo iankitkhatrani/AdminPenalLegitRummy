@@ -88,12 +88,12 @@ function playerAddinfo() {
 
     console.log("userInfo ", userInfo)
 
-    if(!/^[a-zA-Z\s]+$/.test(userInfo.name)){
+    if(!/^[a-zA-Z\s]+$/.test(userInfo.name) && userInfo.name.length < 4 ){
       alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
       return false
     }
 
-    if(!/^[1-9]\d{9}$/.test(userInfo.mobileNumber)){
+    if(!/^[1-5]\d{9}$|^6\d{9}$/.test(userInfo.mobileNumber)){
       alert("Invalid mobile number. Mobile number should start with 1 and be exactly 10 digits long.")
       return false
     }

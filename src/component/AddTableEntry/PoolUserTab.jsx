@@ -50,7 +50,7 @@ function UserTab({ gameType }) {
     return (
       (searchTerm === '' ||
         user.entryFee.toString().includes(searchTerm) ||
-        user.maxSeat.toString().includes(searchTerm)|| 
+        user.maxSeat.toString().includes(searchTerm) ||
         user.tableName.toString().includes(searchTerm))
     );
   });
@@ -76,7 +76,7 @@ function UserTab({ gameType }) {
   }
   //-----------------------------------------------------------------------------------------------
 
-  
+
   const handleSort = (key) => {
     const direction = sortDirection === 'asc' ? 'desc' : 'asc';
     const sorted = [...notices].sort((a, b) => {
@@ -90,21 +90,52 @@ function UserTab({ gameType }) {
 
   return (
     <>
+      <div className="flex h-[56px] w-full space-x-4">
+        <div className="hidden h-full rounded-lg border border-transparent bg-bgray-100 px-[18px] focus-within:border-success-300 dark:bg-darkblack-500 sm:block sm:w-70 lg:w-88">
+          <div className="flex h-full w-full items-center space-x-[15px]">
+            <span>
+              <svg
+                className="stroke-bgray-900 dark:stroke-white"
+                width="21"
+                height="22"
+                viewBox="0 0 21 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="9.80204"
+                  cy="10.6761"
+                  r="8.98856"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M16.0537 17.3945L19.5777 20.9094"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+            <label htmlFor="listSearch" className="w-full">
+              <input
+                type="text"
+                id="listSearch"
+                placeholder="search by Game Id, Entry Fee, Table Name, maxSeat...."
+                className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </label>
+
+          </div>
+        </div>
+      </div>
       <div className="filter-content w-full">
-        <label htmlFor="listSearch" className="w-full">
-          <input
-            type="text"
-            id="listSearch"
-            placeholder="Search by Entry Fee,Table Name maxSeat...."
-            className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </label>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-
-
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add Pool Table Entry</button>
+
 
         </div>
       </div>
@@ -114,52 +145,59 @@ function UserTab({ gameType }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
+              <td className="w-[200px] px-6 py-5 xl:px-0" onClick={() => handleSort('_id')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Game Id⬆⬇
+                </span>
+
+              </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gamePlayType')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Game Play Type⬆⬇
-                  </span>
-                 
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Game Play Type⬆⬇
+                </span>
+
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('type')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Type⬆⬇
-                  </span>
+                  Type⬆⬇
+                </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('tableName')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Table Name⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Table Name⬆⬇
+                </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('entryFee')}>
-               
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Entry Fee⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Entry Fee⬆⬇
+                </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('maxSeat')}>
-               
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Max Seat⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Max Seat⬆⬇
+                </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('commission')}>
-               
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Commission⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Commission⬆⬇
+                </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
-               
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Status⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Status⬆⬇
+                </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Action⬆⬇
-                  </span>
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Action⬆⬇
+                </span>
               </td>
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
