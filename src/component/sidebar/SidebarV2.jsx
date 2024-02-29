@@ -122,11 +122,64 @@ function SidebarV2() {
                       </span>
                     </Link>
                   </li>
+                  <li className="item px-[43px] py-[11px]">
+
+                  <span className="item-ico">
+                    <svg
+                      width="18"
+                      height="21"
+                      viewBox="0 0 18 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        className="path-1"
+                        d="M0 8.84719C0 7.99027 0.366443 7.17426 1.00691 6.60496L6.34255 1.86217C7.85809 0.515019 10.1419 0.515019 11.6575 1.86217L16.9931 6.60496C17.6336 7.17426 18 7.99027 18 8.84719V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8.84719Z"
+                        fill="#1A202C"
+                      />
+                      <path
+                        className="path-2"
+                        d="M5 17C5 14.7909 6.79086 13 9 13C11.2091 13 13 14.7909 13 17V21H5V17Z"
+                        fill="#22C55E"
+                      />
+                    </svg>
+                  </span>
+                  <ul className="sub-menu min-w-[200px] rounded-lg border-l border-success-100 bg-white px-5 py-2 shadow-lg">
+                    <li>
+                      <Link
+                        to="/kycmanagement?status=Pending"
+                        className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Pending" ? "nav-active" : ""
+                          } `}
+                      >
+                      Kyc Pending
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/kycmanagement?status=Approved"
+                        className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Pending" ? "nav-active" : ""
+                          } `}
+                      >
+                      Kyc Approved
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/kycmanagement?status=Rejected"
+                        className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Pending" ? "nav-active" : ""
+                          } `}
+                      >
+                      Kyc Rejected
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+
 
                   <li className="item px-[43px] py-[11px]">
                     <Link
-                      to="/kycmanagement"
-                      className={`${location === "/kycmanagement" ? "nav-active" : ""
+                      to="/bankmanagement"
+                      className={`${location === "/bankmanagement" ? "nav-active" : ""
                         }`}
                     >
                       <span className="item-ico">
@@ -234,6 +287,7 @@ function SidebarV2() {
                       </li>
                     </ul>
                   </li>
+
                   <li className="item px-[43px] py-[11px]">
                     <Link
                       to="/botList"
@@ -267,6 +321,7 @@ function SidebarV2() {
                       </span>
                     </Link>
                   </li>
+
                   <li className="item px-[43px] py-[11px]">
                     <Link
                       to="/statemanagement"
@@ -300,6 +355,76 @@ function SidebarV2() {
                       </span>
                     </Link>
                   </li>
+
+
+                  <li className="item px-[43px] py-[11px]">
+                    <Link
+                      to="/paymentin"
+                      className={`${location === "/paymentin" ? "nav-active" : ""
+                        }`}
+                    >
+                      <span className="item-ico">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <ellipse
+                            cx="11.7778"
+                            cy="17.5555"
+                            rx="7.77778"
+                            ry="4.44444"
+                            className="path-1"
+                            fill="#1A202C"
+                          />
+                          <circle
+                            className="path-2"
+                            cx="11.7778"
+                            cy="6.44444"
+                            r="4.44444"
+                            fill="#22C55E"
+                          />
+                        </svg>
+                      </span>
+                    </Link>
+                  </li>
+
+                  <li className="item px-[43px] py-[11px]">
+                    <Link
+                      to="/paymentout"
+                      className={`${location === "/paymentout" ? "nav-active" : ""
+                        }`}
+                    >
+                      <span className="item-ico">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <ellipse
+                            cx="11.7778"
+                            cy="17.5555"
+                            rx="7.77778"
+                            ry="4.44444"
+                            className="path-1"
+                            fill="#1A202C"
+                          />
+                          <circle
+                            className="path-2"
+                            cx="11.7778"
+                            cy="6.44444"
+                            r="4.44444"
+                            fill="#22C55E"
+                          />
+                        </svg>
+                      </span>
+                    </Link>
+                  </li>
+
                   <li className="item px-[43px] py-[11px]">
                     <Link
                       to="/socialurl"

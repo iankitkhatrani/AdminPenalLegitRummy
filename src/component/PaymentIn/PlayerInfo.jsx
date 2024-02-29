@@ -4,60 +4,66 @@ import { useNavigate } from 'react-router-dom';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pancardverified,adminremark,adminremarkcd }) {
+function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId }) {
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId,userName, adharcard, createdAt, verified,Pancard,Pancardverified,adminremark,adminremarkcd) => {
-    navigate('/kycupdateinfo', { state: { UserId,userName, adharcard, createdAt, verified,Pancard,Pancardverified,adminremark,adminremarkcd } });
+  const navigateToContacts = (UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId) => {
+    navigate('/playeredit', { state: { UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId } });
   }
-
 
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
 
       <td className="w-[165px] px-6 py-5 xl:px-0">
+        
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
             {UserId}
           </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
+        
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {userName}
-          </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-          <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {adharcard}
+            {UserName}
           </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {createdAt}
+          {MobileNo}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {verified}
+          {totalMatch}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          ₹{MainWallet}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          ₹{WinWallet}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          ₹{BonusWallet}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {Pancard}
+          {RegistrationDate}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {Pancardverified}
+          {LastLogin}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {adminremark}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {adminremarkcd}
+          {status}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -70,10 +76,9 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"
-          }} onClick={() => navigateToContacts(UserId,userName, adharcard, createdAt, verified,Pancard,Pancardverified,adminremark,adminremarkcd)} >
+          }} onClick={() => navigateToContacts(UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId)} >
             <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
           </button>
-         
         </div>
       </td>
     </tr>

@@ -49,6 +49,7 @@ function UserTab({ gameType }) {
 
     return (
       (searchTerm === '' ||
+        user._id.toString().includes(searchTerm) ||
         user.entryFee.toString().includes(searchTerm) ||
         user.maxSeat.toString().includes(searchTerm) ||
         user.tableName.toString().includes(searchTerm))

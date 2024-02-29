@@ -4,7 +4,7 @@ import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
-function PlayerTab({ }) {
+function PlayerTab({ status }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
   const [pageSize, setPageSize] = useState(5);
@@ -13,6 +13,8 @@ function PlayerTab({ }) {
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
+
+  console.log("status ", status)
 
   const Dropdown = (item) => {
     setPageSize(item)
@@ -30,15 +32,15 @@ function PlayerTab({ }) {
 
   useEffect(() => {
     const submitdata = async () => {
-      setUserData(await KYCPageList())
+      setUserData(await KYCPageList(status))
     }
     submitdata()
-  }, []);
+  }, [status]);
 
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   const filteredUsers = userData.filter((user) => {
-    console.log("dddd", user)
+
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
@@ -48,6 +50,9 @@ function PlayerTab({ }) {
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
         user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.verified.includes(searchTerm.toLowerCase()) ||
+        // user.Pancardverified.includes(searchTerm.toLowerCase()) ||
+        // user.Pancard.includes(searchTerm.toLowerCase()) ||
         user.adharcard.includes(searchTerm))
     );
   });
@@ -146,7 +151,7 @@ function PlayerTab({ }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by Player Id, Aadhar , or others..."
+                placeholder="Search by Player Id, Aadhar ,Status , or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -182,12 +187,17 @@ function PlayerTab({ }) {
         <table className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
+              <td className="w-[190px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Player Id
                 </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('adharcard')}>
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Player Name
+                </span>
+              </td>
+              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('adharcard')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Aadhaar Card ⬆⬇
                 </span>
@@ -197,11 +207,38 @@ function PlayerTab({ }) {
                   Created Date ⬆⬇
                 </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('verified')}>
+              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('verified')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Verified ⬆⬇
+                  Aadhaar Status ⬆⬇
+                </span>
+
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('Pancard')}>
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Pan Card ⬆⬇
                 </span>
               </td>
+              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('Pancardverified')}>
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Pancard Status ⬆⬇
+                </span>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Admin Remark
+                </span>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Remark Date
+                </span>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Action
+                </span>
+              </td>
+              
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
               pageSize
@@ -209,19 +246,28 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     UserId={user.userId}
+                    userName={user.userName}
                     adharcard={user.adharcard}
                     createdAt={user.createdAt}
                     verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
-
+                    Pancard={user.Pancard}
+                    Pancardverified={user.Pancardverified == undefined || user.Pancardverified == "" || user.Pancardverified == false ? "UnVerified" : "Verified"}
+                    adminremark={user.adminremark}
+                    adminremarkcd={user.adminremarkcd}
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
+                    userName={user.userName}
                     UserId={user.userId}
                     adharcard={user.adharcard}
                     createdAt={user.createdAt}
                     verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
+                    Pancard={user.Pancard}
+                    Pancardverified={user.Pancardverified == undefined || user.Pancardverified == "" || user.Pancardverified == false ? "UnVerified" : "Verified"}
+                    adminremark={user.adminremark}
+                    adminremarkcd={user.adminremarkcd}
                   />
                 )
             )}

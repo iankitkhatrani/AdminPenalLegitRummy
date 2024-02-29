@@ -1914,10 +1914,10 @@ const OfferState = (props) => {
     // KYC ::::::::::::::::::::::::::::::
 
 
-    const KYCPageList = async () => {
+    const KYCPageList = async (status) => {
         try {
-            console.log("KYCPageList :::::::", `${host}/admin/user/kycInfoList`)
-            const response = await fetch(`${host}/admin/user/kycInfoList`, {
+            console.log(":::::::::::KYCPageList :::::::", `${host}/admin/user/kycInfoList`,status)
+            const response = await fetch(`${host}/admin/user/kycInfoList?status=`+status, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -1944,6 +1944,36 @@ const OfferState = (props) => {
         }
     }
 
+    const KYCUpdate = async (data) => {
+        try {
+            console.log("PlayerList :::::::", host)
+            console.log("KycUpdate :::::::", data)
+
+            const response = await fetch(`${host}/admin/user/KycUpdate`, {
+                method: 'put',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(d => d.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return {}
+            } else {
+                return json
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
 
     //=====================
 
@@ -1966,7 +1996,7 @@ const OfferState = (props) => {
             PayoutList, PayoutAccptedList, PayoutRejectedList, PayoutUpdate, UploadScreenshortPayout,
             GetDealBetList,addTableentryAPI,DeleteTableEntry,TableEntryUpdate,
              Chnageidpwd,
-             KYCPageList
+             KYCPageList,KYCUpdate
         }}>
             {props.children}
         </offerContext.Provider>)

@@ -50,8 +50,12 @@ import TableEntryAddPoint from './pages/TableEntryAddPoint'
 import TableEntryEdit from './pages/TableEntryEdit'
 import Chnagepwd from './pages/Chnagepwd'
 import KycManagement from './pages/KycManagement'
+import KycUpdateinfo from "./component/KycUpdate";
 import Bankmanagement from './pages/BankDeatils'
 import StateManagment from './pages/StateManagment'
+import PaymentInManagement from './pages/paymentin'
+import PaymentOutManagement from './pages/paymentout'
+
 
 
 
@@ -61,6 +65,18 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
+      {
+        path: "/kycupdateinfo",
+        element: <KycUpdateinfo />,
+      },
+      {
+        path: "/paymentout",
+        element: <PaymentOutManagement />,
+      },
+      {
+        path: "/paymentin",
+        element: <PaymentInManagement />,
+      },
       {
         path: "/statemanagement",
         element: <StateManagment />,

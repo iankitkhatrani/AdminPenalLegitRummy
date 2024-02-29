@@ -1,19 +1,16 @@
+import React, { useState, useContext, useEffect } from 'react';
 import ProtoTypes from "prop-types";
-import CustomerInfo from "./UserInfo";
-import users from "../../data/user";
-import offerContext from '../../context/offerContext'
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import CustomerInfo from "./PlayerInfo";
+import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
-
-function UserTab({ gameType }) {
-  const context = useContext(offerContext)
-
-
-  //=-----------------------------------------------------------
+function PlayerTab({ }) {
+  //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
   const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
 
@@ -21,36 +18,37 @@ function UserTab({ gameType }) {
     setPageSize(item)
     setActive(!active)
   }
-  //===========================================================
+  //------------------------------------------------------------------------------------------------------------
+  const navigate = useNavigate();
+  const navigateToUserRegister = () => {
+    navigate('/playeradd');
+  };
 
-
-  const { GetDealBetList } = context
-  const [notices, setNotices] = useState([]);
+  let [userData, setUserData] = useState([]);
+  const context = useContext(offerContext)
+  const { PlayerList } = context
 
   useEffect(() => {
     const submitdata = async () => {
-      console.log("gameType ", gameType)
-
-      setNotices(await GetDealBetList(gameType))
+      setUserData(await PlayerList())
     }
     submitdata()
   }, []);
 
-  const navigate = useNavigate();
-  const navigateToUserRegister = () => {
-    navigate('/tableentryadd');
-  };
-
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
-  const filteredUsers = notices.filter((user) => {
+  const filteredUsers = userData.filter((user) => {
+    console.log("dddd", user)
+    const registrationDate = new Date(user.createdAt);
+    const from = fromDate ? new Date(fromDate) : null;
+    const to = toDate ? new Date(toDate) : null;
 
     return (
+      (!from || registrationDate >= from) &&
+      (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user._id.toString().includes(searchTerm) ||
-        user.entryFee.toString().includes(searchTerm) ||
-        user.maxSeat.toString().includes(searchTerm) ||
-        user.tableName.toString().includes(searchTerm))
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.mobileNumber.includes(searchTerm))
     );
   });
 
@@ -75,17 +73,46 @@ function UserTab({ gameType }) {
   }
   //-----------------------------------------------------------------------------------------------
 
+  const handleFromDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (selectedDate > currentDate) {
+      alert('From date cannot be beyond current date');
+    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
+      alert('From date must be earlier than To date');
+    } else {
 
-  const handleSort = (key) => {
-    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
-    const sorted = [...notices].sort((a, b) => {
-      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-      return 0;
-    });
-    setNotices(sorted);
-    setSortDirection(direction);
+      setFromDate(selectedDate);
+
+
+    }
   };
+
+  const handleToDateChange = (event) => {
+    const selectedDate = event.target.value;
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (selectedDate > currentDate) {
+      alert('To date cannot be beyond current date');
+    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
+      alert('To date must be later than From date');
+    } else {
+      setToDate(selectedDate);
+    }
+  };
+
+
+
+const handleSort = (key) => {
+  const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+  const sorted = [...userData].sort((a, b) => {
+    if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+    if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+    return 0;
+  });
+  setUserData(sorted);
+  setSortDirection(direction);
+};
+
 
   return (
     <>
@@ -121,109 +148,150 @@ function UserTab({ gameType }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="search by Game Id, Entry Fee, Table Name, maxSeat...."
+                placeholder="Search by name, email, or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </label>
-
           </div>
         </div>
       </div>
       <div className="filter-content w-full">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add Deal Table Entry</button>
 
+          <input
+            type="date"
+            placeholder="From Date"
+            value={fromDate}
+            onChange={handleFromDateChange}
+          />
+          <input
+            type="date"
+            placeholder="To Date"
+            value={toDate}
+            onChange={handleToDateChange}
+            style={{ marginLeft: "1rem" }}
+          />
+          <button aria-label="none"
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
+
+          <button aria-label="none"
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
 
         </div>
       </div>
-      <div className="table-content w-full overflow-x-auto">
+      <div className="text-center table-content w-full overflow-x-auto">
         <table className="table-fixed hover:border-collapse text-center w-full">
-          <tbody>
+        <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-
-              <td className="w-[200px] px-6 py-5 xl:px-0" onClick={() => handleSort('_id')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  GameId⬆⬇
-                </span>
+              <td className="w-[195px] px-6 py-5 xl:px-0">
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Player Id
+                  </span>
+                 
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gamePlayType')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Game Play Type⬆⬇
-                </span>
+              <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
+               
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Player Name⬆⬇
+                  </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('deal')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Deal⬆⬇
-                </span>
+              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Mobile Number⬆⬇
+                  </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('tableName')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Table Name⬆⬇
-                </span>
+              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Rummy Game⬆⬇
+                  </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('entryFee')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Entry Fee⬆⬇
-                </span>
+              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Main Wallet⬆⬇
+                  </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('maxSeat')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Max Seat⬆⬇
-                </span>
+              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Win Wallet ⬆⬇
+                  </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('commission')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Commission⬆⬇
-                </span>
+              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Bonus Wallet ⬆⬇
+                  </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Status ⬆⬇
-                </span>
+              <td className="w-[140px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Registration Date ⬆⬇
+                  </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Action
-                </span>
+              <td className="w-[160px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Last Login ⬆⬇
+                  </span>
+              </td>
+              <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Status ⬆⬇
+                  </span>
+              </td>
+              <td className="w-[60px] px-6 py-5 xl:px-0">
+                
+                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                    Action
+                  </span>
+               
               </td>
             </tr>
+          
+            
             {usersOnCurrentPage?.map((user, index) =>
               pageSize
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    gamePlayType={user.gamePlayType}
-                    deal={user.deal}
-                    tableName={user.tableName}
-                    entryFee={user.entryFee}
-                    maxSeat={user.maxSeat}
-                    commission={user.commission}
-                    status={user.status}
-                    id={user._id}
+                    UserId={user._id}
+                    UserName={user.username}
+                    MobileNo={user.mobileNumber}
+                    totalMatch={user.counters.totalMatch}
+                    MainWallet={user.chips}
+                    WinWallet={user.winningChips}
+                    BonusWallet={user.chips}
+                    RegistrationDate={user.createdAt}
+                    LastLogin={user.lastLoginDate}
+                    status={user.status ? 'Blocked' : 'Active'}
+                    profileUrl={user.profileUrl}
+                    email={user.email}
+                    uniqueId={user.uniqueId}
+
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    gamePlayType={user.gamePlayType}
-                    deal={user.deal}
-                    tableName={user.tableName}
-                    entryFee={user.entryFee}
-                    maxSeat={user.maxSeat}
-                    commission={user.commission}
-                    status={user.status}
-                    id={user._id}
-
+                    UserId={user._id}
+                    UserName={user.username}
+                    MobileNo={user.mobileNumber}
+                    totalMatch={user.counters.totalMatch}
+                    MainWallet={user.chips}
+                    WinWallet={user.winningChips}
+                    BonusWallet={user.chips}
+                    RegistrationDate={user.createdAt}
+                    LastLogin={user.lastLoginDate}
+                    status={user.status ? 'Blocked' : 'Active'}
+                    profileUrl={user.profileUrl}
+                    email={user.email}
+                    uniqueId={user.uniqueId}
                   />
                 )
             )}
@@ -339,8 +407,8 @@ function UserTab({ gameType }) {
   );
 }
 
-UserTab.propTypes = {
+PlayerTab.propTypes = {
   pageSize: ProtoTypes.number,
 };
 
-export default UserTab;
+export default PlayerTab;
