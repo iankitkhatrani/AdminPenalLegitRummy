@@ -263,10 +263,10 @@ const handleSort = (key) => {
                     UserId={user._id}
                     UserName={user.username}
                     MobileNo={user.mobileNumber}
-                    totalMatch={user.counters.totalMatch}
-                    MainWallet={user.chips}
-                    WinWallet={user.winningChips}
-                    BonusWallet={user.chips}
+                    totalMatch={user.counters.totalMatch.toFixed(2)}
+                    MainWallet={user.chips.toFixed(2)}
+                    WinWallet={user.winningChips.toFixed(2)}
+                    BonusWallet={user.chips.toFixed(2)}
                     RegistrationDate={user.createdAt}
                     LastLogin={user.lastLoginDate}
                     status={user.status ? 'Blocked' : 'Active'}
@@ -283,9 +283,9 @@ const handleSort = (key) => {
                     UserName={user.username}
                     MobileNo={user.mobileNumber}
                     totalMatch={user.counters.totalMatch}
-                    MainWallet={user.chips}
-                    WinWallet={user.winningChips}
-                    BonusWallet={user.chips}
+                    MainWallet={user.chips.toFixed(2)}
+                    WinWallet={user.winningChips.toFixed(2)}
+                    BonusWallet={user.chips.toFixed(2)}
                     RegistrationDate={user.createdAt}
                     LastLogin={user.lastLoginDate}
                     status={user.status ? 'Blocked' : 'Active'}

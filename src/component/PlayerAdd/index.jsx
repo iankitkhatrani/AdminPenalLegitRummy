@@ -88,7 +88,7 @@ function playerAddinfo() {
 
     console.log("userInfo ", userInfo)
 
-    if(!/^[a-zA-Z\s]+$/.test(userInfo.name) && userInfo.name.length < 4 ){
+    if(!/^[a-zA-Z\s]+$/.test(userInfo.name) || userInfo.name.length < 4 ){
       alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
       return false
     }
