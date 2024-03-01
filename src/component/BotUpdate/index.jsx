@@ -94,7 +94,7 @@ function botUpdate() {
 
     
     if(!/^[a-zA-Z\s]+$/.test(userInfo.name)){
-      alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
+      alert("Invalid User name. User name should only contain alphabetic characters and spaces.")
       return false
     }
 

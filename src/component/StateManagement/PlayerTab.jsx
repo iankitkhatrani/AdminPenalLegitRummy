@@ -164,7 +164,7 @@ const handleSort = (key) => {
               <td className="w-[250px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.9">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Player Id
+                  User Id
                   </span>
                  
                 </div>
@@ -172,7 +172,7 @@ const handleSort = (key) => {
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Player Name
+                  User Name
                   </span>
                   <span>
                     <svg

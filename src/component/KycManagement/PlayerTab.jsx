@@ -151,7 +151,7 @@ function PlayerTab({ status }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by Player Id, Aadhar ,Status , or others..."
+                placeholder="Search by User Id, Aadhar ,Status , or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -189,12 +189,12 @@ function PlayerTab({ status }) {
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               <td className="w-[190px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Player Id
+                User Id
                 </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Player Name
+                User Name
                 </span>
               </td>
               <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('adharcard')}>

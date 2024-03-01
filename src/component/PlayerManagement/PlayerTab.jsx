@@ -102,16 +102,16 @@ function PlayerTab({ }) {
 
 
 
-const handleSort = (key) => {
-  const direction = sortDirection === 'asc' ? 'desc' : 'asc';
-  const sorted = [...userData].sort((a, b) => {
-    if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-    if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-    return 0;
-  });
-  setUserData(sorted);
-  setSortDirection(direction);
-};
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...userData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setUserData(sorted);
+    setSortDirection(direction);
+  };
 
 
   return (
@@ -182,79 +182,80 @@ const handleSort = (key) => {
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
         <table className="table-fixed hover:border-collapse text-center w-full">
-        <tbody>
+          <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
+              <td className="w-[65px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Profile 
+                </span>
+
+              </td>
               <td className="w-[195px] px-6 py-5 xl:px-0">
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Player Id
-                  </span>
-                 
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                User Id
+                </span>
+
               </td>
               <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
-               
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Player Name⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                User Name⬆⬇
+                </span>
               </td>
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Mobile Number⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Mobile Number⬆⬇
+                </span>
               </td>
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Rummy Game⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Rummy Game⬆⬇
+                </span>
               </td>
               <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Main Wallet⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Main Wallet⬆⬇
+                </span>
               </td>
               <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Win Wallet ⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Win Wallet ⬆⬇
+                </span>
               </td>
               <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Bonus Wallet ⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Bonus Wallet ⬆⬇
+                </span>
               </td>
               <td className="w-[140px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Registration Date ⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Registration Date ⬆⬇
+                </span>
               </td>
               <td className="w-[160px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Last Login ⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Last Login ⬆⬇
+                </span>
               </td>
               <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Status ⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Status ⬆⬇
+                </span>
               </td>
-              <td className="w-[60px] px-6 py-5 xl:px-0">
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Action
-                  </span>
-               
-              </td>
+
             </tr>
-          
-            
+
+
             {usersOnCurrentPage?.map((user, index) =>
               pageSize
                 ? index + 1 <= pageSize && (
@@ -273,6 +274,7 @@ const handleSort = (key) => {
                     profileUrl={user.profileUrl}
                     email={user.email}
                     uniqueId={user.uniqueId}
+                    avatar={user.avatar} 
 
                   />
                 )
@@ -292,6 +294,7 @@ const handleSort = (key) => {
                     profileUrl={user.profileUrl}
                     email={user.email}
                     uniqueId={user.uniqueId}
+                    avatar={user.avatar} 
                   />
                 )
             )}

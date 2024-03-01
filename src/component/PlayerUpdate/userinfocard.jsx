@@ -15,7 +15,7 @@ function userInfo() {
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("Player Info  ", Botinfo)
+  console.log("User Info  ", Botinfo)
 
   const context = useContext(offerContext)
   const { AddMoney, DeductMoney, host, PlayerData } = context
@@ -60,7 +60,7 @@ function userInfo() {
     }
 
     submitdata()
-    console.log("Player IG:::::::::::::::::", userInfo)
+    console.log("User IG:::::::::::::::::", userInfo)
 
   }, [Botinfo.UserId]);
 
@@ -108,6 +108,12 @@ function userInfo() {
 
   }
 
+  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/"+userInfo.avatar+".jpg");
+
+  const handleImageError = () => {
+    // If the image fails to load, set the image source to the default image
+    setImageSrc('/src/assets/images/avatar/profile-52x52.png');
+  };
 
   return (
     <>
@@ -115,7 +121,7 @@ function userInfo() {
         <div className="my-wallet mb-8 w-full">
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-lg font-bold text-bgray-900 dark:text-white">
-              Player Information
+            User Information
             </h3>
           </div>
 
@@ -123,7 +129,7 @@ function userInfo() {
             <div className="card-slider relative w-[100px] md:w-[100px]">
 
               <div className="w-full">
-                <img src={host + "/upload/avatar/1.jpg"} alt="card" />
+                <img src={imageSrc} alt="card" onError={handleImageError}/>
               </div>
 
             </div>
@@ -132,7 +138,7 @@ function userInfo() {
         <div className="w-full">
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Player Name :- {userInfo.name != undefined?userInfo.name :""}
+            User Name :- {userInfo.name != undefined?userInfo.name :""}
             </p>
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
@@ -148,7 +154,7 @@ function userInfo() {
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Player Id :- {userInfo.uniqueId}
+            User Id :- {userInfo.uniqueId}
             </p>
           </div>
 

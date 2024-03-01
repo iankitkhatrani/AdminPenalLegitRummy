@@ -187,14 +187,14 @@ const handleSort = (key) => {
             <td className="w-[195px] px-6 py-5 xl:px-0">
               
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Player Id
+                  User Id
                 </span>
                
             </td>
             <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
              
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Player Name⬆⬇
+                  User Name⬆⬇
                 </span>
             </td>
             <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>

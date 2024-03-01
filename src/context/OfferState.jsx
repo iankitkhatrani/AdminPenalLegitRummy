@@ -67,7 +67,7 @@ const OfferState = (props) => {
             }).then(data => data.json())
 
             const json = response
-            console.log("data api from :Recent Player  latatestUser :::...", json)
+            console.log("data api from :Recent User  latatestUser :::...", json)
             if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
                 console.log("dffffffffffffffffffffffffffffffffffffffffffffffffff", cookies.get('token'))
                 console.log("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 75")

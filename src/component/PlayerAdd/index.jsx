@@ -89,12 +89,12 @@ function playerAddinfo() {
     console.log("userInfo ", userInfo)
 
     if(!/^[a-zA-Z\s]+$/.test(userInfo.name)  ){
-      alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
+      alert("Invalid User name. User name should only contain alphabetic characters and spaces.")
       return false
     }
 
     if(userInfo.name.length < 3){
-      alert("Invalid player name. Player name should have minimum 3 characters.")
+      alert("Invalid User name. User name should have minimum 3 characters.")
       return false
     }
 
@@ -133,7 +133,7 @@ function playerAddinfo() {
     <div className="w-full rounded-lg bg-white px-[24px] py-[20px] dark:bg-darkblack-600">
       <div className="flex flex-col space-y-5">
         <h3 className="text-2xl font-bold pb-5 text-bgray-900 dark:text-white dark:border-darkblack-400 border-b border-bgray-200">
-          Player Registration
+        User Registration
         </h3>
         <div className="mt-8">
           <form action="">
@@ -143,7 +143,7 @@ function playerAddinfo() {
                   htmlFor="robotname"
                   className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
                 >
-                  Player Name
+                User Name
                 </label>
 
 

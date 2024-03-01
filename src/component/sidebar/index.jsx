@@ -185,7 +185,7 @@ function Sidebar({ handleActive }) {
                         </svg>
                       </span>
                       <span className="item-text text-lg font-medium leading-none">
-                        Player Management
+                        User Management
                       </span>
                     </div>
                   </div>

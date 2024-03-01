@@ -9,7 +9,7 @@ function playerUpdate() {
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("Player Info  ",Botinfo)
+  console.log("User Info  ",Botinfo)
 
   const context = useContext(offerContext)
   const { BotUpdate, UploadProfile, host } = context
@@ -103,7 +103,7 @@ function playerUpdate() {
     console.log("userInfo ",userInfo)
 
     if(!/^[a-zA-Z\s]+$/.test(userInfo.username)){
-      alert("Invalid player name. Player name should only contain alphabetic characters and spaces.")
+      alert("Invalid User name. User name should only contain alphabetic characters and spaces.")
       return false
     }
 
@@ -131,7 +131,7 @@ function playerUpdate() {
     <div className="w-full rounded-lg bg-white px-[24px] py-[20px] dark:bg-darkblack-600">
       <div className="flex flex-col space-y-5">
         <h3 className="text-2xl font-bold pb-5 text-bgray-900 dark:text-white dark:border-darkblack-400 border-b border-bgray-200">
-          Player Information
+        User Information
         </h3>
         <div className="mt-8">
           <form action="">
@@ -141,7 +141,7 @@ function playerUpdate() {
                   htmlFor="robotname"
                   className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
                 >
-                  Player Name {Botinfo.UserName}
+                User Name {Botinfo.UserName}
                 </label>
            
 
