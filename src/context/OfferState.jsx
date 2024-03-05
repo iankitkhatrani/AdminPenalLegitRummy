@@ -683,7 +683,43 @@ const OfferState = (props) => {
             console.log("e :", e)
         }
     }
+    //=======================================================
 
+    //========================== Bank ===========================
+
+    const BankList = async (status) => {
+        try {
+            console.log("BankList :::::::", `${host}/admin/user/UserList`)
+            const response = await fetch(`${host}/admin/bank/BankList?status=`+status, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json.bankList
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
+
+    //==========================================================
     //================= socail List 
 
     const SocailURLsList = async () => {
@@ -1317,8 +1353,6 @@ const OfferState = (props) => {
             console.log("e :", e)
         }
     }
-
-
 
     const BotAdd = async (data) => {
         try {
@@ -1975,8 +2009,164 @@ const OfferState = (props) => {
         }
     }
 
-    //=====================
+    //===================================================
+   
 
+    const TrancationData = async () => {
+        try {
+            console.log(":::::::::::TrancationData :::::::", `${host}/admin/usertransction/transactionData`)
+            const response = await fetch(`${host}/admin/usertransction/transactionData`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :TrancationData :::...", json)
+
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json.transactionData
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    //===================================================
+
+     //=================== Bonus Setup
+
+     const GetWelComeBonus = async (gamename) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/games/GetWelComeBonus`)
+            const response = await fetch(`${host}/admin/games/GetWelComeBonus`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const WelComeBonusset = async (data) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/games/WelComeBonusset`)
+            const response = await fetch(`${host}/admin/games/WelComeBonusset`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
+    const GetreferralBonus = async (gamename) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/games/GetreferralBonus`)
+            const response = await fetch(`${host}/admin/games/GetreferralBonus`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const referralBonusset = async (data) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/games/referralBonusset`)
+            const response = await fetch(`${host}/admin/games/referralBonusset`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
+    //===============================
     return (
         <offerContext.Provider value={{
             host,
@@ -1995,8 +2185,11 @@ const OfferState = (props) => {
             DepositeList, DepositeAccptedList, DepositeRejectedList, DepositeAdd, UploadScreenshort, DepositeDelete, DepositeData, DepositeUpdate,
             PayoutList, PayoutAccptedList, PayoutRejectedList, PayoutUpdate, UploadScreenshortPayout,
             GetDealBetList,addTableentryAPI,DeleteTableEntry,TableEntryUpdate,
-             Chnageidpwd,
-             KYCPageList,KYCUpdate
+            Chnageidpwd,
+            KYCPageList,KYCUpdate,
+            BankList,
+            TrancationData,
+            GetWelComeBonus,WelComeBonusset,GetreferralBonus,referralBonusset
         }}>
             {props.children}
         </offerContext.Provider>)

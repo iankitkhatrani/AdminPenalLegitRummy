@@ -55,6 +55,8 @@ import Bankmanagement from './pages/BankDeatils'
 import StateManagment from './pages/StateManagment'
 import PaymentInManagement from './pages/paymentin'
 import PaymentOutManagement from './pages/paymentout'
+import TranscationPage from './pages/TranscationPage'
+
 
 
 
@@ -65,6 +67,11 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
+      
+      {
+        path: "/transcationPage",
+        element: <TranscationPage />,
+      },
       {
         path: "/kycupdateinfo",
         element: <KycUpdateinfo />,

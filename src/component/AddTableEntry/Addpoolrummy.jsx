@@ -70,6 +70,10 @@ const handleSubmit = async (event) => {
       return false
     }
 
+    if(tableInfo.type == undefined || tableInfo.type == null || tableInfo.type == ""){
+      alert("Invalid Table Type. Table Type should only contain 101 or 201.")
+      return false
+    }
 
     if(parseInt(tableInfo.type) != 101 && parseInt(tableInfo.type) != 201){
       alert("Invalid Table Type. Table Type should only contain 101 or 201.")

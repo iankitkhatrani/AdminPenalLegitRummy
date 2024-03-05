@@ -4,7 +4,7 @@ import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
-function PlayerTab({status }) {
+function PlayerTab({ }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
   const [pageSize, setPageSize] = useState(5);
@@ -13,8 +13,7 @@ function PlayerTab({status }) {
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
-
-  console.log("status ", status)
+  const [typeofTransaction, setTypeofTransaction] = useState('');
 
   const Dropdown = (item) => {
     setPageSize(item)
@@ -23,47 +22,59 @@ function PlayerTab({status }) {
   //------------------------------------------------------------------------------------------------------------
   const navigate = useNavigate();
   const navigateToUserRegister = () => {
-    navigate('/bankmanagement');
+    navigate('/playeradd');
   };
 
-  let [bankData, setBankData] = useState([]);
+  let [userData, setUserData] = useState([]);
   const context = useContext(offerContext)
-  const { BankList } = context
+  const { TrancationData } = context
 
   useEffect(() => {
     const submitdata = async () => {
-      setBankData(await BankList(status))
+      setUserData(await TrancationData())
     }
     submitdata()
-  }, [status]);
+  }, []);
 
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
-  const filteredUsers = bankData.filter((user) => {
+  const filteredUsers = userData.filter((user) => {
     console.log("dddd", user)
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
+    const typeoftrancation = typeofTransaction == "Bonus" ? ["SingUp Bonus",
+      "Deal Playing Entry Deduct bonus", "Pool Playing Entry Deduct bonus",
+      "Point Playing Entry Deduct bonus",
+      "Deposit Bonus",
+      "Reffral Bonus"
+    ] : typeofTransaction == "Game" ? ["Game Win",
+      "Deal Playing Entry Deposit",
+      "Pool Playing Entry Deduct bonus",
+      "Point Playing Entry Deposit"
+    ] : typeofTransaction == "Payment" ? ["PayIn",
+      "PayOut"
+    ] : typeofTransaction == "Referral" ? ["Reffral Bonus"
+    ] : null;
+
+    console.log("typeoftrancation ", typeoftrancation)
 
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
+      (!typeoftrancation || typeoftrancation.indexOf(user.transTypeText)) &&
       (searchTerm === '' ||
-        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.userId.includes(searchTerm) ||
-        user.amountNumber.includes(searchTerm))
+      (user.OrderId  != undefined && user.OrderId.includes(searchTerm)) ||
+        ( user.uniqueId != undefined && user.uniqueId.includes(searchTerm)))
     );
   });
 
   // Calculate the index range for the current page
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-
   // Filter the user data for the current page
   const usersOnCurrentPage = filteredUsers.slice(startIndex, endIndex);
-
   const totalPages = Math.ceil(filteredUsers.length / pageSize);
-
   const goToPage = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -84,10 +95,7 @@ function PlayerTab({status }) {
     } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
       alert('From date must be earlier than To date');
     } else {
-
       setFromDate(selectedDate);
-
-
     }
   };
 
@@ -107,12 +115,12 @@ function PlayerTab({status }) {
 
   const handleSort = (key) => {
     const direction = sortDirection === 'asc' ? 'desc' : 'asc';
-    const sorted = [...bankData].sort((a, b) => {
+    const sorted = [...userData].sort((a, b) => {
       if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
       if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
       return 0;
     });
-    setBankData(sorted);
+    setUserData(sorted);
     setSortDirection(direction);
   };
 
@@ -158,7 +166,46 @@ function PlayerTab({status }) {
             </label>
           </div>
         </div>
+
+        <div className="hidden h-full rounded-lg border border-transparent bg-bgray-100 px-[18px] focus-within:border-success-300 dark:bg-darkblack-500 sm:block sm:w-70 lg:w-88">
+          <div className="flex h-full w-full items-center space-x-[15px]">
+            <select
+              className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
+
+              onChange={(e) => setTypeofTransaction(e.target.value)}>
+              <option value="">Type Of transaction</option>
+              <option value="Game">Game</option>
+              <option value="Payment">Payment</option>
+              <option value="Admin">Admin</option>
+              <option value="Bonus">Bonus</option>
+              <option value="Refund">Refund</option>
+              <option value="Referral">Referral</option>
+              <option value="other">other</option>
+            </select>
+
+          </div>
+        </div>
+
+
+        <div className="hidden h-full rounded-lg border border-transparent bg-bgray-100 px-[18px] focus-within:border-success-300 dark:bg-darkblack-500 sm:block sm:w-70 lg:w-88">
+          <div className="flex h-full w-full items-center space-x-[15px]">
+
+
+            <select
+              className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
+
+              onChange={(e) => setSearchTerm(e.target.value)}>
+              <option value="">Transaction status</option>
+              <option value="Success">Success</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
+            </select>
+
+          </div>
+        </div>
+
       </div>
+
       <div className="filter-content w-full">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
@@ -190,66 +237,86 @@ function PlayerTab({status }) {
               <td className="w-[195px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Order Id
+                </span>
+
+              </td>
+              <td className="w-[185px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   User Id
                 </span>
 
               </td>
-              <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
+              <td className="w-[125px] px-6 py-5 xl:px-0" onClick={() => handleSort('transAmount')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  User Name⬆⬇
+                  transAmount ⬆⬇
                 </span>
               </td>
 
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('email')}>
+              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  email ⬆⬇
+                  Win Wallet ⬆⬇
                 </span>
               </td>
 
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('phone')}>
+              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Mobile Number⬆⬇
+                  Main Wallet⬆⬇
                 </span>
               </td>
 
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('BeneficiaryName')}>
+              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('bonusChips')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  BeneficiaryName⬆⬇
+                  Bonus Wallet ⬆⬇
                 </span>
               </td>
 
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('amountNumber')}>
+              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('referralChips')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  amountNumber⬆⬇
-                </span>
-              </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('IFSC')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  IFSC⬆⬇
+                  referral Wallet ⬆⬇
                 </span>
               </td>
 
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
+              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('totalBucket')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  createdAt ⬆⬇
+                  Total Wallet ⬆⬇
+                </span>
+              </td>
+
+              <td className="w-[160px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Registration Date ⬆⬇
+                </span>
+              </td>
+              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('transType')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  transType ⬆⬇
+                </span>
+              </td>
+              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('transTypeText')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  transTypeText ⬆⬇
+                </span>
+              </td>
+
+              <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  gameId ⬆⬇
                 </span>
               </td>
 
 
-              <td className="w-[60px] px-6 py-5 xl:px-0">
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Status
-                </span>
-
-              </td>
             </tr>
 
 
@@ -258,31 +325,36 @@ function PlayerTab({status }) {
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    UserId={user.userId}
-                    name={user.name}
-                    email={user.email}
-                    phone={user.phone}
-                    BeneficiaryName={user.BeneficiaryName}
-                    amountNumber={user.amountNumber}
-                    IFSC={user.IFSC}
+                    OrderId={user._id}
+                    UserId={user.uniqueId}
+                    transAmount={user.transAmount}
+                    winningChips={user.winningChips != undefined ? user.winningChips.toFixed(2) : "0"}
+                    chips={user.chips != undefined ? user.chips.toFixed(2) : "0"}
+                    bonusChips={user.bonusChips != undefined ? user.bonusChips.toFixed(2) : "0"}
+                    referralChips={user.referralChips != undefined ? user.referralChips.toFixed(2) : "0"}
+                    totalBucket={user.totalBucket != undefined ? user.totalBucket.toFixed(2) : "0"}
                     createdAt={user.createdAt}
-                    paymentStatus={user.paymentStatus}
-
+                    transType={user.transType}
+                    transTypeText={user.transTypeText}
+                    gameId={user.gameId}
 
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    UserId={user.userId}
-                    name={user.name}
-                    email={user.email}
-                    phone={user.phone}
-                    BeneficiaryName={user.BeneficiaryName}
-                    amountNumber={user.amountNumber}
-                    IFSC={user.IFSC}
+                    OrderId={user._id}
+                    UserId={user.uniqueId}
+                    transAmount={user.transAmount}
+                    winningChips={user.winningChips != undefined ? user.winningChips.toFixed(2) : "0"}
+                    chips={user.chips != undefined ? user.chips.toFixed(2) : "0"}
+                    bonusChips={user.bonusChips != undefined ? user.bonusChips.toFixed(2) : "0"}
+                    referralChips={user.referralChips != undefined ? user.referralChips.toFixed(2) : "0"}
+                    totalBucket={user.totalBucket != undefined ? user.totalBucket.toFixed(2) : "0"}
                     createdAt={user.createdAt}
-                    paymentStatus={user.paymentStatus}
+                    transType={user.transType}
+                    transTypeText={user.transTypeText}
+                    gameId={user.gameId}
                   />
                 )
             )}

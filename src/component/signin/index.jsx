@@ -3,7 +3,7 @@ import logoWhite from "../../assets/images/logo/logo-white.png";
 import {useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
 import PasswordResetModal from "../modal/PasswordResetModal";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const host = "http://64.23.141.200:3000";//"http://192.168.0.203:3000" //
@@ -16,11 +16,30 @@ function LeftSide() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    const rememberedUsername = localStorage.getItem('rememberedUsername');
+    const rememberedPassword = localStorage.getItem('rememberedPassword');
+
+    if (rememberedUsername) {
+      setRememberMe(true);
+
+      setFormData({
+        email:rememberedUsername,
+        password:rememberedPassword
+      })
+
+    }
+  }, []);
+
+
+
 
   const navigateToContacts = () => {
  
@@ -37,6 +56,10 @@ function LeftSide() {
   const LoginData = async (data) => {
     try {
       console.log("PlayerList :::::::", host)
+
+     
+
+
       const response = await fetch(`${host}/admin/login`, {
         method: 'POST',
         headers: {
@@ -54,6 +77,18 @@ function LeftSide() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (rememberMe) {
+      // If "Remember Me" is checked, store the username in local storage
+      localStorage.setItem('rememberedUsername', formData.email);
+      localStorage.setItem('rememberedPassword', formData.password);
+
+    } else {
+      // If "Remember Me" is not checked, remove the username from local storage
+      localStorage.removeItem('rememberedUsername');
+      localStorage.removeItem('rememberedPassword');
+
+    }
 
     let resData = await LoginData(formData)
     console.log(resData.status)
@@ -101,6 +136,7 @@ function LeftSide() {
               placeholder="Username or email"
               id="email"
               name="email"
+              value={formData.email}
               onChange={handleChange}
             />
           </div>
@@ -109,7 +145,9 @@ function LeftSide() {
               type="password"
               id="password"
               name="password"
+              value={formData.password}
               onChange={handleChange}
+              style={{ fontSize: '50px' }}
               className="text-bgray-800 text-base border border-bgray-300 dark:border-darkblack-400 dark:bg-darkblack-500 dark:text-white h-14 w-full focus:border-success-300 focus:ring-0 rounded-lg px-4 py-3.5 placeholder:text-bgray-500 placeholder:text-base"
               placeholder="Password"
             />
@@ -122,6 +160,8 @@ function LeftSide() {
                 className="w-5 h-5 dark:bg-darkblack-500 focus:ring-transparent rounded-full border border-bgray-300 focus:accent-success-300 text-success-300"
                 name="remember"
                 id="remember"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
               />
               <label
                 htmlFor="remember"

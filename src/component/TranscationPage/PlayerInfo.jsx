@@ -1,54 +1,79 @@
 import ProtoTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import offerContext from '../../context/offerContext';
 
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId, name, email, phone, BeneficiaryName, amountNumber, IFSC, createdAt,paymentStatus }) {
+function PlayerInfo({ OrderId, UserId, transAmount, winningChips, chips, bonusChips, referralChips, totalBucket, createdAt, transType, transTypeText, gameId }) {
+
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, name, email, phone, BeneficiaryName, amountNumber, IFSC, createdAt,paymentStatus) => {
-    navigate('/playeredit', { state: { UserId, name, email, phone, BeneficiaryName, amountNumber, IFSC, createdAt,paymentStatus } });
+  const navigateToContacts = (OrderId, UserId, transAmount, winningChips, chips, bonusChips, referralChips, totalBucket, createdAt, transType, transTypeText, gameId) => {
+
+    navigate('/playeredit', { state: { OrderId, UserId, transAmount, winningChips, chips, bonusChips, referralChips, totalBucket, createdAt, transType, transTypeText, gameId } });
   }
+
+  const context = useContext(offerContext)
+  const { host } = context
 
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
 
+
       <td className="w-[165px] px-6 py-5 xl:px-0">
 
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
+
+          {OrderId}
+        </p>
+      </td>
+
+      <td className="w-[160px] px-6 py-5 xl:px-0">
+
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+
           {UserId}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[145px] px-6 py-5 xl:px-0">
+        {
+          transAmount > 0 ?
+          <p style={{"background-color":"green"}} className="text-base font-semibold text-bgray-900 dark:text-white">
+        ₹{transAmount}
+        </p> : 
+        <p style={{"background-color":"red"}} className="text-base font-semibold text-bgray-900 dark:text-white">
+        ₹{transAmount}
+        </p>
 
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {name}
+
+        }
+        
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+        ₹{winningChips}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {email}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {phone}
+        ₹{chips}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {BeneficiaryName}
+          ₹{bonusChips}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {amountNumber}
+          ₹{referralChips}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {IFSC}
+          ₹{totalBucket}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -58,10 +83,20 @@ function PlayerInfo({ UserId, name, email, phone, BeneficiaryName, amountNumber,
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {paymentStatus}
+          {transType}
         </p>
       </td>
-    
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {transTypeText}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {gameId}
+        </p>
+      </td>
+
     </tr>
   );
 }
