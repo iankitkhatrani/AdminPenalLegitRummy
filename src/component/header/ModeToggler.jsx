@@ -3,6 +3,7 @@ import { ThemeContext } from "../layout";
 
 function ModeToggler() {
   // you can change default theme here
+  console.log("Module")
   if (
     localStorage.getItem("theme") !== "" &&
     localStorage.getItem("theme") !== "dark"

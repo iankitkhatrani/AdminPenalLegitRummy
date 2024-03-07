@@ -11,6 +11,7 @@ import { Outlet } from "react-router-dom";
 export const ThemeContext = createContext(null);
 
 function Layout({ bg, overlay, children }) {
+  console.log("lLayout ::::::::::::::::::ayout :::::::::::::::")
   const [sidebar, setSidebar] = useState(true);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") === "" || localStorage.getItem("theme")

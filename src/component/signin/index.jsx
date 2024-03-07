@@ -12,7 +12,7 @@ const host = "http://64.23.141.200:3000";//"http://192.168.0.203:3000" //
 function LeftSide() {
   const navigate = useNavigate();
 
-  
+
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState("");
@@ -36,9 +36,10 @@ function LeftSide() {
       })
 
     }
+    
+    document.querySelector("html").classList = "dark";
+
   }, []);
-
-
 
 
   const navigateToContacts = () => {
@@ -56,9 +57,6 @@ function LeftSide() {
   const LoginData = async (data) => {
     try {
       console.log("PlayerList :::::::", host)
-
-     
-
 
       const response = await fetch(`${host}/admin/login`, {
         method: 'POST',
@@ -107,6 +105,7 @@ function LeftSide() {
   };
 
   return (
+    
     <div className="lg:w-1/2 px-5 xl:pl-12 pt-10">
       <PasswordResetModal
         isActive={modalOpen}
