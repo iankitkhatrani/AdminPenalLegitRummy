@@ -1,13 +1,13 @@
 import ProtoTypes from "prop-types";
 
-function PlayerInfo({ date,gamePlayType,commission,gameId,entryFee,maxSeat}) {
+function PlayerInfo({ gameId,gamePlayType,maxSeat,tableAmount,date,entryFee}) {
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
       
       <td className="w-[165px] px-6 py-5 xl:px-0">
       
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {date}
+            {gameId}
           </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -17,22 +17,22 @@ function PlayerInfo({ date,gamePlayType,commission,gameId,entryFee,maxSeat}) {
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {commission}
+          {maxSeat}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {gameId}
+          {tableAmount}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+        {date}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
         ₹{entryFee}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {maxSeat}
         </p>
       </td>
       

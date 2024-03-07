@@ -1,89 +1,79 @@
 import ProtoTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import ALLOWED from "../../assets/images/allow.png";
+import BLOCKED from "../../assets/images/block.png";
+import offerContext from '../../context/offerContext';
+function PlayerInfo({ Id, statename, active }) {
+  console.log("statename ::::::::::::::::::::::::::::::::::",statename )
 
-import edit from "../../assets/images/edit.png";
-import trash from "../../assets/images/trash.png";
+  console.log("acctive ::::::::::::::::::::::::::::::::::",active )
 
-function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId }) {
+  const context = useContext(offerContext)
+  const { StateListAction } = context
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId) => {
-    navigate('/playeredit', { state: { UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId } });
+  const navigateToContacts = async ( Id, active) => {
+   
+    let res = await StateListAction({Id, active})
+
+    console.log("REsponce ::::::::::::::::::::::",res)
+
+    if(res.falgs){
+      window.location.reload();
+ 
+    }else{
+        alert("Error Please enter")
+    }
+    console.log(res);
+
   }
 
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
+      
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex w-full items-center space-x-2.5">
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {UserId}
+            {statename}
           </p>
         </div>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex w-full items-center space-x-2.5">
-          <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {UserName}
-          </p>
-        </div>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {MobileNo}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {totalMatch}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{MainWallet}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{WinWallet}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{BonusWallet}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {RegistrationDate}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {LastLogin}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {status}
-        </p>
-      </td>
+        <p className="text-base font-medium text-bgray-900 dark:text-white" >
+          {
+            
+            (active == true)?
+            <button styles={{
+              "margin": "1px",
+              "background-color": "red",
+              "color": "red",
+              "border": "none",
+              "padding": "5px 10px",
+              "cursor": "pointer",
+              "border-radius": "4px"
+            }} onClick={() => navigateToContacts(Id,false)} >
+             
+              <img style={{ "width": "100px", "height": "50px", "margin": "10px" }} src={BLOCKED} />
+            </button> : <button styles={{
+              "margin": "1px",
+              "background-color": "green",
+              "color": "green",
+              "border": "none",
+              "padding": "5px 10px",
+              "cursor": "pointer",
+              "border-radius": "4px"
+            }} onClick={() => navigateToContacts(Id,true)} >
+              
+              <img style={{ "width": "100px", "height": "50px", "margin": "10px" }} src={ALLOWED} />
 
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex justify-center">
-          <button styles={{
-            "margin": "1px",
-            "background-color": "white",
-            "color": "white",
-            "border": "none",
-            "padding": "5px 10px",
-            "cursor": "pointer",
-            "border-radius": "4px"
-          }} onClick={() => navigateToContacts(UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId)} >
-            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
-          </button>
-        </div>
+            </button>
+            
+          }
+        </p>
       </td>
+  
     </tr>
   );
 }

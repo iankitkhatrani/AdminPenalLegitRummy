@@ -2166,6 +2166,253 @@ const OfferState = (props) => {
     }
 
 
+
+    const GetreferralgameBonus = async (gamename) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/games/GetreferralgameBonus`)
+            const response = await fetch(`${host}/admin/games/GetreferralgameBonus`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const referralgameBonusset = async (data) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/games/referralgameBonusset`)
+            const response = await fetch(`${host}/admin/games/referralgameBonusset`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    //============================== state ===========================
+    const StateList = async () => {
+        try {
+            console.log("StateList :::::::", `${host}/admin/state/stateList`)
+            const response = await fetch(`${host}/admin/state/stateList`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json.statelist
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
+    const StateListAction = async (data) => {
+        try {
+            console.log("StateListAction :::::::", `${host}/admin/state/statemanagemetput`)
+            const response = await fetch(`${host}/admin/state/statemanagemetput`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+    //============================== =======================================
+
+
+     //=================== Payment Cofig Setup ============================
+
+     const Getpaymentconfig = async () => {
+        try {
+            console.log("Getpaymentconfig :::::::", `${host}/admin/payment/Getpaymentconfig`)
+            const response = await fetch(`${host}/admin/payment/Getpaymentconfig`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const paymentconfigset = async (data) => {
+        try {
+            console.log("paymentconfigset :::::::", `${host}/admin/payment/paymentconfigset`)
+            const response = await fetch(`${host}/admin/payment/paymentconfigset`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
+    const Getwithdrawconfig = async () => {
+        try {
+            console.log("Getwithdrawconfig :::::::", `${host}/admin/payment/Getwithdrawconfig`)
+            const response = await fetch(`${host}/admin/payment/Getwithdrawconfig`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const withdrawconfigset = async (data) => {
+        try {
+            console.log("withdrawconfigset :::::::", `${host}/admin/payment/withdrawconfigset`)
+            const response = await fetch(`${host}/admin/payment/withdrawconfigset`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
     //===============================
     return (
         <offerContext.Provider value={{
@@ -2189,7 +2436,9 @@ const OfferState = (props) => {
             KYCPageList,KYCUpdate,
             BankList,
             TrancationData,
-            GetWelComeBonus,WelComeBonusset,GetreferralBonus,referralBonusset
+            GetWelComeBonus,WelComeBonusset,GetreferralBonus,referralBonusset,GetreferralgameBonus,referralgameBonusset,
+            StateList,StateListAction,
+            Getpaymentconfig,paymentconfigset,Getwithdrawconfig,withdrawconfigset
         }}>
             {props.children}
         </offerContext.Provider>)

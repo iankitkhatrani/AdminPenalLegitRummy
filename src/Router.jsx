@@ -56,7 +56,7 @@ import StateManagment from './pages/StateManagment'
 import PaymentInManagement from './pages/paymentin'
 import PaymentOutManagement from './pages/paymentout'
 import TranscationPage from './pages/TranscationPage'
-
+import PaymentConfig from './pages/paymentconfig'
 
 
 
@@ -67,7 +67,10 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
-      
+      {
+        path: "/paymentConfig",
+        element: <PaymentConfig />,
+      },
       {
         path: "/transcationPage",
         element: <TranscationPage />,
