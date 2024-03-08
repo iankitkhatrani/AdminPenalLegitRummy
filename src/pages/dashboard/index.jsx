@@ -1,5 +1,7 @@
 import Dashboard from "../../component/dashboard/Dashboard";
 import ListTab from "../../component/dashboard/recentuser";
+import UserList from "../../component/dashboard/statewiseuser";
+
 function Home() {
   return (
     <main className="w-full px-6 pb-6 pt-[100px] sm:pt-[156px] xl:px-12 xl:pb-12">
@@ -12,6 +14,8 @@ function Home() {
         <section className="mb-6 2xl:mb-0 2xl:flex-1">
           <Dashboard />
           <ListTab />
+          <hr></hr>
+          <UserList />
         </section>
       </div>
     </main>

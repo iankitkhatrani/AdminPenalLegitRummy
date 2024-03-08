@@ -325,10 +325,10 @@ function paymentconfig() {
         <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
 
-            <div className="flex items-center space-x-[180px]">
+            <div className="flex items-center space-x-[215px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">autopay</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Auto Play</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -350,7 +350,7 @@ function paymentconfig() {
             <div className="flex items-center space-x-[100px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Auto Pay Max Limit</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Auto Pay Max Limit (INR)</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -371,7 +371,7 @@ function paymentconfig() {
             <div className="flex items-center space-x-[25px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Minimum Withdrawal Amount</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Minimum Withdrawal Amount (INR)</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -389,10 +389,10 @@ function paymentconfig() {
           </div>
 
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[38px]">
+            <div className="flex items-center space-x-[78px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Daily Withdrawal Limit(INR)</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Daily Withdrawal Limit (INR)</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -410,7 +410,7 @@ function paymentconfig() {
           </div>
 
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[75px]">
+            <div className="flex items-center space-x-[115px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Daily Transaction Limit</p>

@@ -124,57 +124,106 @@ function SidebarV2() {
                   </li>
                   <li className="item px-[43px] py-[11px]">
 
-                  <span className="item-ico">
-                    <svg
-                      width="18"
-                      height="21"
-                      viewBox="0 0 18 21"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        className="path-1"
-                        d="M0 8.84719C0 7.99027 0.366443 7.17426 1.00691 6.60496L6.34255 1.86217C7.85809 0.515019 10.1419 0.515019 11.6575 1.86217L16.9931 6.60496C17.6336 7.17426 18 7.99027 18 8.84719V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8.84719Z"
-                        fill="#1A202C"
-                      />
-                      <path
-                        className="path-2"
-                        d="M5 17C5 14.7909 6.79086 13 9 13C11.2091 13 13 14.7909 13 17V21H5V17Z"
-                        fill="#22C55E"
-                      />
-                    </svg>
-                  </span>
-                  <ul className="sub-menu min-w-[200px] rounded-lg border-l border-success-100 bg-white px-5 py-2 shadow-lg">
-                    <li>
-                      <Link
-                        to="/kycmanagement?status=Pending"
-                        className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Pending" ? "nav-active" : ""
-                          } `}
+                    <span className="item-ico">
+                      <svg
+                        width="18"
+                        height="21"
+                        viewBox="0 0 18 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                      Kyc Pending
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/kycmanagement?status=Approved"
-                        className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Pending" ? "nav-active" : ""
-                          } `}
-                      >
-                      Kyc Approved
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/kycmanagement?status=Rejected"
-                        className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Pending" ? "nav-active" : ""
-                          } `}
-                      >
-                      Kyc Rejected
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
+                        <path
+                          className="path-1"
+                          d="M0 8.84719C0 7.99027 0.366443 7.17426 1.00691 6.60496L6.34255 1.86217C7.85809 0.515019 10.1419 0.515019 11.6575 1.86217L16.9931 6.60496C17.6336 7.17426 18 7.99027 18 8.84719V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8.84719Z"
+                          fill="#1A202C"
+                        />
+                        <path
+                          className="path-2"
+                          d="M5 17C5 14.7909 6.79086 13 9 13C11.2091 13 13 14.7909 13 17V21H5V17Z"
+                          fill="#22C55E"
+                        />
+                      </svg>
+                    </span>
+                    <ul className="sub-menu min-w-[200px] rounded-lg border-l border-success-100 bg-white px-5 py-2 shadow-lg">
+                      <li>
+                        <Link
+                          to="/kycmanagement?status=Pendding"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Pendding" ? "nav-active" : ""
+                            } `}
+                        >
+                          Kyc Pendding
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/kycmanagement?status=Approved"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Approved" ? "nav-active" : ""
+                            } `}
+                        >
+                          Kyc Approved
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/kycmanagement?status=Rejected"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/kycmanagement?status=Rejected" ? "nav-active" : ""
+                            } `}
+                        >
+                          Kyc Rejected
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
 
+                  <li className="item px-[43px] py-[11px]">
+                    <Link
+                      to="/gamehistory?gamename=rummy"
+                      className={`${location === "/gamehistory?gamename=rummy" ? "nav-active" : ""
+                        }`}
+                    >
+                      <span className="item-ico">
+                        <svg
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 16V6C18 3.79086 16.2091 2 14 2H4C1.79086 2 0 3.79086 0 6V16C0 18.2091 1.79086 20 4 20H14C16.2091 20 18 18.2091 18 16Z"
+                            fill="#1A202C"
+                            className="path-1"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 8C4.25 7.58579 4.58579 7.25 5 7.25H13C13.4142 7.25 13.75 7.58579 13.75 8C13.75 8.41421 13.4142 8.75 13 8.75H5C4.58579 8.75 4.25 8.41421 4.25 8Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H13C13.4142 11.25 13.75 11.5858 13.75 12C13.75 12.4142 13.4142 12.75 13 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.25 16C4.25 15.5858 4.58579 15.25 5 15.25H9C9.41421 15.25 9.75 15.5858 9.75 16C9.75 16.4142 9.41421 16.75 9 16.75H5C4.58579 16.75 4.25 16.4142 4.25 16Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                          <path
+                            d="M11 0H7C5.89543 0 5 0.895431 5 2C5 3.10457 5.89543 4 7 4H11C12.1046 4 13 3.10457 13 2C13 0.895431 12.1046 0 11 0Z"
+                            fill="#22C55E"
+                            className="path-2"
+                          />
+                        </svg>
+                      </span>
+                    </Link>
+                  </li>
 
                   <li className="item px-[43px] py-[11px]">
                     <Link
@@ -322,73 +371,6 @@ function SidebarV2() {
                     </Link>
                   </li>
 
-                  <li className="item px-[43px] py-[11px]">
-                    <Link
-                      to="/statemanagement"
-                      className={`${location === "/statemanagement" ? "nav-active" : ""
-                        }`}
-                    >
-                      <span className="item-ico">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <ellipse
-                            cx="11.7778"
-                            cy="17.5555"
-                            rx="7.77778"
-                            ry="4.44444"
-                            className="path-1"
-                            fill="#1A202C"
-                          />
-                          <circle
-                            className="path-2"
-                            cx="11.7778"
-                            cy="6.44444"
-                            r="4.44444"
-                            fill="#22C55E"
-                          />
-                        </svg>
-                      </span>
-                    </Link>
-                  </li>
-
-                  <li className="item px-[43px] py-[11px]">
-                    <Link
-                      to="/gamelogic"
-                      className={`${location === "/gamelogic" ? "nav-active" : ""
-                        }`}
-                    >
-                      <span className="item-ico">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <ellipse
-                            cx="11.7778"
-                            cy="17.5555"
-                            rx="7.77778"
-                            ry="4.44444"
-                            className="path-1"
-                            fill="#1A202C"
-                          />
-                          <circle
-                            className="path-2"
-                            cx="11.7778"
-                            cy="6.44444"
-                            r="4.44444"
-                            fill="#22C55E"
-                          />
-                        </svg>
-                      </span>
-                    </Link>
-                  </li>
 
                   <li className="item px-[43px] py-[11px]">
                     <Link
@@ -525,7 +507,7 @@ function SidebarV2() {
                       </span>
                     </Link>
                   </li>
-                
+
                   <li className="item px-[43px] py-[11px]">
                     <Link
                       to="/notificationlist"
@@ -609,48 +591,81 @@ function SidebarV2() {
                       </span>
                     </Link>
                   </li>
+                  
+
+
                   <li className="item px-[43px] py-[11px]">
-                    <Link
-                      to="/security"
-                      className={`${location === "/security" ? "nav-active" : ""
-                        }`}
-                    >
-                      <span className="item-ico">
-                        <svg
-                          width="18"
-                          height="21"
-                          viewBox="0 0 18 21"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
+
+                    <span className="item-ico">
+                      <svg
+                        width="18"
+                        height="21"
+                        viewBox="0 0 18 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          className="path-1"
+                          d="M0 8.84719C0 7.99027 0.366443 7.17426 1.00691 6.60496L6.34255 1.86217C7.85809 0.515019 10.1419 0.515019 11.6575 1.86217L16.9931 6.60496C17.6336 7.17426 18 7.99027 18 8.84719V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8.84719Z"
+                          fill="#1A202C"
+                        />
+                        <path
+                          className="path-2"
+                          d="M5 17C5 14.7909 6.79086 13 9 13C11.2091 13 13 14.7909 13 17V21H5V17Z"
+                          fill="#22C55E"
+                        />
+                      </svg>
+                    </span>
+                    <ul className="sub-menu min-w-[200px] rounded-lg border-l border-success-100 bg-white px-5 py-2 shadow-lg">
+                      <li>
+                        <Link
+                          to="/botconfiguration"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/botconfiguration" ? "nav-active" : ""
+                            } `}
                         >
-                          <path
-                            d="M17.5 12.5C17.5 17.1944 13.6944 21 9 21C4.30558 21 0.5 17.1944 0.5 12.5C0.5 7.80558 4.30558 4 9 4C13.6944 4 17.5 7.80558 17.5 12.5Z"
-                            fill="#1A202C"
-                            className="path-1"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M8.99995 1.75C8.02962 1.75 7.09197 1.88462 6.20407 2.13575C5.80549 2.24849 5.39099 2.01676 5.27826 1.61818C5.16553 1.21961 5.39725 0.805108 5.79583 0.692376C6.81525 0.404046 7.89023 0.25 8.99995 0.25C10.1097 0.25 11.1846 0.404046 12.2041 0.692376C12.6026 0.805108 12.8344 1.21961 12.7216 1.61818C12.6089 2.01676 12.1944 2.24849 11.7958 2.13575C10.9079 1.88462 9.97028 1.75 8.99995 1.75Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                          <path
-                            d="M11 13C11 14.1046 10.1046 15 9 15C7.89543 15 7 14.1046 7 13C7 11.8954 7.89543 11 9 11C10.1046 11 11 11.8954 11 13Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M9 7.25C9.41421 7.25 9.75 7.58579 9.75 8V12C9.75 12.4142 9.41421 12.75 9 12.75C8.58579 12.75 8.25 12.4142 8.25 12V8C8.25 7.58579 8.58579 7.25 9 7.25Z"
-                            fill="#22C55E"
-                            className="path-2"
-                          />
-                        </svg>
-                      </span>
-                    </Link>
+                          Bot Configuration
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/paymentConfig"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/paymentConfig" ? "nav-active" : ""
+                            } `}
+                        >
+                          Payment Configuration
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/gamelogic"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/gamelogic" ? "nav-active" : ""
+                            } `}
+                        >
+                          Bonus Configuration
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/matchmaking"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/matchmaking" ? "nav-active" : ""
+                            } `}
+                        >
+                          MatchMaking Configuration
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/statemanagement"
+                          className={`text-md inline-block py-1.5 font-medium text-bgray-600 hover:text-bgray-800 ${location === "/statemanagement" ? "nav-active" : ""
+                            } `}
+                        >
+                        State Management
+                        </Link>
+                      </li>
+                    </ul>
                   </li>
+
+
                 </ul>
               </div>
 
@@ -665,6 +680,48 @@ function SidebarV2() {
 export default SidebarV2;
 
 
+// <li className="item px-[43px] py-[11px]">
+//                     <Link
+//                       to="/security"
+//                       className={`${location === "/security" ? "nav-active" : ""
+//                         }`}
+//                     >
+//                       <span className="item-ico">
+//                         <svg
+//                           width="18"
+//                           height="21"
+//                           viewBox="0 0 18 21"
+//                           fill="none"
+//                           xmlns="http://www.w3.org/2000/svg"
+//                         >
+//                           <path
+//                             d="M17.5 12.5C17.5 17.1944 13.6944 21 9 21C4.30558 21 0.5 17.1944 0.5 12.5C0.5 7.80558 4.30558 4 9 4C13.6944 4 17.5 7.80558 17.5 12.5Z"
+//                             fill="#1A202C"
+//                             className="path-1"
+//                           />
+//                           <path
+//                             fillRule="evenodd"
+//                             clipRule="evenodd"
+//                             d="M8.99995 1.75C8.02962 1.75 7.09197 1.88462 6.20407 2.13575C5.80549 2.24849 5.39099 2.01676 5.27826 1.61818C5.16553 1.21961 5.39725 0.805108 5.79583 0.692376C6.81525 0.404046 7.89023 0.25 8.99995 0.25C10.1097 0.25 11.1846 0.404046 12.2041 0.692376C12.6026 0.805108 12.8344 1.21961 12.7216 1.61818C12.6089 2.01676 12.1944 2.24849 11.7958 2.13575C10.9079 1.88462 9.97028 1.75 8.99995 1.75Z"
+//                             fill="#22C55E"
+//                             className="path-2"
+//                           />
+//                           <path
+//                             d="M11 13C11 14.1046 10.1046 15 9 15C7.89543 15 7 14.1046 7 13C7 11.8954 7.89543 11 9 11C10.1046 11 11 11.8954 11 13Z"
+//                             fill="#22C55E"
+//                             className="path-2"
+//                           />
+//                           <path
+//                             fillRule="evenodd"
+//                             clipRule="evenodd"
+//                             d="M9 7.25C9.41421 7.25 9.75 7.58579 9.75 8V12C9.75 12.4142 9.41421 12.75 9 12.75C8.58579 12.75 8.25 12.4142 8.25 12V8C8.25 7.58579 8.58579 7.25 9 7.25Z"
+//                             fill="#22C55E"
+//                             className="path-2"
+//                           />
+//                         </svg>
+//                       </span>
+//                     </Link>
+//                   </li>
 // <li className="item px-[43px] py-[11px]">
 // <Link
 //   to="/noticetext"

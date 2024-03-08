@@ -66,7 +66,7 @@ function LeftSide() {
         },
         body: JSON.stringify(data)
       }).then(d => d.json())
-      console.log("data api from :latatestUser :::...", response)
+      console.log("data api from :LoginData :::...", response)
       return response
     } catch (e) {
       console.log("e :", e)

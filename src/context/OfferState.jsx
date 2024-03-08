@@ -85,6 +85,41 @@ const OfferState = (props) => {
             console.log("e :", e)
         }
     }
+
+    
+
+    const latatestUserStatewise = async () => {
+        try {
+            
+            console.log("${host}/admin/latatestUserStatewise", `${host}/admin/dashboard/latatestUserStatewise`)
+            const response = await fetch(`${host}/admin/dashboard/latatestUserStatewise`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')//token
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :Recent User  latatestUserStatewise :::...", json)
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                console.log("dffffffffffffffffffffffffffffffffffffffffffffffffff", cookies.get('token'))
+                console.log("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 75")
+
+                LogoutClick()
+
+                console.log("dffffffffffffffffffffffffffffffffffffffffffffffffff", cookies.get('token'))
+
+                return []
+            } else {
+                return await json.statelist
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
     //========================= GetBetList ============================
 
     const GetDealBetList = async (gametype) => {
@@ -1945,6 +1980,37 @@ const OfferState = (props) => {
         }
     }
 
+
+    const Chnageidprofile = async (data) => {
+        try {
+            console.log("PlayerList :::::::", host)
+            console.log("PlayerList ::::::: data ", data)
+
+            const response = await fetch(`${host}/admin/signup-admin-profile-update`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(d => d.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
     // KYC ::::::::::::::::::::::::::::::
 
 
@@ -2432,13 +2498,13 @@ const OfferState = (props) => {
             DepositeList, DepositeAccptedList, DepositeRejectedList, DepositeAdd, UploadScreenshort, DepositeDelete, DepositeData, DepositeUpdate,
             PayoutList, PayoutAccptedList, PayoutRejectedList, PayoutUpdate, UploadScreenshortPayout,
             GetDealBetList,addTableentryAPI,DeleteTableEntry,TableEntryUpdate,
-            Chnageidpwd,
+            Chnageidpwd,Chnageidprofile,
             KYCPageList,KYCUpdate,
             BankList,
             TrancationData,
             GetWelComeBonus,WelComeBonusset,GetreferralBonus,referralBonusset,GetreferralgameBonus,referralgameBonusset,
             StateList,StateListAction,
-            Getpaymentconfig,paymentconfigset,Getwithdrawconfig,withdrawconfigset
+            Getpaymentconfig,paymentconfigset,Getwithdrawconfig,withdrawconfigset,latatestUserStatewise
         }}>
             {props.children}
         </offerContext.Provider>)

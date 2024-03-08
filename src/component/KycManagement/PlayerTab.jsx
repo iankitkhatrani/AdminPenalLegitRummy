@@ -178,9 +178,7 @@ function PlayerTab({ status }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
-
+         
         </div>
       </div>
       <div className="table-content w-full overflow-x-auto">
@@ -200,6 +198,11 @@ function PlayerTab({ status }) {
               <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('adharcard')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Aadhaar Card ⬆⬇
+                </span>
+              </td>
+              <td className="w-[150px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  DOB ⬆⬇
                 </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
@@ -233,11 +236,7 @@ function PlayerTab({ status }) {
                   Remark Date
                 </span>
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Action
-                </span>
-              </td>
+             
               
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
@@ -250,10 +249,12 @@ function PlayerTab({ status }) {
                     adharcard={user.adharcard}
                     createdAt={user.createdAt}
                     verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
-                    Pancard={user.Pancard}
-                    Pancardverified={user.Pancardverified == undefined || user.Pancardverified == "" || user.Pancardverified == false ? "UnVerified" : "Verified"}
+                    Pancard={user.pancard}
+                    Pancardverified={user.pancardverified == undefined || user.pancardverified == "" || user.pancardverified == false ? "UnVerified" : "Verified"}
                     adminremark={user.adminremark}
                     adminremarkcd={user.adminremarkcd}
+                    dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
+
                   />
                 )
                 : index < 3 && (
@@ -264,10 +265,11 @@ function PlayerTab({ status }) {
                     adharcard={user.adharcard}
                     createdAt={user.createdAt}
                     verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
-                    Pancard={user.Pancard}
-                    Pancardverified={user.Pancardverified == undefined || user.Pancardverified == "" || user.Pancardverified == false ? "UnVerified" : "Verified"}
+                    Pancard={user.pancard}
+                    Pancardverified={user.pancardverified == undefined || user.pancardverified == "" || user.pancardverified == false ? "UnVerified" : "Verified"}
                     adminremark={user.adminremark}
                     adminremarkcd={user.adminremarkcd}
+                    dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
                   />
                 )
             )}

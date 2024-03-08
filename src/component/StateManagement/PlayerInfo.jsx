@@ -55,7 +55,7 @@ function PlayerInfo({ Id, statename, active }) {
               "border-radius": "4px"
             }} onClick={() => navigateToContacts(Id,false)} >
              
-              <img style={{ "width": "100px", "height": "50px", "margin": "10px" }} src={BLOCKED} />
+              <img style={{  }} src={BLOCKED} />
             </button> : <button styles={{
               "margin": "1px",
               "background-color": "green",
@@ -66,7 +66,7 @@ function PlayerInfo({ Id, statename, active }) {
               "border-radius": "4px"
             }} onClick={() => navigateToContacts(Id,true)} >
               
-              <img style={{ "width": "100px", "height": "50px", "margin": "10px" }} src={ALLOWED} />
+              <img style={{  }} src={ALLOWED} />
 
             </button>
             

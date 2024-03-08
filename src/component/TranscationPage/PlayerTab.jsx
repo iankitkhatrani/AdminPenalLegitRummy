@@ -197,7 +197,7 @@ function PlayerTab({ }) {
               onChange={(e) => setSearchTerm(e.target.value)}>
               <option value="">Transaction status</option>
               <option value="Success">Success</option>
-              <option value="Pending">Pending</option>
+              <option value="Pendding">Pendding</option>
               <option value="Failed">Failed</option>
             </select>
 
@@ -225,9 +225,7 @@ function PlayerTab({ }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
-
+         
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
@@ -244,7 +242,8 @@ function PlayerTab({ }) {
               <td className="w-[185px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  User Id
+              
+                  User Name
                 </span>
 
               </td>
@@ -337,7 +336,7 @@ function PlayerTab({ }) {
                     transType={user.transType}
                     transTypeText={user.transTypeText}
                     gameId={user.gameId}
-
+                    uid={user.userId}
                   />
                 )
                 : index < 3 && (
@@ -355,6 +354,7 @@ function PlayerTab({ }) {
                     transType={user.transType}
                     transTypeText={user.transTypeText}
                     gameId={user.gameId}
+                    uid={user.userId}
                   />
                 )
             )}

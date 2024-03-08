@@ -11,7 +11,7 @@ function gameLogic() {
     <main className="w-full px-6 pb-6 pt-[100px] sm:pt-[156px] xl:px-12 xl:pb-12">
       {/* write your code here */}
       <h3 className="text-xl font-bold text-bgray-900 dark:text-bgray-50 lg:text-3xl lg:leading-[36.4px]">
-        Bonus Logic
+        Bonus Management
       </h3>
       <hr/>
       <br></br>

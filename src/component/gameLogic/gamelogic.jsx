@@ -201,7 +201,7 @@ function gameLogic() {
     <div className="mb-[24px] w-full">
 
       <h1>
-        <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">WelCome Bonus</p>
+        <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Welcome Bonus</p>
         <hr></hr></h1>
       <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-3">
 
@@ -268,7 +268,7 @@ function gameLogic() {
         </div>
       </div>
       <h1>
-        <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral (First deposit) Bonus</p>
+        <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral bonus (First deposit)</p>
         <hr></hr></h1>
       <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-3">
 
@@ -277,7 +277,7 @@ function gameLogic() {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral (First deposit) Bonus On Off</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral deposit Bonus</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -298,7 +298,7 @@ function gameLogic() {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Bonus %</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral deposit Bonus %</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -321,7 +321,7 @@ function gameLogic() {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Bonus Amount</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral deposit Bonus Max Limit</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -366,7 +366,7 @@ function gameLogic() {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral (Game) Bonus On Off</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Game Bonus</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -410,7 +410,7 @@ function gameLogic() {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Game Bonus Amount</p>
+                  <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Game Bonus Max Limit</p>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
