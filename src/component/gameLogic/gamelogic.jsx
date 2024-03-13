@@ -28,13 +28,13 @@ function gameLogic() {
   //=================================================================================
 
 
-   //==== referral game  bonus amount ==========================================================
+  //==== referral game  bonus amount ==========================================================
 
-   const [referralgameBonus, setReferralgameBonus] = useState({
+  const [referralgameBonus, setReferralgameBonus] = useState({
     referralgamebonus: true,
     referralgamebonusrate: 0,
     referralgamebonusamount: 0,
-    platformfee:0
+    platformfee: 0
   });
 
   // Define a state variable to hold the checked state of the checkbox
@@ -46,7 +46,7 @@ function gameLogic() {
 
   const context = useContext(offerContext)
 
-  const { GetWelComeBonus, WelComeBonusset, GetreferralBonus, referralBonusset , GetreferralgameBonus , referralgameBonusset  } = context
+  const { GetWelComeBonus, WelComeBonusset, GetreferralBonus, referralBonusset, GetreferralgameBonus, referralgameBonusset } = context
 
   useEffect(() => {
 
@@ -159,55 +159,54 @@ function gameLogic() {
 
   //=================================================================================
 
-    //================================== referral Game Bonus ====================================
+  //================================== referral Game Bonus ====================================
 
-    const handlereferralgameChange = (event) => {
-      const { name, value } = event.target;
-      console.log("value :::::::::::::::::", value)
-      console.log("NAME :::::::::::::::::", name)
+  const handlereferralgameChange = (event) => {
+    const { name, value } = event.target;
+    console.log("value :::::::::::::::::", value)
+    console.log("NAME :::::::::::::::::", name)
 
-      setReferralgameBonus({
-        ...referralgameBonus,
-        [name]: parseFloat(value),
-      });
-  
-      console.log("handlereferralgameChange handleChange ::::::::::::::::::::::", referralgameBonus)
-  
-    };
-  
-    const handlereferralgameCheckboxChange = (event) => {
-      const { name, value } = event.target;
-      // Toggle the value of isChecked when checkbox is clicked
-      setIsCheckedreferralgame(!isCheckedwreferralgame);
-      setReferralgameBonus({
-        ...referralgameBonus,
-        [name]: !isCheckedwreferralgame,
-      });
-    };
-  
-    const handlereferralgameSubmitwelcome = async () => {
-      let res = await referralgameBonusset(referralgameBonus)
-      console.log("REs :::::::::::::::::::::", res)
-      if (res.falgs == true) {
-        alert("Success Save")
-      }
-      console.log(referralgameBonus);
-    };
-  
-    //=================================================================================
+    setReferralgameBonus({
+      ...referralgameBonus,
+      [name]: parseFloat(value),
+    });
 
-    
+    console.log("handlereferralgameChange handleChange ::::::::::::::::::::::", referralgameBonus)
+
+  };
+
+  const handlereferralgameCheckboxChange = (event) => {
+    const { name, value } = event.target;
+    // Toggle the value of isChecked when checkbox is clicked
+    setIsCheckedreferralgame(!isCheckedwreferralgame);
+    setReferralgameBonus({
+      ...referralgameBonus,
+      [name]: !isCheckedwreferralgame,
+    });
+  };
+
+  const handlereferralgameSubmitwelcome = async () => {
+    let res = await referralgameBonusset(referralgameBonus)
+    console.log("REs :::::::::::::::::::::", res)
+    if (res.falgs == true) {
+      alert("Success Save")
+    }
+    console.log(referralgameBonus);
+  };
+
+  //=================================================================================
+
+
   return (
     <div className="mb-[24px] w-full">
 
       <h1>
         <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Welcome Bonus</p>
         <hr></hr></h1>
-      <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-3">
-
+      <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-1">
         <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[7px]">
+            <div className="flex items-center space-x-[70px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">WelCome Bonus</p>
@@ -224,9 +223,6 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
-
-        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
@@ -247,17 +243,6 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
-
-
-        <div className="rounded-lg  p-5 ">
-        </div>
-
-        <div className="rounded-lg  p-5 ">
-        </div>
-
-        <div className="rounded-lg  p-5">
-
           <div className="mb-5 flex items-center justify-between">
             <button onClick={handleSubmitwelcome}
               aria-label="none"
@@ -270,11 +255,11 @@ function gameLogic() {
       <h1>
         <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral bonus (First deposit)</p>
         <hr></hr></h1>
-      <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-1">
 
         <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[7px]">
+            <div className="flex items-center space-x-[90px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral deposit Bonus</p>
@@ -291,11 +276,8 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
-
-        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[7px]">
+            <div className="flex items-center space-x-[70px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral deposit Bonus %</p>
@@ -314,9 +296,6 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
-
-        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
@@ -337,13 +316,6 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
-
-        <div className="rounded-lg  p-5 ">
-        </div>
-
-        <div className="rounded-lg  p-5">
-
           <div className="mb-5 flex items-center justify-between">
             <button onClick={handlereferralSubmitwelcome}
               aria-label="none"
@@ -352,18 +324,17 @@ function gameLogic() {
             </button>
           </div>
         </div>
-
       </div>
 
 
       <h1>
         <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral bonus(game)</p>
         <hr></hr></h1>
-      <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-1">
 
         <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[7px]">
+            <div className="flex items-center space-x-[100px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Game Bonus</p>
@@ -380,11 +351,9 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
 
-        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[7px]">
+            <div className="flex items-center space-x-[80px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Game Bonus %</p>
@@ -403,11 +372,9 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
 
-        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[7px]">
+            <div className="flex items-center space-x-[20px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Referral Game Bonus Max Limit</p>
@@ -426,11 +393,9 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
 
-        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
           <div className="mb-5 flex items-center justify-between">
-            <div className="flex items-center space-x-[7px]">
+            <div className="flex items-center space-x-[140px]">
               <div className="icon">
                 <span>
                   <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">Platform fee %</p>
@@ -449,10 +414,6 @@ function gameLogic() {
               </span>
             </div>
           </div>
-        </div>
-
-
-        <div className="rounded-lg  p-5">
 
           <div className="mb-5 flex items-center justify-between">
             <button onClick={handlereferralgameSubmitwelcome}
@@ -461,7 +422,10 @@ function gameLogic() {
               Referral (Game) Bonus Sumbit
             </button>
           </div>
+
         </div>
+
+
 
       </div>
 

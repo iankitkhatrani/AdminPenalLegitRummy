@@ -50,10 +50,10 @@ function PlayerTab({ status }) {
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
         user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.verified.includes(searchTerm.toLowerCase()) ||
-        // user.Pancardverified.includes(searchTerm.toLowerCase()) ||
-        // user.Pancard.includes(searchTerm.toLowerCase()) ||
-        user.adharcard.includes(searchTerm))
+        user.pancard && user.pancard.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.adharcard && user.adharcard.toLowerCase().includes(searchTerm.toLowerCase()) 
+        
+        )
     );
   });
 
@@ -151,7 +151,7 @@ function PlayerTab({ status }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by User Id, Aadhar ,Status , or others..."
+                placeholder="Search by User Id, Aadhar ,Pan Card , or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
