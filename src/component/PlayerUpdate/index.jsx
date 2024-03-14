@@ -9,7 +9,7 @@ function playerUpdate() {
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("User Info  ",Botinfo)
+  //console.log("User Info  ",Botinfo)
 
   const context = useContext(offerContext)
   const { BotUpdate, UploadProfile, host } = context

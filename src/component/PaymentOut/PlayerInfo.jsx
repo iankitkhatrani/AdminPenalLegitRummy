@@ -4,82 +4,57 @@ import { useNavigate } from 'react-router-dom';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId }) {
+function PlayerInfo({ OrderID, UserName, Amount, PaymentMode, PaymentDetails, RequestDate, Autopay, Action, UserId }) {
 
   const navigate = useNavigate();
-  const navigateToContacts = (UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId) => {
-    navigate('/playeredit', { state: { UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId } });
+  const navigateToContacts = (OrderID, UserName, Amount, PaymentMode, PaymentDetails, RequestDate, Autopay, Action, UserId) => {
+    navigate('/playeredit', { state: { OrderID, UserName, Amount, PaymentMode, PaymentDetails, RequestDate, Autopay, Action, UserId } });
   }
 
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
 
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        
-          <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {UserId}
-          </p>
+
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          {OrderID}
+        </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        
-          <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {UserName}
-          </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {MobileNo}
+
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          {UserName}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {totalMatch}
+          ₹{Amount}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {PaymentMode}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{MainWallet}
+          {PaymentDetails}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{WinWallet}
+          {RequestDate}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{BonusWallet}
+          {Autopay}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {RegistrationDate}
+          {Action}
         </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {LastLogin}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {status}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex justify-center">
-          <button styles={{
-            "margin": "1px",
-            "background-color": "white",
-            "color": "white",
-            "border": "none",
-            "padding": "5px 10px",
-            "cursor": "pointer",
-            "border-radius": "4px"
-          }} onClick={() => navigateToContacts(UserId, UserName, MobileNo, totalMatch, MainWallet, WinWallet, BonusWallet, RegistrationDate, LastLogin, status, profileUrl, email, uniqueId)} >
-            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
-          </button>
-        </div>
       </td>
     </tr>
   );

@@ -15,7 +15,7 @@ function userInfo() {
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("User Info  ", Botinfo)
+  //console.log("User Info  ", Botinfo)
 
   const context = useContext(offerContext)
   const { AddMoney, DeductMoney, host, PlayerData } = context
@@ -54,13 +54,13 @@ function userInfo() {
       let resData = await PlayerData(Botinfo.UserId)
 
       await SetuserInfo(resData.userInfo)
-      await SetkycuserInfo(resData.UserOKYC)
+      await SetkycuserInfo(resData.UserOKYCData)
 
 
     }
 
     submitdata()
-    console.log("User IG:::::::::::::::::", userInfo)
+    //console.log("User IG:::::::::::::::::", userInfo)
 
   }, [Botinfo.UserId]);
 

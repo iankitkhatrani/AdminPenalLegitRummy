@@ -50,6 +50,8 @@ function Sidebar({ handleActive }) {
 
 
     setActivebank(flags)
+
+
   }
 
 
@@ -208,9 +210,9 @@ function Sidebar({ handleActive }) {
               </li>
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white`}
-                onClick={() => kycmanagement(!activekyc)}
+
               >
-                <a className="cursor-pointer">
+                <a className="cursor-pointer" onClick={() => kycmanagement(!activekyc)}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2.5">
                       <span className="item-ico">
@@ -269,7 +271,7 @@ function Sidebar({ handleActive }) {
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                         }`}
                     >
-                    Pending 
+                      Pending
                     </Link>
                   </li>
                   <li>
@@ -351,9 +353,9 @@ function Sidebar({ handleActive }) {
 
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white`}
-                onClick={() => bankmanagement(!activebank)}
+
               >
-                <a className="cursor-pointer">
+                <a className="cursor-pointer" onClick={() => bankmanagement(!activebank)}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2.5">
                       <span className="item-ico">
@@ -412,7 +414,7 @@ function Sidebar({ handleActive }) {
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                         }`}
                     >
-                    Pending
+                      Pending
                     </Link>
                   </li>
                   <li>
@@ -478,9 +480,9 @@ function Sidebar({ handleActive }) {
 
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white`}
-                onClick={() => setGamelist(!gamelist)}
+
               >
-                <a className="cursor-pointer">
+                <a className="cursor-pointer" onClick={() => setGamelist(!gamelist)}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2.5">
                       <span className="item-ico">
@@ -536,9 +538,9 @@ function Sidebar({ handleActive }) {
 
                   <li
                     className={`item py-[11px] text-bgray-900 dark:text-white`}
-                    onClick={() => backandwhitegame(!activebackandwhite)}
+
                   >
-                    <a className="cursor-pointer">
+                    <a className="cursor-pointer" onClick={() => backandwhitegame(!activebackandwhite)}>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2.5">
                           <span className="item-ico">
@@ -631,6 +633,7 @@ function Sidebar({ handleActive }) {
                   </li>
                 </ul>
               </li>
+
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/botList" ? "nav-active" : ""
                   } `}
@@ -670,9 +673,7 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li>
-            
 
-         
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/paymentin" ? "nav-active" : ""
                   } `}
@@ -886,13 +887,13 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li>
-            
+
 
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white`}
-                onClick={() => settingmanagement(!activesetting)}
+
               >
-                <a className="cursor-pointer">
+                <a className="cursor-pointer" onClick={() => settingmanagement(!activesetting)}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2.5">
                       <span className="item-ico">
@@ -947,7 +948,7 @@ function Sidebar({ handleActive }) {
                 >
                   <li>
                     <Link
-                      to="botconfiguration"
+                      to="/botconfiguration"
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                         }`}
                     >
@@ -969,7 +970,7 @@ function Sidebar({ handleActive }) {
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
                         }`}
                     >
-                      Bonus managemnet 
+                      Bonus managemnet
                     </Link>
                   </li>
                   <li>

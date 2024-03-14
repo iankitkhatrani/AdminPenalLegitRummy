@@ -16,7 +16,7 @@ function kycuserinfo() {
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("kycuserinfocard User Info  ", Botinfo)
+  //console.log("kycuserinfocard User Info  ", Botinfo)
 
   const context = useContext(offerContext)
   const { host, PlayerData } = context
@@ -42,8 +42,8 @@ function kycuserinfo() {
       let resData = await PlayerData(Botinfo.UserId)
 
       await SetuserInfo(resData.userInfo)
-      await SetkyPancuserInfo(resData.UserOKYC)
-      await SetkyAadharcuserInfo(resData.UserOKYC)
+      await SetkyPancuserInfo(resData.PanOKYCData)
+      await SetkyAadharcuserInfo(resData.UserOKYCData)
 
 
 
@@ -67,6 +67,22 @@ function kycuserinfo() {
     setImagePanSrc('/src/assets/images/dashboard/dashboard2.png');
   };
   
+  const [imageAdharfrontSrc, setImageAdharfrontSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
+
+  const adharfronthandleImageError = () => {
+    // If the image fails to load, set the image source to the default image
+    setImageAdharfrontSrc('/src/assets/images/dashboard/dashboard2.png');
+  };
+
+
+  const [imageAdharbackSrc, setImageAdharbackSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
+
+  const adharbackhandleImageError = () => {
+    // If the image fails to load, set the image source to the default image
+    setImageAdharbackSrc('/src/assets/images/dashboard/dashboard2.png');
+  };
+
+
   return (
     <>
      
@@ -104,7 +120,7 @@ function kycuserinfo() {
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Gender :- "MALE"
+              Gender :- {userAadharkycInfo.gender == "M" ? "MALE" : "FEMALE"}
             </p>
           </div>
 
@@ -116,19 +132,19 @@ function kycuserinfo() {
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              DOB :- "10-10-1995"
+              DOB :- {userAadharkycInfo.DOB}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              State :- "GUJU"
+              State :- {userInfo.location}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              PinCode :- "395006"
+              PinCode :- {userAadharkycInfo.pincode}
             </p>
           </div>
 
@@ -157,24 +173,24 @@ function kycuserinfo() {
         <div className="w-full">
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Name :- "NAME"
+              Name :- {userPankycInfo.pancardname}
             </p>
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Pan No :- "PAN No"
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Father's Name :- "Father Name"
+              Pan No :- {userPankycInfo.pancard}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              DOB :- "10/10/1995"
+              Father's Name :- {userPankycInfo.full_name} 
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              DOB :- {userPankycInfo.DOB} 
             </p>
           </div>
         </div>
@@ -192,7 +208,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[100px] md:w-[100px]">
 
               <div className="w-full">
-                <img src={imagePanSrc} alt="card" onError={panhandleImageError} />
+                <img src={imageAdharfrontSrc} alt="card" onError={adharfronthandleImageError} />
 
               </div>
 
@@ -200,7 +216,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[100px] md:w-[100px]">
 
               <div className="w-full">
-                <img src={imagePanSrc} alt="card" onError={panhandleImageError} />
+                <img src={imageAdharbackSrc} alt="card" onError={adharbackhandleImageError} />
 
               </div>
 
@@ -210,24 +226,24 @@ function kycuserinfo() {
         <div className="w-full">
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Digilocaker Verified :- "YES"
+              Digilocaker Verified :- {userAadharkycInfo.verified == true ? "YES": "NO"}
             </p>
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Name :- "Aadhar name"
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              DOB :- "10/10/1995"
+              Name :-  {userAadharkycInfo.full_name}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Address  :- "Addresss"
+              DOB :-  {userAadharkycInfo.DOB}
+            </p>
+          </div>
+
+          <div className="flex h-[100px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Address  :-  {userAadharkycInfo.userInfo}
             </p>
           </div>
 

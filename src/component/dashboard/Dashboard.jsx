@@ -18,6 +18,8 @@ function Dashboard() {
   let [todayWithdraw, setTodaywithdraw] = useState('');
   let [todayKYC, setTodaykYC] = useState('');
   let [totalGamePay, setTotalgamePay] = useState('');
+  let [totalCommission, setTotalCommission] = useState('');
+
 
   useEffect( () => {
     const submitdata = async () => {
@@ -43,6 +45,9 @@ function Dashboard() {
 
       if(apiData.totalGamePay != undefined)
       setTotalgamePay(apiData.totalGamePay)
+
+      if(apiData.totalCommission != undefined)
+      setTotalCommission(apiData.totalCommission)
 
 
   }
@@ -109,6 +114,14 @@ function Dashboard() {
           groth="+ 3.5%"
           id="totalGoal"
         />
+        <TotalWidgetCard
+        totalEarnImg={totalEarn}
+        memberImg={memberImg}
+        title="Total Commission"
+        amount={totalCommission}
+        groth="+ 3.5%"
+        id="totalGoal"
+      />
       </div>
     </div>
   );

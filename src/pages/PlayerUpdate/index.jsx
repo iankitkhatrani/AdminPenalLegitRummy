@@ -13,10 +13,6 @@ import LocationuserInfoCard from "../../component/PlayerUpdate/locationuserinfoc
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 import React, { useState, useContext, useEffect } from 'react';
 function playerUpdateinfo() {
 

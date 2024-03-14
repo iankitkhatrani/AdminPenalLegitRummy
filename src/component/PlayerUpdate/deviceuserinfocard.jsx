@@ -16,7 +16,7 @@ function deviceuserinfo() {
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("kycuserinfocard User Info  ", Botinfo)
+  //console.log("kycuserinfocard User Info  ", Botinfo)
 
   const context = useContext(offerContext)
   const { host, PlayerData } = context

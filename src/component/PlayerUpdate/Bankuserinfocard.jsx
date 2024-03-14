@@ -9,63 +9,40 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-function kycuserinfo() {
+function bankuserinfo() {
+
+  const context = useContext(offerContext)
+  const { host, BankData } = context
 
 
   const location = useLocation();
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("kycuserinfocard User Info  ", Botinfo)
-
-  const context = useContext(offerContext)
-  const { host, PlayerData } = context
-
-
-  const navigate = useNavigate();
-  const navigateToContacts = () => {
-    // 👇️ navigate to /contacts 
-    navigate('/transaction');
-  };
+  console.log("Bank ::::::::::::::: User Info  ", Botinfo)
 
   let [userInfo, SetuserInfo] = useState({})
-  let [userPankycInfo, SetkyPancuserInfo] = useState({})
-  let [userAadharkycInfo, SetkyAadharcuserInfo] = useState({})
 
-
+  
 
   useEffect(() => {
-
+    console.log("User Effect :::::::::::::::::::::::::: BANK ::::::::::::::::::::::::")
     const submitdata = async () => {
 
 
-      let resData = await PlayerData(Botinfo.UserId)
+      let resData = await BankData(Botinfo.UserId)
 
-      await SetuserInfo(resData.userInfo)
-      await SetkyPancuserInfo(resData.UserOKYC)
-      await SetkyAadharcuserInfo(resData.UserOKYC)
-
-
+      SetuserInfo(resData.userBankInfo)
+ 
+      console.log("Bank LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ",userInfo)
 
     }
-
+    console.log("User Bank ::::::::::::::: User Info  ", Botinfo)
     submitdata()
 
   }, [Botinfo.UserId]);
 
-  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
 
-  const handleImageError = () => {
-    // If the image fails to load, set the image source to the default image
-    setImageSrc('/src/assets/images/avatar/profile-52x52.png');
-  };
-
-  const [imagePanSrc, setImagePanSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
-
-  const panhandleImageError = () => {
-    // If the image fails to load, set the image source to the default image
-    setImagePanSrc('/src/assets/images/dashboard/dashboard2.png');
-  };
   
   return (
     <>
@@ -152,7 +129,7 @@ function kycuserinfo() {
   );
 }
 
-export default kycuserinfo;
+export default bankuserinfo;
 
 
 // <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
