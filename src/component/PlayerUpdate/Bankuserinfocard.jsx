@@ -31,8 +31,9 @@ function bankuserinfo(gameName) {
 
 
       let resData = await BankData(Botinfo.UserId)
-
-      SetuserInfo(resData.userBankInfo)
+      if(resData != undefined && resData.userBankInfo != undefined && resData.userBankInfo != null){
+        SetuserInfo(resData.userBankInfo)
+      }
  
       console.log("Bank LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ",userInfo)
 
@@ -46,9 +47,6 @@ function bankuserinfo(gameName) {
   
   return (
     <>
-     
-
-      
       <div className="mb-6 w-full rounded-lg bg-white px-[42px] py-5 dark:border dark:border-darkblack-400 dark:bg-darkblack-600 lg:mb-0 lg:w-1/2 2xl:mb-6 2xl:w-full">
         <div className="my-wallet mb-8 w-full">
           <div className="mb-3 flex items-center justify-between">
