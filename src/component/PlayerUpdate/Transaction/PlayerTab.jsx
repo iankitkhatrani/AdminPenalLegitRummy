@@ -8,11 +8,12 @@ function PlayerTab({ UserId, gameName }) {
 
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortDirection, setSortDirection] = useState('asc');
 
   const Dropdown = (item) => {
     setPageSize(item)
@@ -75,7 +76,7 @@ function PlayerTab({ UserId, gameName }) {
   if(gameHistoryData && gameHistoryData.length > 0){
     filteredUsers = gameHistoryData.filter((user) => {
       console.log("User :::::::::::::::::::::::::::::::::::::::::::::",user)
-      const registrationDate = new Date(user.DateTime);
+      const registrationDate = new Date(user.createdAt);
       const from = fromDate ? new Date(fromDate) : null;
       const to = toDate ? new Date(toDate) : null;
 
@@ -83,8 +84,8 @@ function PlayerTab({ UserId, gameName }) {
         (!from || registrationDate >= from) &&
         (!to || registrationDate <= to) &&
         (searchTerm === '' ||
-          user.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.PhoneNumber.includes(searchTerm))
+          user.chips.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          user.transAmount.includes(searchTerm))
       );
     });
   }
@@ -136,6 +137,18 @@ function PlayerTab({ UserId, gameName }) {
     }
   };
 
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...gameHistoryData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setGameHistoryData(sorted);
+    setSortDirection(direction);
+  };
+
+
 
   return (
     <>
@@ -171,7 +184,7 @@ function PlayerTab({ UserId, gameName }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by Chips, Withdrawal, or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -187,13 +200,14 @@ function PlayerTab({ UserId, gameName }) {
             placeholder="From Date"
             value={fromDate}
             onChange={handleFromDateChange}
+            style={{ color: "black" }}
           />
           <input
             type="date"
             placeholder="To Date"
             value={toDate}
             onChange={handleToDateChange}
-            style={{ marginLeft: "1rem" }}
+            style={{ color: "black",marginLeft: "1rem" }}
           />
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
@@ -216,27 +230,27 @@ function PlayerTab({ UserId, gameName }) {
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 
                   <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Name⬆⬇
+                    UniqueId⬆⬇
                   </span>
                   
               </td>
-              <td className="w-[195px] px-6 py-5 xl:px-0">
+              <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Previous Winning Chips ⬆⬇
+                  Chips ⬆⬇
                   </span>
                  
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('transAmount')}>
                 
                   <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Withdrawal⬆⬇
                   </span>
                 
               </td>
-              <td className="w-[195px] px-6 py-5 xl:px-0">
+              <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('totalBucket')}>
                 
                   <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Current Winning chips	⬆⬇
+                  Current Chips	⬆⬇
                   </span>
                 
               </td>
@@ -257,10 +271,10 @@ function PlayerTab({ UserId, gameName }) {
                     key={user._id}
                     createdAt={user.createdAt}
                     uniqueId={user.uniqueId}
-                    oppWinningChips={user.oppWinningChips}
-                    trnxAmount={user.trnxAmount}
+                    chips={user.chips}
+                    transAmount={user.transAmount}
                     totalBucket={user.totalBucket}
-                    trnxTypeTxt={user.trnxTypeTxt}
+                    transTypeText={user.transTypeText}
 
                   />
                 )
@@ -269,10 +283,10 @@ function PlayerTab({ UserId, gameName }) {
                     key={user._id}
                     createdAt={user.createdAt}
                     uniqueId={user.uniqueId}
-                    oppWinningChips={user.oppWinningChips}
-                    trnxAmount={user.trnxAmount}
+                    chips={user.chips}
+                    transAmount={user.transAmount}
                     totalBucket={user.totalBucket}
-                    trnxTypeTxt={user.trnxTypeTxt}
+                    transTypeText={user.transTypeText}
 
                   />
                 )

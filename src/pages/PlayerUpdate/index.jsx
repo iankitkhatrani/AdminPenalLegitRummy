@@ -46,7 +46,7 @@ function playerUpdateinfo() {
       <Tab eventKey="bankdetails" title="Bank Details">
         {/* Content for Profile tab */}
         <div>  
-        <BankuserInfo/> 
+        <BankuserInfo bankname="demo"/> 
         </div>
       </Tab>
       <Tab eventKey="gamedetails" title="Game Details">
@@ -55,11 +55,12 @@ function playerUpdateinfo() {
           </div>
       </Tab>
       <Tab eventKey="payment" title="Payments">
-        {/* Content for Contact tab */}
+       
         <div> 
-        <TransactionData gameName="Withdrawal"/>     
+        <TransactionData gameName="Withdrawal"/> 
         <DepositData gameName="Deposit"/> 
-        <DepositData gameName="Referral Bonus"/>
+        
+        {/* Content for Contact tab <DepositData gameName="Referral Bonus"/> */}
               </div>
       </Tab>
       <Tab eventKey="deviceinfo" title="Device Info">
@@ -70,13 +71,7 @@ function playerUpdateinfo() {
         {/* Content for Contact tab */}
         <div> <LocationuserInfoCard /></div>
       </Tab>
-    </Tabs></div>
-
-         
-          
-          
-          
-       
+    </Tabs></div>       
         </section>
         <section className="2xl:w-[400px] w-full flex flex-col lg:flex-row 2xl:space-x-0 2xl:flex-col lg:space-x-6 space-x-0">
           <UserInfoCard />

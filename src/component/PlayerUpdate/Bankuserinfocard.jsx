@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-function bankuserinfo() {
+function bankuserinfo(gameName) {
 
   const context = useContext(offerContext)
   const { host, BankData } = context
@@ -19,7 +19,7 @@ function bankuserinfo() {
   //console.log("location ", location.state)
   const Botinfo = location.state;
 
-  console.log("Bank ::::::::::::::: User Info  ", Botinfo)
+  console.log("Bank ::::::::::::::: User gameName  ", gameName)
 
   let [userInfo, SetuserInfo] = useState({})
 
@@ -40,7 +40,7 @@ function bankuserinfo() {
     console.log("User Bank ::::::::::::::: User Info  ", Botinfo)
     submitdata()
 
-  }, [location]);
+  }, [gameName]);
 
 
   
@@ -60,66 +60,61 @@ function bankuserinfo() {
         <div className="w-full">
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Account Name :- "User Account name"
+              Account Name :- {userInfo.name ||  "-"} 
             </p>
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Account No :- "account number "
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              IFSC Code :- "IFSC CODE"
+              Account No :-  {userInfo.accountNumber ||  "-"} 
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Bank Name :- "Bank Name"
+              IFSC Code :-  {userInfo.IFSC ||  "-"} 
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Address :- "Surat"
+              Bank Name :-  {  "-"} 
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-            Hyperverge Status :- "Auto Approved"
+              Address :-  {"-"} 
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Verified :- "Verified"
+            Hyperverge Status :-  {userInfo.paymentStatus ||  "-"} 
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Approved :- "Verified"
+              Verified :-  {userInfo.verify == true ? "Verified" : "No-Verified" ||  "-"} 
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Approved :- "Verified"
+              Approved :-  {userInfo.verify == true ? "Verified" : "No-Verified" ||  "-"} 
+            </p>
+          </div>
+
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Added On :-  {userInfo.createdAt ||  "-"}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Added On :- "Date Of Added"
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Message :- "admin Remark"
+              Message :-  {userInfo.reMark ||  "-"} 
             </p>
           </div>
 

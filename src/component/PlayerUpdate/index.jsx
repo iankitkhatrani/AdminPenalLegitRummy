@@ -80,18 +80,14 @@ function playerUpdate() {
 };
 
   const handleImage = async (e) => {
-    console.log("Upload image ", e.target.files[0])
     const value = await UploadProfile(e.target.files[0])
-    console.log("value ::::::::::::::::::",value)
-    console.log("e.target.name ::::::::::::::::::",e.target.name)
 
     SetuserInfo({
       ...userInfo,
       [e.target.name]: value,
     });
 
-    console.log("userInfo handleImage KKKKKKKKKKKKKKKKKKKKKKKKKKK", userInfo)
-
+ 
   }
 
 
@@ -100,8 +96,7 @@ function playerUpdate() {
     // You can handle the form submission here
     // This example just logs the data to the console
 
-    console.log("userInfo ",userInfo)
-
+   
     if(!/^[a-zA-Z\s]+$/.test(userInfo.username)){
       alert("Invalid User name. User name should only contain alphabetic characters and spaces.")
       return false
@@ -116,8 +111,7 @@ function playerUpdate() {
 
     let res = await BotUpdate(userInfo)
 
-    console.log("REsponce ::::::::::::::::::::::",res)
-
+  
     if(res.status == "ok"){
         navigateToContacts()
     }else{

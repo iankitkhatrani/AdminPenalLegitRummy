@@ -14,6 +14,7 @@ function PlayerTab({ UserId, gameName }) {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortDirection, setSortDirection] = useState('asc');
 
   const Dropdown = (item) => {
     setPageSize(item)
@@ -22,7 +23,7 @@ function PlayerTab({ UserId, gameName }) {
   //------------------------------------------------------------------------------------------------------------
   const location = useLocation();
   const Botinfo = location.state;
-  console.log(" Botinfo.UserId ", Botinfo)
+  
   let [gameHistoryData, setGameHistoryData] = useState([]);
 
   const context = useContext(offerContext)
@@ -31,42 +32,8 @@ function PlayerTab({ UserId, gameName }) {
 
   useEffect(() => {
     const submitdata = async () => {
-      setGameHistoryData([])
-      // <HistoryTable gameName="AviatorGame"/>
-      // <HistoryTable gameName="BlackandWhite"/>
-      // <HistoryTable gameName="Withdrawal"/>
-      // <HistoryTable gameName="Deposit"/>
-      // <HistoryTable gameName="reffrel"/>
-      console.log("gameName ", gameName)
-      if (gameName == "Rummy") {
-
-        setGameHistoryData(await GetBlackandWhiteHistoryData(Botinfo.UserId))
-
-        console.log("gameHistoryData ", gameHistoryData)
-
-      }
-      // else if (gameName == "BlackandWhite") {
-
-      //   setGameHistoryData(await aviatorHistoryData( Botinfo.UserId))
-      // }
-      // else if(gameName == "Withdrawal"){
-
-      //   SetcompleteWithdrawal(await GetCompleteWithdrawalData())
-      // }else if(gameName == "Deposit"){
-
-      //   SetcompleteDeposite(await GetCompleteDespositeData())
-      // }else if(gameName == "reffrel"){
-
-      //   SetmyReferral(await GetMyReferralData())
-      // }
-
-      // SetrouletteHistory(await GetRouletteHistoryData(userID) )
-      // SetcompleteWithdrawal(await GetCompleteWithdrawalData(userID) )
-      // SetcompleteDeposite(await GetCompleteDespositeData(userID) )
-      // SetregisterReferralBonus(await GetRegisterReferralBonusData(userID))
-      // SetmyReferral(await GetMyReferralData(userID) )
-
-
+       setGameHistoryData(await GetBlackandWhiteHistoryData(Botinfo.UserId))
+       
     }
     submitdata()
   }, [gameName]);
@@ -76,8 +43,8 @@ function PlayerTab({ UserId, gameName }) {
   let filteredUsers = []
   if (gameHistoryData && gameHistoryData.length > 0) {
     filteredUsers = gameHistoryData.filter((user) => {
-      console.log("User :::::::::::::::::::::::::::::::::::::::::::::", user)
-      const registrationDate = new Date(user.DateTime);
+ 
+      const registrationDate = new Date(user.date);
       const from = fromDate ? new Date(fromDate) : null;
       const to = toDate ? new Date(toDate) : null;
 
@@ -85,8 +52,9 @@ function PlayerTab({ UserId, gameName }) {
         (!from || registrationDate >= from) &&
         (!to || registrationDate <= to) &&
         (searchTerm === '' ||
-          user.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.PhoneNumber.includes(searchTerm))
+          user.gameId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          user.winningStatus.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          user.gameType.includes(searchTerm))
       );
     });
   }
@@ -138,6 +106,18 @@ function PlayerTab({ UserId, gameName }) {
     }
   };
 
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...gameHistoryData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setGameHistoryData(sorted);
+    setSortDirection(direction);
+  };
+
+
 
   return (
     <>
@@ -173,7 +153,7 @@ function PlayerTab({ UserId, gameName }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by Game Id, Game Type, or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -189,13 +169,14 @@ function PlayerTab({ UserId, gameName }) {
             placeholder="From Date"
             value={fromDate}
             onChange={handleFromDateChange}
+            style={{ color: "black" }}
           />
           <input
             type="date"
             placeholder="To Date"
             value={toDate}
             onChange={handleToDateChange}
-            style={{ marginLeft: "1rem" }}
+            style={{ marginLeft: "1rem",color: "black" }}
           />
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
@@ -209,48 +190,44 @@ function PlayerTab({ UserId, gameName }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
-              <td className="w-[165px] px-6 py-5 xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('date')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Date Time⬆⬇
                 </span>
 
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Name⬆⬇
-                </span>
-
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Mobile Number⬆⬇
+                Game Id⬆⬇
                 </span>
 
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Room Id⬆⬇
-                </span>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Amount⬆⬇
-                </span>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameType')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Type⬆⬇
+                Game Type⬆⬇
+                </span>
+
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0" >
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Deduct Amount⬆⬇
                 </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Club⬆⬇
+                Winning Amount⬆⬇
                 </span>
               </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningStatus')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Winning Status⬆⬇
+                </span>
+              </td>
+             
 
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
@@ -258,26 +235,24 @@ function PlayerTab({ UserId, gameName }) {
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    datetime={user.DateTime}
-                    UserName={user.Name}
-                    MobileNo={user.PhoneNumber}
-                    roomid={user.RoomId}
-                    amount={user.Amount}
-                    type={user.Type}
-                    club={user.game}
+                    date={user.date}
+                    gameId={user.gameId}
+                    gameType={user.gameType}
+                    deductAmount={user.deductAmount}
+                    winningAmount={user.winningAmount}
+                    winningStatus={user.winningStatus}
 
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    datetime={user.DateTime}
-                    UserName={user.Name}
-                    MobileNo={user.PhoneNumber}
-                    roomid={user.RoomId}
-                    amount={user.Amount}
-                    type={user.Type}
-                    club={user.game}
+                    date={user.date}
+                    gameId={user.gameId}
+                    gameType={user.gameType}
+                    deductAmount={user.deductAmount}
+                    winningAmount={user.winningAmount}
+                    winningStatus={user.winningStatus}
                   />
                 )
             )}

@@ -1,45 +1,41 @@
 import ProtoTypes from "prop-types";
 
-function PlayerInfo({ datetime,UserName,MobileNo,roomid,amount,type,club}) {
+function PlayerInfo({ date,gameId,gameType,deductAmount,winningAmount,winningStatus}) {
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
       
       <td className="w-[165px] px-6 py-5 xl:px-0">
         
           <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {datetime}
+            {date}
           </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {UserName}
+          {gameId}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {MobileNo}
+          {gameType}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {roomid}
+        ₹{deductAmount}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-        ₹{amount}
+        ₹{winningAmount}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {type}
+          {winningStatus}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {club}
-        </p>
-      </td>
+     
       
     </tr>
   );
