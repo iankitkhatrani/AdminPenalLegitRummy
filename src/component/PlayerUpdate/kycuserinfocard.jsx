@@ -40,6 +40,8 @@ function kycuserinfo() {
 
 
       let resData = await PlayerData(Botinfo.UserId)
+      
+      console.log("resData ::::::::::::::::::",resData)
 
       await SetuserInfo(resData.userInfo)
       await SetkyPancuserInfo(resData.PanOKYCData)
@@ -53,21 +55,23 @@ function kycuserinfo() {
 
   }, [Botinfo.UserId]);
 
-  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
+  let avatarImg = (userInfo && userInfo.avatar != undefined) ? host + "/upload/avatar/" + userInfo.avatar + ".jpg" : ""
+
+  const [imageSrc, setImageSrc] = useState(avatarImg);
 
   const handleImageError = () => {
     // If the image fails to load, set the image source to the default image
     setImageSrc('/src/assets/images/avatar/profile-52x52.png');
   };
 
-  const [imagePanSrc, setImagePanSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
+  const [imagePanSrc, setImagePanSrc] = useState(avatarImg);
 
   const panhandleImageError = () => {
     // If the image fails to load, set the image source to the default image
     setImagePanSrc('/src/assets/images/dashboard/dashboard2.png');
   };
   
-  const [imageAdharfrontSrc, setImageAdharfrontSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
+  const [imageAdharfrontSrc, setImageAdharfrontSrc] = useState(avatarImg);
 
   const adharfronthandleImageError = () => {
     // If the image fails to load, set the image source to the default image
@@ -75,7 +79,7 @@ function kycuserinfo() {
   };
 
 
-  const [imageAdharbackSrc, setImageAdharbackSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
+  const [imageAdharbackSrc, setImageAdharbackSrc] = useState(avatarImg);
 
   const adharbackhandleImageError = () => {
     // If the image fails to load, set the image source to the default image

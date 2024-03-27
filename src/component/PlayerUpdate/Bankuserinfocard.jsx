@@ -13,7 +13,7 @@ function bankuserinfo() {
 
   const context = useContext(offerContext)
   const { host, BankData } = context
-
+  
 
   const location = useLocation();
   //console.log("location ", location.state)
@@ -40,7 +40,7 @@ function bankuserinfo() {
     console.log("User Bank ::::::::::::::: User Info  ", Botinfo)
     submitdata()
 
-  }, [Botinfo.UserId]);
+  }, [location]);
 
 
   
