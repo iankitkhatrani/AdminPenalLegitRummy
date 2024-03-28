@@ -185,7 +185,7 @@ function PlayerTab({status }) {
         <table className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              <td className="w-[195px] px-6 py-5 xl:px-0">
+              <td className="w-[175px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   User Id
@@ -252,6 +252,14 @@ function PlayerTab({status }) {
               <td className="w-[60px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Remark
+                </span>
+
+              </td>
+
+              <td className="w-[60px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                 Action
                 </span>
 
@@ -275,7 +283,7 @@ function PlayerTab({status }) {
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
-
+                    reMark = {user.reMark}
 
                   />
                 )
@@ -292,6 +300,7 @@ function PlayerTab({status }) {
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
+                    reMark = {user.reMark}
                   />
                 )
             )}

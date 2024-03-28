@@ -58,6 +58,7 @@ import PaymentOutManagement from './pages/paymentout'
 import TranscationPage from './pages/TranscationPage'
 import PaymentConfig from './pages/paymentconfig'
 import BotConfig from './pages/botconfig'
+import BankUpdate from "./pages/BankUpdate";
 
 
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
+      {
+        path: "/bankUpdate",
+        element: <BankUpdate />,
+      },
       {
         path: "/botconfiguration",
         element: <BotConfig />,

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
 
+
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 

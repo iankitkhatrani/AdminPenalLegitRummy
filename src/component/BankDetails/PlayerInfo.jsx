@@ -2,13 +2,9 @@ import ProtoTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
 import edit from "../../assets/images/edit.png";
-import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNumber, IFSC, createdAt, paymentStatus }) {
+function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNumber, IFSC, createdAt, paymentStatus, reMark }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -43,34 +39,19 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
     }
   }
 
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
-  const navigateToContactsApprove = async (id) => {
+  const navigateToContactsApprove = async (id, reMark,paymentStatus) => {
     console.log("ID :::::::::::::", id)
+    console.log("reMark :::::::::::::", reMark)
+
+    navigate('/bankUpdate', { state: { id, reMark,paymentStatus } });
+
   }
+
 
   return (
     <>
-
-    
-    <Modal show={show} onHide={handleClose}>
-    <Modal.Header closeButton>
-      <Modal.Title>Modal heading</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={handleClose}>
-        Close
-      </Button>
-      <Button variant="primary" onClick={handleClose}>
-        Save Changes
-      </Button>
-    </Modal.Footer>
-  </Modal>
-  
       <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
 
         <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -131,6 +112,11 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
             {paymentStatus}
           </p>
         </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+            {reMark}
+          </p>
+        </td>
 
         <td className="w-[165px] px-6 py-5 xl:px-0">
           <p className="text-base font-medium text-bgray-900 dark:text-white">
@@ -144,15 +130,13 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
               "padding": "5px 10px",
               "cursor": "pointer",
               "border-radius": "4px"
-            }} onClick={handleShow} >
+            }} onClick={() => navigateToContactsApprove(Id, reMark,paymentStatus)} >
 
-              Approve
+            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
             </button>
 
           </p>
-          <p className="text-base font-medium text-bgray-900 dark:text-white">
-            Rejected
-          </p>
+
         </td>
 
 

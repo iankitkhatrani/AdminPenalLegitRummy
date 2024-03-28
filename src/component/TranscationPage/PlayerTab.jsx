@@ -3,6 +3,9 @@ import ProtoTypes from "prop-types";
 import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function PlayerTab({ }) {
   //-------------------------------------------------------------------------------------------------------
@@ -64,8 +67,8 @@ function PlayerTab({ }) {
       (!to || registrationDate <= to) &&
       (!typeoftrancation || typeoftrancation.indexOf(user.transTypeText)) &&
       (searchTerm === '' ||
-      (user.OrderId  != undefined && user.OrderId.includes(searchTerm)) ||
-        ( user.uniqueId != undefined && user.uniqueId.includes(searchTerm)))
+        (user.OrderId != undefined && user.OrderId.includes(searchTerm)) ||
+        (user.uniqueId != undefined && user.uniqueId.includes(searchTerm)))
     );
   });
 
@@ -124,6 +127,26 @@ function PlayerTab({ }) {
     setSortDirection(direction);
   };
 
+  const generatePDF = () => {
+    
+    const input = document.getElementById("tableId");
+    html2canvas(input)
+      .then((canvas) => {
+
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.setFillColor(0, 0, 0);
+
+        const imgWidth = 210;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save(`${new Date() + 'transcation'}.pdf`);
+        
+      })
+      .catch((error) => console.log(error));
+
+
+  };
 
   return (
     <>
@@ -225,12 +248,31 @@ function PlayerTab({ }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-         
+          <button aria-label="none"
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">
+            <ReactHTMLTableToExcel
+              id="test-table-xls-button"
+              className="download-table-xls-button"
+              table="tableId"
+              filename={new Date() + 'transcation'}
+              sheet="tablexls"
+              buttonText="Download as XLS" />
+          </button>
+
+          <button aria-label="none"
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={generatePDF}>
+           
+            Download as PDF
+          </button>
+
+
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
-        <table className="table-fixed hover:border-collapse text-center w-full">
-          <tbody>
+
+
+        <table id="tableId" className="table-fixed hover:border-collapse text-center w-full">
+          <tbody >
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               <td className="w-[195px] px-6 py-5 xl:px-0">
 
@@ -242,7 +284,7 @@ function PlayerTab({ }) {
               <td className="w-[185px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-              
+
                   User Name
                 </span>
 
