@@ -2,11 +2,13 @@ import ProtoTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId, name, email, phone, BeneficiaryName, amountNumber, IFSC, createdAt,paymentStatus }) {
+function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNumber, IFSC, createdAt, paymentStatus }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -41,69 +43,123 @@ function PlayerInfo({ UserId, name, email, phone, BeneficiaryName, amountNumber,
     }
   }
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const navigateToContactsApprove = async (id) => {
+    console.log("ID :::::::::::::", id)
+  }
+
   return (
-    <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
+    <>
 
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-        <button styles={{
-          "margin": "1px",
-          "background-color": "white",
-          "color": "white",
-          "border": "none",
-          "padding": "5px 10px",
-          "cursor": "pointer",
-          "border-radius": "4px"
-        }} onClick={() => navigateToContacts(UserId)} >
-
-          {UserId}
-          </button>
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {name}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {email}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {phone}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {BeneficiaryName}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {amountNumber}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {IFSC}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {createdAt}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {paymentStatus}
-        </p>
-      </td>
     
-    </tr>
+    <Modal show={show} onHide={handleClose}>
+    <Modal.Header closeButton>
+      <Modal.Title>Modal heading</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+    <Modal.Footer>
+      <Button variant="secondary" onClick={handleClose}>
+        Close
+      </Button>
+      <Button variant="primary" onClick={handleClose}>
+        Save Changes
+      </Button>
+    </Modal.Footer>
+  </Modal>
+  
+      <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
+
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+
+          <p className="text-base font-semibold text-bgray-900 dark:text-white">
+            <button styles={{
+              "margin": "1px",
+              "background-color": "white",
+              "color": "white",
+              "border": "none",
+              "padding": "5px 10px",
+              "cursor": "pointer",
+              "border-radius": "4px"
+            }} onClick={() => navigateToContacts(UserId)} >
+
+              {UserId}
+            </button>
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+
+          <p className="text-base font-semibold text-bgray-900 dark:text-white">
+            {name}
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+            {email}
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+            {phone}
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-semibold text-bgray-900 dark:text-white">
+            {BeneficiaryName}
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-semibold text-bgray-900 dark:text-white">
+            {accountNumber}
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-semibold text-bgray-900 dark:text-white">
+            {IFSC}
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+            {createdAt}
+          </p>
+        </td>
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+            {paymentStatus}
+          </p>
+        </td>
+
+        <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+
+
+            <button styles={{
+              "margin": "1px",
+              "background-color": "white",
+              "color": "white",
+              "border": "none",
+              "padding": "5px 10px",
+              "cursor": "pointer",
+              "border-radius": "4px"
+            }} onClick={handleShow} >
+
+              Approve
+            </button>
+
+          </p>
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+            Rejected
+          </p>
+        </td>
+
+
+
+      </tr>
+
+    </>
   );
 }
 

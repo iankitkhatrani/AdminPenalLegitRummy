@@ -51,7 +51,7 @@ function PlayerTab({status }) {
       (searchTerm === '' ||
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.userId.includes(searchTerm) ||
-        user.amountNumber.includes(searchTerm))
+        user.accountNumber.includes(searchTerm))
     );
   });
 
@@ -151,7 +151,7 @@ function PlayerTab({status }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by User Name, Account Number,User Id or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -178,9 +178,7 @@ function PlayerTab({status }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
-
+         
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
@@ -194,14 +192,14 @@ function PlayerTab({status }) {
                 </span>
 
               </td>
-              <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
+              <td className="w-[105px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   User Name⬆⬇
                 </span>
               </td>
 
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('email')}>
+              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('email')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   email ⬆⬇
@@ -250,6 +248,15 @@ function PlayerTab({status }) {
                 </span>
 
               </td>
+
+              <td className="w-[60px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Action
+                </span>
+
+              </td>
+
             </tr>
 
 
@@ -258,12 +265,13 @@ function PlayerTab({status }) {
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
+                    Id={user._id}
                     UserId={user.userId}
                     name={user.name}
                     email={user.email}
                     phone={user.phone}
                     BeneficiaryName={user.BeneficiaryName}
-                    amountNumber={user.amountNumber}
+                    accountNumber={user.accountNumber}
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
@@ -274,12 +282,13 @@ function PlayerTab({status }) {
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
+                    Id={user._id}
                     UserId={user.userId}
                     name={user.name}
                     email={user.email}
                     phone={user.phone}
                     BeneficiaryName={user.BeneficiaryName}
-                    amountNumber={user.amountNumber}
+                    accountNumber={user.accountNumber}
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
