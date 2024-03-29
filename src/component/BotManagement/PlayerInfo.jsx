@@ -26,38 +26,43 @@ function PlayerInfo({ UserId, img, UserName, GamePlay, MainWallet, Status }) {
     window.location.reload();
   }
 
+  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/" + img + ".jpg");
+
+  const handleImageError = () => {
+    // If the image fails to load, set the image source to the default image
+    setImageSrc('/src/assets/images/avatar/profile-52x52.png');
+  };
   return (
-    <tr className="border border-slate-300 border-b border-bgray-300 dark:border-darkblack-400">
-      <td className="border border-slate-300 px-6 py-5 xl:px-0">
-        <div className="flex w-full items-center space-x-2.5">
+    <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
+      <td className="w-[65px] px-6 py-5 xl:px-0">
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
           <div className="h-10 w-10 overflow-hidden rounded-full">
-            <img
-              src={host + "/" + img}
-              alt="avatar"
-              className="h-full w-full object-cover"
-            />
+            <img src={imageSrc} alt="Profile" onError={handleImageError} className="h-full w-full object-cover" />
+            
           </div>
-          <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {UserName}
-          </p>
-        </div>
+        </p>
       </td>
-      <td className="border border-slate-300 px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {UserName}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {GamePlay}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           ₹{MainWallet}
         </p>
       </td>
-      <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           {Status}
         </p>
       </td>
-      <td className="border border-slate-300 px-6 py-5 xl:px-0">
+      <td className="w-[165px] px-6 py-5 xl:px-0">
         <div className="flex justify-center">
           <button styles={{
             "margin": "1px",

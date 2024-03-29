@@ -1,12 +1,11 @@
-import React, { useState,useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ProtoTypes from "prop-types";
 import CustomerInfo from "./PlayerInfo";
 import users from "../../data/user";
 import offerContext from '../../context/offerContext';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function PlayerTab({ }) {
-
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
   const [pageSize, setPageSize] = useState(5);
@@ -14,29 +13,30 @@ function PlayerTab({ }) {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortDirection, setSortDirection] = useState('asc');
 
   const Dropdown = (item) => {
     setPageSize(item)
     setActive(!active)
   }
   //------------------------------------------------------------------------------------------------------------
-  let [userData,setUserData] = useState([]);
+  let [userData, setUserData] = useState([]);
 
   const context = useContext(offerContext)
   const { BotList } = context
 
-  useEffect( () => {
+  useEffect(() => {
     const submitdata = async () => {
       setUserData(await BotList())
-  }
-  submitdata()
-  },[]);
+    }
+    submitdata()
+  }, []);
 
   const navigate = useNavigate();
   const navigateToUserRegister = () => {
     navigate('/botAddinfo');
   };
-  
+
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   const filteredUsers = userData.filter((user) => {
@@ -49,8 +49,7 @@ function PlayerTab({ }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.mobileNumber.includes(searchTerm))
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -77,22 +76,22 @@ function PlayerTab({ }) {
 
   const handleFromDateChange = (event) => {
     const selectedDate = event.target.value;
-    const currentDate = new Date().toISOString().split('T')[0]; 
+    const currentDate = new Date().toISOString().split('T')[0];
     if (selectedDate > currentDate) {
       alert('From date cannot be beyond current date');
     } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
       alert('From date must be earlier than To date');
     } else {
-      
+
       setFromDate(selectedDate);
 
-    
+
     }
   };
 
   const handleToDateChange = (event) => {
     const selectedDate = event.target.value;
-    const currentDate = new Date().toISOString().split('T')[0]; 
+    const currentDate = new Date().toISOString().split('T')[0];
     if (selectedDate > currentDate) {
       alert('To date cannot be beyond current date');
     } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
@@ -100,6 +99,17 @@ function PlayerTab({ }) {
     } else {
       setToDate(selectedDate);
     }
+  };
+
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...userData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setUserData(sorted);
+    setSortDirection(direction);
   };
 
   return (
@@ -136,7 +146,7 @@ function PlayerTab({ }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by name or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -161,247 +171,59 @@ function PlayerTab({ }) {
             style={{ marginLeft: "1rem" }}
           />
           <button aria-label="none"
-          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
           <button aria-label="none"
-          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add Robot</button>
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add Robot</button>
 
         </div>
       </div>
-    <div className="text-center table-content w-full overflow-x-auto">
-      <table className="border-collapse border border-slate-400 w-full">
-        <tbody>
-          <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-            <td className="border border-slate-300 w-[165px] px-6 py-5 lg:w-auto xl:px-0">
-              <div className="flex w-full items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Robot Name
+      <div className="text-center table-content w-full overflow-x-auto">
+        <table className="table-fixed hover:border-collapse text-center w-full">
+          <tbody>
+            <tr className="border-b border-bgray-300 dark:border-darkblack-400">
+              <td className="w-[65px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Robot Image
                 </span>
-                <span>
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.332 1.31567V13.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M3.66602 13.3157V1.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+              </td>
+
+              <td className="w-[65px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Robot Name ⬆⬇
                 </span>
-              </div>
-            </td>
-            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
-              <div className="flex w-full items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Game Played
                 </span>
-                <span>
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.332 1.31567V13.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M3.66602 13.3157V1.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Main Wallet ⬆⬇
                 </span>
-              </div>
-            </td>
-            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
-              <div className="flex w-full items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                  Main Wallet
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Status
                 </span>
-                <span>
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.332 1.31567V13.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M3.66602 13.3157V1.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Action
                 </span>
-              </div>
-            </td>
-            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
-              <div className="flex w-full items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                Status
-                </span>
-                <span>
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.332 1.31567V13.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M3.66602 13.3157V1.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </td>
-            <td className="border border-slate-300 w-[165px] px-6 py-5 xl:px-0">
-              <div className="flex w-full items-center space-x-2.5">
-                <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                Action
-                </span>
-                <span>
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.332 1.31567V13.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M3.66602 13.3157V1.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </td>
-            
-          </tr>
-          {usersOnCurrentPage?.map((user, index) =>
-            pageSize
-              ? index + 1 <= pageSize && (
+              </td>
+
+            </tr>
+            {usersOnCurrentPage?.map((user, index) =>
+              pageSize
+                ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
@@ -409,10 +231,10 @@ function PlayerTab({ }) {
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
                     MainWallet={user.chips}
-                    Status={!user.status  || user.status == "false" ? 'Blocked' : 'Active'}
+                    Status={!user.status || user.status == "false" ? 'Blocked' : 'Active'}
                   />
                 )
-              : index < 3 && (
+                : index < 3 && (
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
@@ -420,14 +242,14 @@ function PlayerTab({ }) {
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
                     MainWallet={user.chips}
-                    Status={!user.status  || user.status == "false"  ? 'Blocked' : 'Active'}
+                    Status={!user.status || user.status == "false" ? 'Blocked' : 'Active'}
                   />
                 )
-          )}
-        </tbody>
-      </table>
-    </div>
-     <div className="pagination-content w-full">
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div className="pagination-content w-full">
         <div className="flex w-full items-center justify-center lg:justify-between">
           <div className="hidden items-center space-x-4 lg:flex">
             <span className="text-sm font-semibold text-bgray-600 dark:text-bgray-50">
@@ -441,7 +263,7 @@ function PlayerTab({ }) {
                 className="flex items-center space-x-6 rounded-lg border border-bgray-300 px-2.5 py-[14px] dark:border-darkblack-400"
               >
                 <span className="text-sm font-semibold text-bgray-900 dark:text-bgray-50">
-                {pageSize}
+                  {pageSize}
                 </span>
                 <span>
                   <svg
