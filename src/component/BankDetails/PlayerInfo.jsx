@@ -49,6 +49,20 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
 
   }
 
+  function formatDateTo12hr(dateTimeStr) {
+    const dateTime = new Date(dateTimeStr);
+    const formattedDate = dateTime.toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true // Set to true for 12-hour format
+    });
+    return formattedDate;
+  }
+
 
   return (
     <>
@@ -104,7 +118,7 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
         </td>
         <td className="w-[165px] px-6 py-5 xl:px-0">
           <p className="text-base font-medium text-bgray-900 dark:text-white">
-            {createdAt}
+            {formatDateTo12hr(createdAt)}
           </p>
         </td>
         <td className="w-[165px] px-6 py-5 xl:px-0">

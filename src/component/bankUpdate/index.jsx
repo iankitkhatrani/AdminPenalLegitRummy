@@ -16,7 +16,7 @@ function bankUpdate() {
   const navigate = useNavigate();
   const navigateToContacts = () => {
     // 👇️ navigate to /contacts 
-    navigate('/bankmanagement?status=Pendding');
+    navigate('/bankmanagement?status=Pending');
   };
 
   const BotmodeList = ["Pending", "Approved", "Rejected"];

@@ -3,6 +3,9 @@ import ProtoTypes from "prop-types";
 import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function PlayerTab({ }) {
   //-------------------------------------------------------------------------------------------------------
@@ -113,6 +116,26 @@ function PlayerTab({ }) {
     setSortDirection(direction);
   };
 
+  const generatePDF = () => {
+    
+    const input = document.getElementById("tableId");
+    html2canvas(input)
+      .then((canvas) => {
+
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.setFillColor(0, 0, 0);
+
+        const imgWidth = 210;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save(`${new Date() + 'UserPage'}.pdf`);
+        
+      })
+      .catch((error) => console.log(error));
+
+
+  };
 
   return (
     <>
@@ -178,10 +201,26 @@ function PlayerTab({ }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
 
+            <button aria-label="none"
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">
+            <ReactHTMLTableToExcel
+              id="test-table-xls-button"
+              className="download-table-xls-button"
+              table="tableId"
+              filename={new Date() + 'UserPage'}
+              sheet="tablexls"
+              buttonText="Download as XLS" />
+          </button>
+
+          <button aria-label="none"
+            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={generatePDF}>
+           
+            Download as PDF
+          </button>
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
-        <table className="table-fixed hover:border-collapse text-center w-full">
+        <table id="tableId" className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               <td className="w-[65px] px-6 py-5 xl:px-0">
@@ -210,7 +249,14 @@ function PlayerTab({ }) {
                   Mobile Number⬆⬇
                 </span>
               </td>
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
+              <td className="w-[180px] px-6 py-5 xl:px-0" onClick={() => handleSort('email')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Email⬆⬇
+                </span>
+              </td>
+
+              <td className="w-[140px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Rummy Game⬆⬇
@@ -222,25 +268,14 @@ function PlayerTab({ }) {
                   Main Wallet⬆⬇
                 </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Win Wallet ⬆⬇
-                </span>
-              </td>
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Bonus Wallet ⬆⬇
-                </span>
-              </td>
-              <td className="w-[140px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
+              
+              <td className="w-[170px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Registration Date ⬆⬇
                 </span>
               </td>
-              <td className="w-[160px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
+              <td className="w-[170px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Last Login ⬆⬇

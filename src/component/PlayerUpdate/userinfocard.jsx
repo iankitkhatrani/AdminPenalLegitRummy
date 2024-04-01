@@ -187,7 +187,7 @@ function userInfo() {
               Bonus Wallet :- {userInfo.bonusChips}
             </p>
           </div>
-          <div className="flex h-[150px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+          <div className="flex h-[200px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
               Aadhar_card Details
             </p>
@@ -205,8 +205,8 @@ function userInfo() {
               </p>
 
             </div>
-            <div className="flex h-[35px] w-full items-center justify-between">
-              <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+            <div className="flex h-[90px] w-full items-center justify-between">
+              <p  style={{ maxWidth: '250px', overflowWrap: 'break-word' }} className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
                 Address :- {userkycInfo.userInfo}
 
               </p>

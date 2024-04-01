@@ -186,7 +186,7 @@ const OfferState = (props) => {
 
     const DeleteTableEntry = async (url) => {
         try {
-            console.log("PlayerList :::::::", host)
+            console.log("DeleteTableEntry :::::::", host)
             const response = await fetch(`${host}/${url}`, {
                 method: 'delete',
                 headers: {

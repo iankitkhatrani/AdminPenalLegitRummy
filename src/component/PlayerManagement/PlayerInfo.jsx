@@ -25,6 +25,21 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
     // If the image fails to load, set the image source to the default image
     setImageSrc('/src/assets/images/avatar/profile-52x52.png');
   };
+
+  function formatDateTo12hr(dateTimeStr) {
+    const dateTime = new Date(dateTimeStr);
+    const formattedDate = dateTime.toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true // Set to true for 12-hour format
+    });
+    return formattedDate;
+  }
+
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
 
@@ -63,7 +78,12 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
           {MobileNo}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      <td className="w-[185px] px-6 py-5 xl:px-0">
+      <p className="text-base font-semibold text-bgray-900 dark:text-white">
+        {email}
+      </p>
+    </td>
+      <td className="w-[175px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {totalMatch}
         </p>
@@ -73,24 +93,16 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
           ₹{MainWallet}
         </p>
       </td>
+     
+     
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{WinWallet}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{BonusWallet}
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {formatDateTo12hr(RegistrationDate)}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {RegistrationDate}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {LastLogin}
+        {formatDateTo12hr(LastLogin)}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
