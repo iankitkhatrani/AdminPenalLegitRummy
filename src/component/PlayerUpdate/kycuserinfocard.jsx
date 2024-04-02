@@ -59,17 +59,17 @@ function kycuserinfo() {
 
       setImageSrc(avatarImg)
 
-      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined) ?  host +"/"+ resData.PanOKYCData.pancardfrontimages : host+ "/upload/dashboard2.png"
+      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined) ?  host +"/"+ resData.PanOKYCData.pancardfrontimages : host+ "/upload/dashboard2.jpg"
       
       console.log("PanImg ::::::::::::::::::::::::::::::::::::::",PanImg)
       setImagePanSrc(PanImg)
 
-      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined && resData.UserOKYCData.adharcardfrontimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardfrontimages : host+ "/upload/dashboard2.png"
+      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined && resData.UserOKYCData.adharcardfrontimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardfrontimages : host+ "/upload/dashboard2.jpg"
       
       console.log("AdhrcardImg1 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg1)
       setImageAdharfrontSrc(AdhrcardImg1)
 
-      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined && resData.UserOKYCData.adharcardbackimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardbackimages : host+ "/upload/dashboard2.png"
+      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined && resData.UserOKYCData.adharcardbackimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardbackimages : host+ "/upload/dashboard2.jpg"
       
       console.log("AdhrcardImg2 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg2)
       setImageAdharbackSrc(AdhrcardImg2)
