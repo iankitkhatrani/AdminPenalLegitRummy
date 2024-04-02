@@ -64,12 +64,12 @@ function kycuserinfo() {
       console.log("PanImg ::::::::::::::::::::::::::::::::::::::",PanImg)
       setImagePanSrc(PanImg)
 
-      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined) ?  host +"/"+ resData.UserOKYCData.adharcardfrontimages : '/src/assets/images/dashboard/dashboard2.png'
+      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined && resData.UserOKYCData.adharcardfrontimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardfrontimages : '/src/assets/images/dashboard/dashboard2.png'
       
       console.log("AdhrcardImg1 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg1)
       setImageAdharfrontSrc(AdhrcardImg1)
 
-      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined) ?  host +"/"+ resData.UserOKYCData.adharcardbackimages : '/src/assets/images/dashboard/dashboard2.png'
+      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined && resData.UserOKYCData.adharcardbackimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardbackimages : '/src/assets/images/dashboard/dashboard2.png'
       
       console.log("AdhrcardImg2 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg2)
       setImageAdharbackSrc(AdhrcardImg2)
