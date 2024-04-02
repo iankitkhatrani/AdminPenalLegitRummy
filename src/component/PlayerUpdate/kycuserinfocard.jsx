@@ -231,7 +231,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
-                <img src={imageAdharfrontSrc} alt="card" onError={adharfronthandleImageError} />
+                <img src={imageAdharfrontSrc}  onError={adharfronthandleImageError} />
 
               </div>
 
@@ -239,7 +239,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
-                <img src={imageAdharbackSrc} alt="card" onError={adharbackhandleImageError} />
+                <img src={imageAdharbackSrc}  onError={adharbackhandleImageError} />
 
               </div>
 
