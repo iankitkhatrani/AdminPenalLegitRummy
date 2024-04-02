@@ -236,6 +236,14 @@ function PlayerTab({ status }) {
                   Remark Date
                 </span>
               </td>
+
+              <td className="w-[60px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Action
+                </span>
+
+              </td>
              
               
             </tr>
@@ -254,7 +262,7 @@ function PlayerTab({ status }) {
                     adminremark={user.adminremark}
                     adminremarkcd={user.adminremarkcd}
                     dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
-
+                    ReId={user._id}
                   />
                 )
                 : index < 3 && (
@@ -270,6 +278,7 @@ function PlayerTab({ status }) {
                     adminremark={user.adminremark}
                     adminremarkcd={user.adminremarkcd}
                     dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
+                    ReId={user._id}
                   />
                 )
             )}

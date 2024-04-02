@@ -29,6 +29,7 @@ function userInfo() {
 
   let [userInfo, SetuserInfo] = useState({})
   let [userkycInfo, SetkycuserInfo] = useState({})
+  const [imageSrc, setImageSrc] = useState("");
 
 
   useEffect(() => {
@@ -56,7 +57,13 @@ function userInfo() {
       await SetuserInfo(resData.userInfo)
       await SetkycuserInfo(resData.UserOKYCData)
 
+      // /host + "/upload/avatar/"+userInfo.avatar+".jpg"
 
+      let avatarImg = (resData.userInfo && resData.userInfo.avatar != undefined) ? host+ "/upload/avatar/" + resData.userInfo.avatar + ".png" : ""
+
+      console.log("avatarImg ::::::::::::::::::::::::::::::::::::::",avatarImg)
+
+      setImageSrc(avatarImg)
     }
 
     submitdata()
@@ -108,8 +115,7 @@ function userInfo() {
 
   }
 
-  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/"+userInfo.avatar+".jpg");
-
+  
   const handleImageError = () => {
     // If the image fails to load, set the image source to the default image
     setImageSrc('/src/assets/images/avatar/profile-52x52.png');

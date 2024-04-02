@@ -25,7 +25,7 @@ function bankUpdate() {
   let [userInfo, SetuserInfo] = useState({
     Id: Botinfo.id,
     reMark: "",
-    paymentStatus:Botinfo.paymentStatus
+    paymentStatus: Botinfo.paymentStatus
   })
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function bankUpdate() {
       SetuserInfo({
         Id: Botinfo.id,
         reMark: Botinfo.reMark,
-        paymentStatus:Botinfo.paymentStatus
+        paymentStatus: Botinfo.paymentStatus
       })
       setStatusModeOption(Botinfo.paymentStatus)
     }
@@ -122,16 +122,16 @@ function bankUpdate() {
             </div>
 
             <div className="grid 2xl:grid-cols-2 grid-cols-1 gap-6">
-            <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
 
-            <label
+                <label
                   htmlFor="robotname"
                   className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
                 >
-                Payment Status
+                  Payment Status
                 </label>
 
-            <select style={{ "width": "290px" }}
+                <select style={{ "width": "290px" }}
                   className="bg-bgray-500 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
 
                   value={statusModeOption} onChange={handleBotModeselect}>
@@ -143,7 +143,7 @@ function bankUpdate() {
                   ))}
 
                 </select>
-            </div>
+              </div>
             </div>
 
             <div className="flex justify-end">

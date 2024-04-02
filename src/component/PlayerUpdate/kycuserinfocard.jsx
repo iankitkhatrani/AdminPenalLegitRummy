@@ -32,6 +32,10 @@ function kycuserinfo() {
   let [userPankycInfo, SetkyPancuserInfo] = useState({})
   let [userAadharkycInfo, SetkyAadharcuserInfo] = useState({})
 
+  const [imagePanSrc, setImagePanSrc] = useState("");
+  const [imageAdharfrontSrc, setImageAdharfrontSrc] = useState("");
+  const [imageAdharbackSrc, setImageAdharbackSrc] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
 
 
   useEffect(() => {
@@ -48,38 +52,53 @@ function kycuserinfo() {
       await SetkyAadharcuserInfo(resData.UserOKYCData)
 
 
+      
+      let avatarImg = (resData.userInfo && resData.userInfo.avatar != undefined) ? host+ "/upload/avatar/" + resData.userInfo.avatar + ".png" : ""
 
+      console.log("avatarImg ::::::::::::::::::::::::::::::::::::::",avatarImg)
+
+      setImageSrc(avatarImg)
+
+      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined) ?  host+ resData.PanOKYCData.pancardfrontimages : '/src/assets/images/dashboard/dashboard2.png'
+      
+      console.log("PanImg ::::::::::::::::::::::::::::::::::::::",PanImg)
+      setImagePanSrc(PanImg)
+
+      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined) ?  host+ resData.UserOKYCData.adharcardfrontimages : '/src/assets/images/dashboard/dashboard2.png'
+      
+      console.log("AdhrcardImg1 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg1)
+      setImageAdharfrontSrc(AdhrcardImg1)
+
+      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined) ?  host+ resData.UserOKYCData.adharcardbackimages : '/src/assets/images/dashboard/dashboard2.png'
+      
+      console.log("AdhrcardImg2 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg2)
+      setImageAdharbackSrc(AdhrcardImg2)
     }
 
     submitdata()
 
   }, [Botinfo.UserId]);
 
-  let avatarImg = (userInfo && userInfo.avatar != undefined) ? host + "/upload/avatar/" + userInfo.avatar + ".jpg" : ""
-
-  const [imageSrc, setImageSrc] = useState(avatarImg);
 
   const handleImageError = () => {
     // If the image fails to load, set the image source to the default image
     setImageSrc('/src/assets/images/avatar/profile-52x52.png');
-  };
+  };  
 
-  const [imagePanSrc, setImagePanSrc] = useState(avatarImg);
 
   const panhandleImageError = () => {
+    
     // If the image fails to load, set the image source to the default image
     setImagePanSrc('/src/assets/images/dashboard/dashboard2.png');
   };
   
-  const [imageAdharfrontSrc, setImageAdharfrontSrc] = useState(avatarImg);
-
+ 
   const adharfronthandleImageError = () => {
     // If the image fails to load, set the image source to the default image
     setImageAdharfrontSrc('/src/assets/images/dashboard/dashboard2.png');
   };
 
 
-  const [imageAdharbackSrc, setImageAdharbackSrc] = useState(avatarImg);
 
   const adharbackhandleImageError = () => {
     // If the image fails to load, set the image source to the default image
@@ -165,10 +184,10 @@ function kycuserinfo() {
           </div>
 
           <div className="flex justify-center">
-            <div className="card-slider relative w-[100px] md:w-[100px]">
+            <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
-                <img src={imagePanSrc} alt="card" onError={panhandleImageError} />
+                <img src={imagePanSrc} alt="card" onError={panhandleImageError}/>
               </div>
 
             </div>
@@ -209,7 +228,7 @@ function kycuserinfo() {
           </div>
 
           <div className="flex justify-center">
-            <div className="card-slider relative w-[100px] md:w-[100px]">
+            <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
                 <img src={imageAdharfrontSrc} alt="card" onError={adharfronthandleImageError} />
@@ -217,7 +236,7 @@ function kycuserinfo() {
               </div>
 
             </div>
-            <div className="card-slider relative w-[100px] md:w-[100px]">
+            <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
                 <img src={imageAdharbackSrc} alt="card" onError={adharbackhandleImageError} />

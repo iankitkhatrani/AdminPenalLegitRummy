@@ -19,7 +19,7 @@ function PlayerInfo({ UserId, UserName, MobileNo, totalMatch, MainWallet, WinWal
   const context = useContext(offerContext)
   const { host } = context
 
-  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/" + avatar + ".jpg");
+  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/" + avatar + ".png");
 
   const handleImageError = () => {
     // If the image fails to load, set the image source to the default image

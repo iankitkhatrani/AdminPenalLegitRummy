@@ -6,7 +6,7 @@ import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pancardverified,adminremark,adminremarkcd,dob }) {
+function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pancardverified,adminremark,adminremarkcd,dob,ReId }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -40,6 +40,34 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
     }
   }
 
+
+  const navigateToContactsApprove = async (UserId, adminremark,verified,Pancardverified) => {
+    console.log("ID :::::::::::::", UserId)
+    console.log("adminremark :::::::::::::", adminremark)
+    console.log("verified :::::::::::::", verified)
+    console.log("Pancardverified :::::::::::::", Pancardverified)
+
+
+    let adharcardverified = (verified == "UnVerified")?"false":"true"
+    let Pancardverifiedtemp = (Pancardverified == "UnVerified")?"false":"true"
+
+    navigate('/kycupdateinfo', { state: { UserId, adminremark,adharcardverified,Pancardverifiedtemp } });
+
+  }
+
+  function formatDateTo12hr(dateTimeStr) {
+    const dateTime = new Date(dateTimeStr);
+    const formattedDate = dateTime.toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true // Set to true for 12-hour format
+    });
+    return formattedDate;
+  }
 
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
@@ -76,7 +104,7 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {createdAt}
+          {formatDateTo12hr(createdAt)}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -105,6 +133,27 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
         </p>
       </td>
       
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+          <p className="text-base font-medium text-bgray-900 dark:text-white">
+
+
+            <button styles={{
+              "margin": "1px",
+              "background-color": "white",
+              "color": "white",
+              "border": "none",
+              "padding": "5px 10px",
+              "cursor": "pointer",
+              "border-radius": "4px"
+            }} onClick={() => navigateToContactsApprove(UserId, adminremark,verified,Pancardverified)} >
+
+            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
+            </button>
+
+          </p>
+
+        </td>
+
     </tr>
   );
 }

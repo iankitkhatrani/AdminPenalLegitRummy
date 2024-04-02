@@ -13,6 +13,12 @@ function kycupdate() {
   const context = useContext(offerContext)
   const { KYCUpdate } = context
 
+  const BotmodeList = ["true", "false"];
+
+  const [statusModeOption, setStatusModeOption] = useState('');
+
+  const [statusPanModeOption, setStatusPanModeOption] = useState('');
+
 
   const navigate = useNavigate();
   const navigateToContacts = () => {
@@ -22,7 +28,9 @@ function kycupdate() {
 
   let [userInfo, SetuserInfo] = useState({
     userId: KycInfo.UserId,
-    adminremark: ""
+    adminremark: "",
+    verified: "",
+    Pancardverified: ""
   })
 
   useEffect(() => {
@@ -30,8 +38,14 @@ function kycupdate() {
     const submitdata = async () => {
       SetuserInfo({
         userId: KycInfo.UserId,
-        adminremark: KycInfo.adminremark
+        adminremark: KycInfo.adminremark,
+        verified: KycInfo.adharcardverified,
+        Pancardverified: KycInfo.Pancardverifiedtemp
+
       })
+      console.log("KycInfo 11111111111111111111111",KycInfo)
+      setStatusModeOption(KycInfo.adharcardverified)
+      setStatusPanModeOption(KycInfo.Pancardverifiedtemp)
 
     }
     submitdata()
@@ -51,6 +65,27 @@ function kycupdate() {
 
   };
 
+  const handleBotModeselect = (event) => {
+    const { name, value } = event.target;
+    // Toggle the value of isChecked when checkbox is clicked
+    setStatusModeOption(value);
+    SetuserInfo({
+      ...userInfo,
+      ["verified"]: value,
+    });
+    console.log("userInfo :::::::::::::::::::::", userInfo)
+  };
+
+  const handlePanModeselect = (event) => {
+    const { name, value } = event.target;
+    // Toggle the value of isChecked when checkbox is clicked
+    setStatusPanModeOption(value);
+    SetuserInfo({
+      ...userInfo,
+      ["Pancardverified"]: value,
+    });
+    console.log("userInfo :::::::::::::::::::::", userInfo)
+  };
 
 
   const handleSubmit = async (event) => {
@@ -91,7 +126,7 @@ function kycupdate() {
                 </label>
 
 
-                <textarea 
+                <textarea
                   type="textaear"
                   id="adminremark"
                   placeholder={KycInfo.adminremark}
@@ -100,15 +135,67 @@ function kycupdate() {
                   onChange={handleChange}
                 />
 
-                <button
-                aria-label="none"
-                className="rounded-lg bg-success-300 text-white font-semibold mt-10 py-3.5 px-4"
-                onClick={handleSubmit}
-              >
-                Save Kyc ReMark
-              </button>
+
               </div>
             </div>
+
+            <div className="grid 2xl:grid-cols-2 grid-cols-1 gap-6">
+              <div className="flex flex-col gap-2">
+
+                <label
+                  htmlFor="robotname"
+                  className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
+                >
+                  Adharcard Status
+                </label>
+
+                <select style={{ "width": "290px" }}
+                  className="bg-bgray-500 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+
+                  value={statusModeOption} onChange={handleBotModeselect}>
+
+                  {BotmodeList.map((option, index) => (
+                    <option name="verified" key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+
+                </select>
+              </div>
+            </div>
+
+            <div className="grid 2xl:grid-cols-2 grid-cols-1 gap-6">
+              <div className="flex flex-col gap-2">
+
+                <label
+                  htmlFor="robotname"
+                  className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
+                >
+                  PanCard Status
+                </label>
+
+                <select style={{ "width": "290px" }}
+                  className="bg-bgray-500 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+
+                  value={statusPanModeOption} onChange={handlePanModeselect}>
+
+                  {BotmodeList.map((option, index) => (
+                    <option name="Pancardverified" key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+
+                </select>
+              </div>
+            </div>
+
+            <button
+              aria-label="none"
+              className="rounded-lg bg-success-300 text-white font-semibold mt-10 py-3.5 px-4"
+              onClick={handleSubmit}
+            >
+              Save Kyc ReMark
+            </button>
           </form>
         </div>
       </div>
