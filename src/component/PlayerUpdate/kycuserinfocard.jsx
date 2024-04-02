@@ -53,23 +53,23 @@ function kycuserinfo() {
 
 
       
-      let avatarImg = (resData.userInfo && resData.userInfo.avatar != undefined) ? host+ "/upload/avatar/" + resData.userInfo.avatar + ".png" : ""
+      let avatarImg = (resData.userInfo && resData.userInfo.avatar != undefined) ? host+ "/upload/avatar/" + resData.userInfo.avatar + ".png" : host+ "/upload/profile-52x52.png"
 
       console.log("avatarImg ::::::::::::::::::::::::::::::::::::::",avatarImg)
 
       setImageSrc(avatarImg)
 
-      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined) ?  host +"/"+ resData.PanOKYCData.pancardfrontimages : '/src/assets/images/dashboard/dashboard2.png'
+      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined) ?  host +"/"+ resData.PanOKYCData.pancardfrontimages : host+ "/upload/dashboard2.png"
       
       console.log("PanImg ::::::::::::::::::::::::::::::::::::::",PanImg)
       setImagePanSrc(PanImg)
 
-      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined && resData.UserOKYCData.adharcardfrontimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardfrontimages : undefined
+      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined && resData.UserOKYCData.adharcardfrontimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardfrontimages : host+ "/upload/dashboard2.png"
       
       console.log("AdhrcardImg1 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg1)
       setImageAdharfrontSrc(AdhrcardImg1)
 
-      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined && resData.UserOKYCData.adharcardbackimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardbackimages : undefined
+      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined && resData.UserOKYCData.adharcardbackimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardbackimages : host+ "/upload/dashboard2.png"
       
       console.log("AdhrcardImg2 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg2)
       setImageAdharbackSrc(AdhrcardImg2)
@@ -231,7 +231,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
-                <img src={imageAdharfrontSrc}  onError={adharfronthandleImageError} />
+                <img src={imageAdharfrontSrc} alt="card" onError={adharfronthandleImageError} />
 
               </div>
 
@@ -239,7 +239,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
-                <img src={imageAdharbackSrc}  onError={adharbackhandleImageError} />
+                <img src={imageAdharbackSrc}  alt="card" onError={adharbackhandleImageError} />
 
               </div>
 
