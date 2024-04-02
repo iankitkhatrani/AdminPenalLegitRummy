@@ -59,7 +59,7 @@ function kycuserinfo() {
 
       setImageSrc(avatarImg)
 
-      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined) ?  host +"/"+ resData.PanOKYCData.pancardfrontimages : host+ "/upload/dashboard2.jpg"
+      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined && resData.PanOKYCData.pancardfrontimages != "-") ?  host +"/"+ resData.PanOKYCData.pancardfrontimages : host+ "/upload/dashboard2.jpg"
       
       console.log("PanImg ::::::::::::::::::::::::::::::::::::::",PanImg)
       setImagePanSrc(PanImg)
