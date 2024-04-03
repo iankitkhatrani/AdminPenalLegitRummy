@@ -175,9 +175,7 @@ function PlayerTab({ }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
-
+          
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">

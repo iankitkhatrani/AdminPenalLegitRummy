@@ -59,6 +59,8 @@ import TranscationPage from './pages/TranscationPage'
 import PaymentConfig from './pages/paymentconfig'
 import BotConfig from './pages/botconfig'
 import BankUpdate from "./pages/BankUpdate";
+import ReferralManagement from "./pages/ReferralManagement";
+
 
 
 
@@ -67,6 +69,10 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
+      {
+        path: "/referralmanagement",
+        element: <ReferralManagement />,
+      },
       {
         path: "/bankUpdate",
         element: <BankUpdate />,

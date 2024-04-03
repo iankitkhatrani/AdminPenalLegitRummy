@@ -199,12 +199,7 @@ function PlayerTab({status }) {
                 </span>
               </td>
 
-              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('email')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  email ⬆⬇
-                </span>
-              </td>
+              
 
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('phone')}>
 

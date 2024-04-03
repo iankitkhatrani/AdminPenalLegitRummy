@@ -10,6 +10,8 @@ function Sidebar({ handleActive }) {
   const [activeDashboard, setActiveDashboard] = useState(false);
   const [activekyc, setActivekyc] = useState(false);
   const [activebank, setActivebank] = useState(false);
+  const [activepayout, setActivepayout] = useState(false);
+
   const [activesetting, setActivesetting] = useState(false);
 
 
@@ -54,6 +56,13 @@ function Sidebar({ handleActive }) {
 
   }
 
+  const payoutmanagement = (flags) => {
+
+
+    setActivepayout(flags)
+
+
+  }
 
   const { pathname: location } = useLocation();
   return (
@@ -414,7 +423,7 @@ function Sidebar({ handleActive }) {
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                         }`}
                     >
-                      Pending
+                      New Accounts
                     </Link>
                   </li>
                   <li>
@@ -713,11 +722,99 @@ function Sidebar({ handleActive }) {
                   </div>
                 </Link>
               </li>
+
               <li
-                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/paymentout" ? "nav-active" : ""
+                className={`item py-[11px] text-bgray-900 dark:text-white`}
+
+              >
+                <a className="cursor-pointer" onClick={() => payoutmanagement(!activepayout)}>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2.5">
+                      <span className="item-ico">
+                        <svg
+                          width="18"
+                          height="21"
+                          viewBox="0 0 18 21"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            className="path-1"
+                            d="M0 8.84719C0 7.99027 0.366443 7.17426 1.00691 6.60496L6.34255 1.86217C7.85809 0.515019 10.1419 0.515019 11.6575 1.86217L16.9931 6.60496C17.6336 7.17426 18 7.99027 18 8.84719V17C18 19.2091 16.2091 21 14 21H4C1.79086 21 0 19.2091 0 17V8.84719Z"
+                            fill="#1A202C"
+                          />
+                          <path
+                            className="path-2"
+                            d="M5 17C5 14.7909 6.79086 13 9 13C11.2091 13 13 14.7909 13 17V21H5V17Z"
+                            fill="#22C55E"
+                          />
+                        </svg>
+                      </span>
+                      <span className="item-text text-lg font-medium leading-none">
+                        Payout Management
+                      </span>
+                    </div>
+                    <span
+                      className={`transition-all ${activepayout ? "-rotate-90" : "rotate-0"
+                        }`}
+                    >
+                      <svg
+                        width="6"
+                        height="12"
+                        viewBox="0 0 6 12"
+                        fill="none"
+                        className="fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          fill="currentColor"
+                          d="M0.531506 0.414376C0.20806 0.673133 0.155619 1.1451 0.414376 1.46855L4.03956 6.00003L0.414376 10.5315C0.155618 10.855 0.208059 11.3269 0.531506 11.5857C0.854952 11.8444 1.32692 11.792 1.58568 11.4685L5.58568 6.46855C5.80481 6.19464 5.80481 5.80542 5.58568 5.53151L1.58568 0.531506C1.32692 0.20806 0.854953 0.155619 0.531506 0.414376Z"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </a>
+                <ul
+                  className={`sub-menu ml-2.5 mt-[22px]  border-l transition-all overflow-hidden border-success-100 pl-5  ${activepayout ? "active" : ""
+                    }`}
+                >
+                  <li>
+                    <Link
+                      to="/paymentout?status=Pending"
+                      className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
+                        }`}
+                    >
+                      Withdraw Request
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/paymentout?status=Approved"
+                      className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
+                        }`}
+                    >
+                      In Process
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/paymentout?gametype=Rejected"
+                      className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
+                        }`}
+                    >
+                      Processed Request
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+
+              <li
+                className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/referralmanagement" ? "nav-active" : ""
                   } `}
               >
-                <Link to="/paymentout">
+                <Link to="/referralmanagement">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2.5">
                       <span className="item-ico">
@@ -746,12 +843,13 @@ function Sidebar({ handleActive }) {
                         </svg>
                       </span>
                       <span className="item-text text-lg font-medium leading-none">
-                        Payment Out Management
+                        Referral Management
                       </span>
                     </div>
                   </div>
                 </Link>
               </li>
+
               <li
                 className={`item py-[11px] text-bgray-900 dark:text-white ${location === "/socialurl" ? "nav-active" : ""
                   } `}

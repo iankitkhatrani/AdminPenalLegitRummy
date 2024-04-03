@@ -32,11 +32,11 @@ function PlayerTab({ }) {
 
 
   const context = useContext(offerContext)
-  const { PlayerList } = context
+  const { ReferralList } = context
 
   useEffect(() => {
     const submitdata = async () => {
-      setUserData(await PlayerList())
+      setUserData(await ReferralList())
     }
     submitdata()
   }, []);
@@ -53,8 +53,7 @@ function PlayerTab({ }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.mobileNumber.includes(searchTerm))
+        user.userName.toLowerCase().includes(searchTerm.toLowerCase()) )
     );
   });
 
@@ -73,77 +72,9 @@ function PlayerTab({ }) {
     }
   };
 
-  const resetDate = () => {
-    setFromDate("")
-    setToDate("")
-  }
-  //-----------------------------------------------------------------------------------------------
-
-  const handleFromDateChange = (event) => {
-    const selectedDate = event.target.value;
-    const currentDate = new Date().toISOString().split('T')[0];
-    if (selectedDate > currentDate) {
-      alert('From date cannot be beyond current date');
-    } else if (selectedDate && toDate && new Date(selectedDate) >= new Date(toDate)) {
-      alert('From date must be earlier than To date');
-    } else {
-
-      setFromDate(selectedDate);
-
-
-    }
-  };
-
-  const handleToDateChange = (event) => {
-    const selectedDate = event.target.value;
-    const currentDate = new Date().toISOString().split('T')[0];
-    if (selectedDate > currentDate) {
-      alert('To date cannot be beyond current date');
-    } else if (fromDate && selectedDate && new Date(fromDate) >= new Date(selectedDate)) {
-      alert('To date must be later than From date');
-    } else {
-      setToDate(selectedDate);
-    }
-  };
 
 
 
-  const handleSort = (key) => {
-    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
-    const sorted = [...userData].sort((a, b) => {
-      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-      return 0;
-    });
-    setUserData(sorted);
-    setSortDirection(direction);
-  };
-
-  const generatePDF = async () => {
-    //style={{"background-color": "lightgray"}}
-   await setBackgroundColor("#1D1E24"); // Change to the desired color
-
-    const input = document.getElementById("tableId");
-
-    console.log("input ::::::::::::::: ",input)
-    html2canvas(input)
-      .then(async (canvas) => {
-        console.log("canvas ",canvas)
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.setFillColor(204, 204,204,0);
-        
-        const imgWidth = 210;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-        pdf.save(`${new Date() + 'UserPage'}.pdf`);
-
-        await setBackgroundColor('');
-      })
-      .catch((error) => console.log(error));
-
-
-  };
 
   return (
     <>
@@ -179,7 +110,7 @@ function PlayerTab({ }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by name..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -187,114 +118,27 @@ function PlayerTab({ }) {
           </div>
         </div>
       </div>
-      <div className="filter-content w-full">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
-          <input
-            type="date"
-            placeholder="From Date"
-            value={fromDate}
-            onChange={handleFromDateChange}
-          />
-          <input
-            type="date"
-            placeholder="To Date"
-            value={toDate}
-            onChange={handleToDateChange}
-            style={{ marginLeft: "1rem" }}
-          />
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
-
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
-
-            <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">
-            <ReactHTMLTableToExcel
-              id="test-table-xls-button"
-              className="download-table-xls-button"
-              table="tableId"
-              filename={new Date() + 'UserPage'}
-              sheet="tablexls"
-              buttonText="Download as XLS" />
-          </button>
-
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={generatePDF}>
-           
-            Download as PDF
-          </button>
-        </div>
-      </div>
       <div className="text-center table-content w-full overflow-x-auto">
-        <table style={{"backgroundColor":backgroundColor }} id="tableId" className="table-fixed hover:border-collapse text-center w-full">
+        <table style={{ "backgroundColor": backgroundColor }} id="tableId" className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               <td className="w-[65px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Profile 
+                  User Name
                 </span>
 
               </td>
               <td className="w-[195px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                User Id
+                  Total Referral
                 </span>
 
               </td>
-              <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
 
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                User Name⬆⬇
-                </span>
-              </td>
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
 
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Mobile Number⬆⬇
-                </span>
-              </td>
-              <td className="w-[180px] px-6 py-5 xl:px-0" onClick={() => handleSort('email')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Email⬆⬇
-                </span>
-              </td>
-
-              <td className="w-[140px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Rummy Game⬆⬇
-                </span>
-              </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Main Wallet⬆⬇
-                </span>
-              </td>
-              
-              <td className="w-[170px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Registration Date ⬆⬇
-                </span>
-              </td>
-              <td className="w-[170px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Last Login ⬆⬇
-                </span>
-              </td>
-              <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Status ⬆⬇
-                </span>
-              </td>
 
             </tr>
 
@@ -305,19 +149,9 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
-                    UserName={user.name}
-                    MobileNo={user.mobileNumber}
-                    totalMatch={user.counters.totalMatch.toFixed(2)}
-                    MainWallet={user.chips.toFixed(2)}
-                    WinWallet={user.winningChips.toFixed(2)}
-                    BonusWallet={user.chips.toFixed(2)}
-                    RegistrationDate={user.createdAt}
-                    LastLogin={user.lastLoginDate}
-                    status={user.status ? 'Blocked' : 'Active'}
-                    profileUrl={user.profileUrl}
-                    email={user.email}
-                    uniqueId={user.uniqueId}
-                    avatar={user.avatar} 
+                    UserName={user.userName}
+                    total={user.total}
+
 
                   />
                 )
@@ -325,19 +159,9 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     UserId={user._id}
-                    UserName={user.name}
-                    MobileNo={user.mobileNumber}
-                    totalMatch={user.counters.totalMatch}
-                    MainWallet={user.chips.toFixed(2)}
-                    WinWallet={user.winningChips.toFixed(2)}
-                    BonusWallet={user.chips.toFixed(2)}
-                    RegistrationDate={user.createdAt}
-                    LastLogin={user.lastLoginDate}
-                    status={user.status ? 'Blocked' : 'Active'}
-                    profileUrl={user.profileUrl}
-                    email={user.email}
-                    uniqueId={user.uniqueId}
-                    avatar={user.avatar} 
+                    UserName={user.userName}
+                    total={user.total}
+
                   />
                 )
             )}
