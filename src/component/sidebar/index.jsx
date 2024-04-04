@@ -782,7 +782,7 @@ function Sidebar({ handleActive }) {
                 >
                   <li>
                     <Link
-                      to="/paymentout?status=Pending"
+                      to="/paymentout?status=PendingApproval"
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
                         }`}
                     >
@@ -791,20 +791,20 @@ function Sidebar({ handleActive }) {
                   </li>
                   <li>
                     <Link
-                      to="/paymentout?status=Approved"
+                      to="/paymentout?status=RequestProcessing"
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
                         }`}
                     >
-                      In Process
+                    In Process
                     </Link>
                   </li>
                   <li>
                     <Link
-                      to="/paymentout?gametype=Rejected"
+                      to="/paymentout?gametype=ProcessedRequest"
                       className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-3" ? "nav-active" : ""
                         }`}
                     >
-                      Processed Request
+                    Processed Request
                     </Link>
                   </li>
                 </ul>

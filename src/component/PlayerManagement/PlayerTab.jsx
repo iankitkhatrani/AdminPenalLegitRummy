@@ -53,7 +53,7 @@ function PlayerTab({ }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.mobileNumber.includes(searchTerm))
     );
   });

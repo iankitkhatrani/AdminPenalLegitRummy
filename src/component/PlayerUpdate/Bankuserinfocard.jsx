@@ -93,13 +93,13 @@ function bankuserinfo(gameName) {
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Verified :-  {userInfo.verify == true ? "Verified" : "No-Verified" ||  "-"} 
+              Verified :-  {userInfo.verify == true ? "Verified" : "Not Verified" ||  "-"} 
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Approved :-  {userInfo.verify == true ? "Verified" : "No-Verified" ||  "-"} 
+              Approved :-  {userInfo.verify == true ? "Approved" : "Not Approved" ||  "-"} 
             </p>
           </div>
 

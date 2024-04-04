@@ -220,7 +220,7 @@ function PlayerTab({ }) {
               onChange={(e) => setSearchTerm(e.target.value)}>
               <option value="">Transaction status</option>
               <option value="Success">Success</option>
-              <option value="Pendding">Pendding</option>
+              <option value="Pendding">Pending</option>
               <option value="Failed">Failed</option>
             </select>
 

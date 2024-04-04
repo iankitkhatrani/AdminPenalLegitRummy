@@ -185,43 +185,34 @@ function PlayerTab({status }) {
         <table className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              <td className="w-[175px] px-6 py-5 xl:px-0">
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  User Id
-                </span>
-
-              </td>
-              <td className="w-[105px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
+              
+              <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   User Name⬆⬇
                 </span>
               </td>
-
-              
-
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('phone')}>
+              <td className="w-[80px] px-6 py-5 xl:px-0" onClick={() => handleSort('phone')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Mobile Number⬆⬇
                 </span>
               </td>
 
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('BeneficiaryName')}>
+              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('BeneficiaryName')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   BeneficiaryName⬆⬇
                 </span>
               </td>
 
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('amountNumber')}>
+              <td className="w-[90px] px-6 py-5 xl:px-0" onClick={() => handleSort('amountNumber')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   amountNumber⬆⬇
                 </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('IFSC')}>
+              <td className="w-[60px] px-6 py-5 xl:px-0" onClick={() => handleSort('IFSC')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   IFSC⬆⬇
@@ -236,18 +227,34 @@ function PlayerTab({status }) {
               </td>
 
 
-              <td className="w-[60px] px-6 py-5 xl:px-0">
+              <td className="w-[70px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Hyperverge Response
+                </span>
+
+              </td>
+
+              <td className="w-[85px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Hyperverge Remark
+                </span>
+
+              </td>
+
+              <td className="w-[70px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                 Status
                 </span>
 
               </td>
-
+              
               <td className="w-[60px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Remark
+                Admin Remark
                 </span>
 
               </td>
@@ -278,6 +285,8 @@ function PlayerTab({status }) {
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
+                    paymentreMark = {user.paymentreMark}
+                    adminStatus={user.adminStatus}
                     reMark = {user.reMark}
 
                   />
@@ -295,6 +304,8 @@ function PlayerTab({status }) {
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
+                    paymentreMark = {user.paymentreMark}
+                    adminStatus={user.adminStatus}
                     reMark = {user.reMark}
                   />
                 )

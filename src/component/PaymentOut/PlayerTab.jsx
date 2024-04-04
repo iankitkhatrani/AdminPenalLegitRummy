@@ -4,7 +4,7 @@ import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
-function PlayerTab({ }) {
+function PlayerTab({status }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
   const [pageSize, setPageSize] = useState(5);
@@ -30,7 +30,7 @@ function PlayerTab({ }) {
 
   useEffect(() => {
     const submitdata = async () => {
-      setUserData(await PayoutDataList())
+      setUserData(await PayoutDataList(status))
     }
     submitdata()
   }, []);
@@ -182,12 +182,18 @@ function PlayerTab({ }) {
         <table className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              <td className="w-[80px] px-6 py-5 xl:px-0">
+              <td className="w-[90px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Order ID
                 </span>
 
+              </td>
+              <td className="w-[215px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  User ID
+                </span>
               </td>
               <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
 
@@ -195,31 +201,46 @@ function PlayerTab({ }) {
                   User Name⬆⬇
                 </span>
               </td>
+             
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Amount ⬆⬇
                 </span>
               </td>
+              <td className="w-[155px] px-6 py-5 xl:px-0">
+
+              <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Account Number 
+              </span>
+            </td>
+
+            <td className="w-[155px] px-6 py-5 xl:px-0">
+
+              <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                IFSC Code 
+              </span>
+            </td>
+
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Payment Mode ⬆⬇
                 </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+              <td className="w-[100px] px-6 py-5 xl:px-0" >
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Payment Details ⬆⬇
+                  Payment Status ⬆⬇
                 </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
+              <td className="w-[100px] px-6 py-5 xl:px-0" >
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Request Date ⬆⬇
                 </span>
               </td>
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+              <td className="w-[110px] px-6 py-5 xl:px-0" >
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Auto-Pay ⬆⬇
@@ -242,28 +263,34 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     OrderID={user.OrderID}
+                    userId={user.userId}
                     Amount={user.amount}
+                    accountNo={user.accountNo}
+                    ifscCode={user.ifscCode}
                     UserName={user.name}
                     PaymentMode={user.transferMode}
-                    PaymentDetails={user.orderInfo}
+                    PaymentStatus={user.paymentStatus}
                     RequestDate={user.createdAt}
                     Autopay="yes"
                     Action="-"
-                    UserId={user._id}
+                    _id={user._id}
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
                     OrderID={user.OrderID}
+                    userId={user.userId}
                     Amount={user.amount}
+                    accountNo={user.accountNo}
+                    ifscCode={user.ifscCode}
                     UserName={user.name}
                     PaymentMode={user.transferMode}
-                    PaymentDetails={user.orderInfo}
+                    PaymentStatus={user.paymentStatus}
                     RequestDate={user.createdAt}
                     Autopay="yes"
                     Action="-"
-                    UserId={user._id}
+                    _id={user._id}
                   />
                 )
             )}

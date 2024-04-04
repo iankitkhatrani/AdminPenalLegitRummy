@@ -25,7 +25,7 @@ function bankUpdate() {
   let [userInfo, SetuserInfo] = useState({
     Id: Botinfo.id,
     reMark: "",
-    paymentStatus: Botinfo.paymentStatus
+    adminStatus: Botinfo.adminStatus
   })
 
   useEffect(() => {
@@ -34,9 +34,9 @@ function bankUpdate() {
       SetuserInfo({
         Id: Botinfo.id,
         reMark: Botinfo.reMark,
-        paymentStatus: Botinfo.paymentStatus
+        adminStatus: Botinfo.adminStatus
       })
-      setStatusModeOption(Botinfo.paymentStatus)
+      setStatusModeOption(Botinfo.adminStatus)
     }
     submitdata()
   }, []);
@@ -60,7 +60,7 @@ function bankUpdate() {
     setStatusModeOption(value);
     SetuserInfo({
       ...userInfo,
-      ["paymentStatus"]: value,
+      ["adminStatus"]: value,
     });
     console.log("userInfo :::::::::::::::::::::", userInfo)
   };
@@ -137,7 +137,7 @@ function bankUpdate() {
                   value={statusModeOption} onChange={handleBotModeselect}>
 
                   {BotmodeList.map((option, index) => (
-                    <option name="paymentStatus" key={index} value={option}>
+                    <option name="adminStatus" key={index} value={option}>
                       {option}
                     </option>
                   ))}
