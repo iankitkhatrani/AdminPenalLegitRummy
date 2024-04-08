@@ -57,6 +57,8 @@ function PlayerTab({ }) {
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.mobileNumber.includes(searchTerm))
     );
   });
