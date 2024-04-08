@@ -38,17 +38,21 @@ function PlayerTab({status }) {
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   const filteredUsers = userData.filter((user) => {
-    console.log("dddd", user)
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
+    
+    from != null && from.setHours(0, 0, 0)
+    to != null && to.setHours(23, 0, 0)
 
+    
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.mobileNumber.includes(searchTerm))
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.accountNo.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     );
   });
 
@@ -148,7 +152,7 @@ function PlayerTab({status }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by User Name, Account number or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

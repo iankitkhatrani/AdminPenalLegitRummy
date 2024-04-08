@@ -46,6 +46,10 @@ function PlayerTab({ }) {
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
+
+    from != null && from.setHours(0, 0, 0)
+    to != null && to.setHours(23, 0, 0)
+    
     const typeoftrancation = typeofTransaction == "Bonus" ? ["SingUp Bonus",
       "Deal Playing Entry Deduct bonus", "Pool Playing Entry Deduct bonus",
       "Point Playing Entry Deduct bonus",
@@ -68,7 +72,11 @@ function PlayerTab({ }) {
       (!typeoftrancation || typeoftrancation.indexOf(user.transTypeText)) &&
       (searchTerm === '' ||
         (user.OrderId != undefined && user.OrderId.includes(searchTerm)) ||
-        (user.uniqueId != undefined && user.uniqueId.includes(searchTerm)))
+        (user.uniqueId != undefined && user.uniqueId.includes(searchTerm)) ||
+        (user.username != undefined && user.username.includes(searchTerm)) 
+
+        
+      )
     );
   });
 
@@ -281,7 +289,7 @@ function PlayerTab({ }) {
                 </span>
 
               </td>
-              <td className="w-[185px] px-6 py-5 xl:px-0">
+              <td className="w-[185px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
 
@@ -367,7 +375,7 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     OrderId={user._id}
-                    UserId={user.uniqueId}
+                    username={user.username}
                     transAmount={user.transAmount}
                     winningChips={user.winningChips != undefined ? user.winningChips.toFixed(2) : "0"}
                     chips={user.chips != undefined ? user.chips.toFixed(2) : "0"}
@@ -385,7 +393,7 @@ function PlayerTab({ }) {
                   <CustomerInfo
                     key={user._id}
                     OrderId={user._id}
-                    UserId={user.uniqueId}
+                    username={user.username}
                     transAmount={user.transAmount}
                     winningChips={user.winningChips != undefined ? user.winningChips.toFixed(2) : "0"}
                     chips={user.chips != undefined ? user.chips.toFixed(2) : "0"}

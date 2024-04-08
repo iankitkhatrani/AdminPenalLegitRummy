@@ -7,7 +7,7 @@ import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ OrderId, UserId, transAmount, winningChips, chips, bonusChips, referralChips, totalBucket, createdAt, transType, transTypeText, gameId, uid }) {
+function PlayerInfo({ OrderId, username, transAmount, winningChips, chips, bonusChips, referralChips, totalBucket, createdAt, transType, transTypeText, gameId, uid }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -81,7 +81,7 @@ function PlayerInfo({ OrderId, UserId, transAmount, winningChips, chips, bonusCh
             "border-radius": "4px"
           }} onClick={() => navigateToContacts(uid)} >
 
-            {UserId}
+            {username}
           </button>
         </p>
       </td>

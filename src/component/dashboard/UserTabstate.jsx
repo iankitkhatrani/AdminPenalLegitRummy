@@ -46,6 +46,8 @@ function UserTabstate({ }) {
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
 
+    from != null && from.setHours(0, 0, 0)
+    to != null && to.setHours(23, 0, 0)
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
