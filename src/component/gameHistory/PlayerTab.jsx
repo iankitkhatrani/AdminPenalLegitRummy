@@ -196,6 +196,12 @@ function PlayerTab({ gameName }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
+            <td className="w-[165px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                Serial Num⬆⬇
+                </span>
+              </td>
+
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   GameId⬆⬇
@@ -239,10 +245,12 @@ function PlayerTab({ gameName }) {
                     tableAmount={user.tableAmount}
                     date={user.date}
                     entryFee={user.entryFee}
+                    srno ={index}
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
+                    
                     key={user._id}
                     gameId={user.gameId}
                     gamePlayType={user.gamePlayType}
@@ -250,6 +258,7 @@ function PlayerTab({ gameName }) {
                     tableAmount={user.tableAmount}
                     date={user.date}
                     entryFee={user.entryFee}
+                    srno ={index}
                   />
                 )
             )}

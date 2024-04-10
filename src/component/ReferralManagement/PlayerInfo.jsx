@@ -6,7 +6,7 @@ import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId, UserName, total }) {
+function PlayerInfo({ UserId, UserName, total,totalbonus }) {
 
 
   return (
@@ -22,6 +22,12 @@ function PlayerInfo({ UserId, UserName, total }) {
           {total}
         </p>
       </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+        ₹{totalbonus}
+        </p>
+      </td>
+      
 
 
     </tr>

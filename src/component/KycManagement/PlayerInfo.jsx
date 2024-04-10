@@ -6,7 +6,8 @@ import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pancardverified,adminremark,adminremarkcd,dob,ReId }) {
+function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,adharcardHypervergemark,adharcardadminverified,
+  Pancard,Pancardverified,panHypervergemark,pancardadminverified, adminremark,adminremarkcd,dob,ReId,adminname }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -41,17 +42,14 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
   }
 
 
-  const navigateToContactsApprove = async (UserId, adminremark,verified,Pancardverified) => {
+  const navigateToContactsApprove = async (UserId, adminremark,adharcardadminverified,pancardadminverified) => {
     console.log("ID :::::::::::::", UserId)
     console.log("adminremark :::::::::::::", adminremark)
-    console.log("verified :::::::::::::", verified)
-    console.log("Pancardverified :::::::::::::", Pancardverified)
+    console.log("adharcardadminverified :::::::::::::", adharcardadminverified)
+    console.log("pancardadminverified :::::::::::::", pancardadminverified)
 
 
-    let adharcardverified = (verified == "UnVerified")?"false":"true"
-    let Pancardverifiedtemp = (Pancardverified == "UnVerified")?"false":"true"
-
-    navigate('/kycupdateinfo', { state: { UserId, adminremark,adharcardverified,Pancardverifiedtemp } });
+    navigate('/kycupdateinfo', { state: { UserId, adminremark,adharcardadminverified,pancardadminverified} });
 
   }
 
@@ -109,9 +107,35 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {verified}
+          
+
+          {!verified ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
+          Auto_Declined
+        </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Auto_Approved</p>}
+
+
         </p>
       </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {adharcardHypervergemark}
+        </p>
+      </td>
+
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          
+
+          {!adharcardadminverified ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
+          Admin_Declined
+        </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Admin_Approved</p>}
+
+
+        </p>
+      </td>
+
+      
+      
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {Pancard}
@@ -119,12 +143,39 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {Pancardverified}
+         
+
+          {!Pancardverified ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
+            Auto_Declined
+          </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Auto_Approved</p>}
+
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {panHypervergemark}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          
+
+          {!pancardadminverified ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
+          Admin_Declined
+        </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Admin_Approved</p>}
+
+
+        </p>
+      </td>
+
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
           {adminremark}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {adminname}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -145,7 +196,7 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,Pancard,Pa
               "padding": "5px 10px",
               "cursor": "pointer",
               "border-radius": "4px"
-            }} onClick={() => navigateToContactsApprove(UserId, adminremark,verified,Pancardverified)} >
+            }} onClick={() => navigateToContactsApprove(UserId, adminremark,adharcardadminverified,pancardadminverified)} >
 
             <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
             </button>

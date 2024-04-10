@@ -1,8 +1,8 @@
 import ProtoTypes from "prop-types";
 
-function PlayerInfo({ gameId,gamePlayType,maxSeat,tableAmount,date,entryFee}) {
+function PlayerInfo({ gameId, gamePlayType, maxSeat, tableAmount, date, entryFee, srno }) {
 
-  
+
   function formatDateTo12hr(dateTimeStr) {
     const dateTime = new Date(dateTimeStr);
     const formattedDate = dateTime.toLocaleString('en-US', {
@@ -19,12 +19,19 @@ function PlayerInfo({ gameId,gamePlayType,maxSeat,tableAmount,date,entryFee}) {
 
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
-      
+
+
       <td className="w-[165px] px-6 py-5 xl:px-0">
-      
-          <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {gameId}
-          </p>
+
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          {srno}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          {gameId}
+        </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
@@ -43,15 +50,15 @@ function PlayerInfo({ gameId,gamePlayType,maxSeat,tableAmount,date,entryFee}) {
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-        {formatDateTo12hr(date)}
+          {formatDateTo12hr(date)}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-        ₹{entryFee}
+          ₹{entryFee}
         </p>
       </td>
-      
+
     </tr>
   );
 }

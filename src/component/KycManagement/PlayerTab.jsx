@@ -47,16 +47,16 @@ function PlayerTab({ status }) {
 
     from != null && from.setHours(0, 0, 0)
     to != null && to.setHours(23, 0, 0)
-    
+
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
         user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.pancard && user.pancard.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.adharcard && user.adharcard.toLowerCase().includes(searchTerm.toLowerCase()) 
-        
-        )
+        user.adharcard && user.adharcard.toLowerCase().includes(searchTerm.toLowerCase())
+
+      )
     );
   });
 
@@ -181,7 +181,7 @@ function PlayerTab({ status }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-         
+
         </div>
       </div>
       <div className="table-content w-full overflow-x-auto">
@@ -190,12 +190,12 @@ function PlayerTab({ status }) {
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               <td className="w-[190px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                User Id
+                  User Id
                 </span>
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                User Name
+                  User Name
                 </span>
               </td>
               <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('adharcard')}>
@@ -215,10 +215,25 @@ function PlayerTab({ status }) {
               </td>
               <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('verified')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Aadhaar Status ⬆⬇
+                  Hyperverge Adharcard Response ⬆⬇
                 </span>
 
               </td>
+              <td className="w-[150px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Hyperverge Adharcard Remark ⬆⬇
+                </span>
+
+              </td>
+
+              <td className="w-[150px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Adharcard Admin Response ⬆⬇
+                </span>
+
+              </td>
+
+
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('Pancard')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Pan Card ⬆⬇
@@ -226,14 +241,35 @@ function PlayerTab({ status }) {
               </td>
               <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('Pancardverified')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Pancard Status ⬆⬇
+                  Hyperverge Pancard Response ⬆⬇
                 </span>
               </td>
+              <td className="w-[150px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Hyperverge Pancard Remark ⬆⬇
+                </span>
+
+              </td>
+
+              <td className="w-[150px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Pancard Admin Response ⬆⬇
+                </span>
+
+              </td>
+
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Admin Remark
                 </span>
               </td>
+
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Admin Name
+                </span>
+              </td>
+
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Remark Date
@@ -243,12 +279,12 @@ function PlayerTab({ status }) {
               <td className="w-[60px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Action
+                  Action
                 </span>
 
               </td>
-             
-              
+
+
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
               pageSize
@@ -259,13 +295,21 @@ function PlayerTab({ status }) {
                     userName={user.userName}
                     adharcard={user.adharcard}
                     createdAt={user.createdAt}
-                    verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
+                    verified={user.verified}
+                    adharcardHypervergemark={user.adharcardHypervergemark}
+                    adharcardadminverified={user.adharcardadminverified}
+
                     Pancard={user.pancard}
-                    Pancardverified={user.pancardverified == undefined || user.pancardverified == "" || user.pancardverified == false ? "UnVerified" : "Verified"}
+                    Pancardverified={user.pancardverified}
+                    panHypervergemark={user.panHypervergemark}
+                    pancardadminverified={user.pancardadminverified}
+
+
                     adminremark={user.adminremark}
                     adminremarkcd={user.adminremarkcd}
                     dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
                     ReId={user._id}
+                    adminname={user.adminname}
                   />
                 )
                 : index < 3 && (
@@ -275,13 +319,18 @@ function PlayerTab({ status }) {
                     UserId={user.userId}
                     adharcard={user.adharcard}
                     createdAt={user.createdAt}
-                    verified={user.verified == "" || user.verified == false ? "UnVerified" : "Verified"}
+                    verified={user.verified}
+                    adharcardHypervergemark={user.adharcardHypervergemark}
+
                     Pancard={user.pancard}
-                    Pancardverified={user.pancardverified == undefined || user.pancardverified == "" || user.pancardverified == false ? "UnVerified" : "Verified"}
+                    Pancardverified={user.pancardverified}
+                    panHypervergemark={user.panHypervergemark}
+
                     adminremark={user.adminremark}
                     adminremarkcd={user.adminremarkcd}
                     dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
                     ReId={user._id}
+                    adminname={user.adminname}
                   />
                 )
             )}

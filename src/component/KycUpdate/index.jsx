@@ -2,6 +2,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function kycupdate() {
 
@@ -29,8 +31,9 @@ function kycupdate() {
   let [userInfo, SetuserInfo] = useState({
     userId: KycInfo.UserId,
     adminremark: "",
-    verified: "",
-    Pancardverified: ""
+    adharcardadminverified: "",
+    pancardadminverified: "",
+    adminname:""
   })
 
   useEffect(() => {
@@ -39,13 +42,13 @@ function kycupdate() {
       SetuserInfo({
         userId: KycInfo.UserId,
         adminremark: KycInfo.adminremark,
-        verified: KycInfo.adharcardverified,
-        Pancardverified: KycInfo.Pancardverifiedtemp
-
+        adharcardadminverified: KycInfo.adharcardadminverified,
+        pancardadminverified: KycInfo.pancardadminverified,
+        adminname:cookies.get('name')
       })
       console.log("KycInfo 11111111111111111111111",KycInfo)
-      setStatusModeOption(KycInfo.adharcardverified)
-      setStatusPanModeOption(KycInfo.Pancardverifiedtemp)
+      setStatusModeOption(KycInfo.adharcardadminverified)
+      setStatusPanModeOption(KycInfo.pancardadminverified)
 
     }
     submitdata()
@@ -71,7 +74,7 @@ function kycupdate() {
     setStatusModeOption(value);
     SetuserInfo({
       ...userInfo,
-      ["verified"]: value,
+      ["adharcardadminverified"]: value,
     });
     console.log("userInfo :::::::::::::::::::::", userInfo)
   };
@@ -82,7 +85,7 @@ function kycupdate() {
     setStatusPanModeOption(value);
     SetuserInfo({
       ...userInfo,
-      ["Pancardverified"]: value,
+      ["pancardadminverified"]: value,
     });
     console.log("userInfo :::::::::::::::::::::", userInfo)
   };
@@ -155,7 +158,7 @@ function kycupdate() {
                   value={statusModeOption} onChange={handleBotModeselect}>
 
                   {BotmodeList.map((option, index) => (
-                    <option name="verified" key={index} value={option}>
+                    <option name="adharcardadminverified" key={index} value={option}>
                       {option}
                     </option>
                   ))}
@@ -180,7 +183,7 @@ function kycupdate() {
                   value={statusPanModeOption} onChange={handlePanModeselect}>
 
                   {BotmodeList.map((option, index) => (
-                    <option name="Pancardverified" key={index} value={option}>
+                    <option name="pancardadminverified" key={index} value={option}>
                       {option}
                     </option>
                   ))}

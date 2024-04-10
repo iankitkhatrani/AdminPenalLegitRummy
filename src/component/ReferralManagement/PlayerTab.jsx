@@ -141,6 +141,14 @@ function PlayerTab({ }) {
 
               </td>
 
+              <td className="w-[195px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Earn Bonus
+                </span>
+
+              </td>
+
 
 
             </tr>
@@ -154,6 +162,8 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.userName}
                     total={user.total}
+                    totalbonus={user.totalbonus}
+
 
 
                   />
@@ -164,6 +174,7 @@ function PlayerTab({ }) {
                     UserId={user._id}
                     UserName={user.userName}
                     total={user.total}
+                    totalbonus={user.totalbonus}
 
                   />
                 )
