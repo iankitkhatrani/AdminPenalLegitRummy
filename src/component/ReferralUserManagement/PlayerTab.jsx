@@ -7,10 +7,10 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
-function PlayerTab({ }) {
+function PlayerTab({ userId}) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -23,20 +23,17 @@ function PlayerTab({ }) {
   }
   //------------------------------------------------------------------------------------------------------------
   const navigate = useNavigate();
-  const navigateToUserRegister = () => {
-    navigate('/playeradd');
-  };
 
   let [userData, setUserData] = useState([]);
   const [backgroundColor, setBackgroundColor] = useState('');
 
 
   const context = useContext(offerContext)
-  const { ReferralList } = context
+  const { ReferralUserList } = context
 
   useEffect(() => {
     const submitdata = async () => {
-      setUserData(await ReferralList())
+      setUserData(await ReferralUserList(userId))
     }
     submitdata()
   }, []);
@@ -136,7 +133,7 @@ function PlayerTab({ }) {
               <td className="w-[195px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Total Referral
+                  Id
                 </span>
 
               </td>
@@ -144,19 +141,13 @@ function PlayerTab({ }) {
               <td className="w-[195px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Earn Bonus
+                   Bonus Earn(Rs)
                 </span>
 
               </td>
 
 
-              <td className="w-[195px] px-6 py-5 xl:px-0">
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Action
-                </span>
-
-              </td>
+           
 
 
 
@@ -167,24 +158,20 @@ function PlayerTab({ }) {
               pageSize
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
-                    key={user._id}
+                    key={index}
                     UserId={user._id}
-                    UserName={user.userName}
-                    total={user.total}
-                    totalbonus={user.totalbonus}
-
-
-
+                    name={user.name}
+                    bonus={user.bonus}
+                    
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
-                    key={user._id}
+                    key={index}
                     UserId={user._id}
-                    UserName={user.userName}
-                    total={user.total}
-                    totalbonus={user.totalbonus}
-
+                    name={user.name}
+                    bonus={user.bonus}
+                  
                   />
                 )
             )}

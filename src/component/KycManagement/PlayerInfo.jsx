@@ -180,7 +180,7 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,adharcardH
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {adminremarkcd}
+          {formatDateTo12hr(adminremarkcd)}
         </p>
       </td>
       

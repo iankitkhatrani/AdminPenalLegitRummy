@@ -60,6 +60,8 @@ import PaymentConfig from './pages/paymentconfig'
 import BotConfig from './pages/botconfig'
 import BankUpdate from "./pages/BankUpdate";
 import ReferralManagement from "./pages/ReferralManagement";
+import ReferralUserManagement from "./pages/ReferralUserManagement";
+
 
 
 
@@ -69,6 +71,10 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
+      {
+        path: "/ReferralUserManagement",
+        element: <ReferralUserManagement />,
+      },
       {
         path: "/referralmanagement",
         element: <ReferralManagement />,

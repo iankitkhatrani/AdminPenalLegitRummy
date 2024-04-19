@@ -44,34 +44,34 @@ function kycuserinfo() {
 
 
       let resData = await PlayerData(Botinfo.UserId)
-      
-      console.log("resData ::::::::::::::::::",resData)
+
+      console.log("resData ::::::::::::::::::", resData)
 
       await SetuserInfo(resData.userInfo)
       await SetkyPancuserInfo(resData.PanOKYCData)
       await SetkyAadharcuserInfo(resData.UserOKYCData)
 
 
-      
-      let avatarImg = (resData.userInfo && resData.userInfo.avatar != undefined) ? host+ "/upload/avatar/" + resData.userInfo.avatar + ".png" : host+ "/upload/profile-52x52.png"
 
-      console.log("avatarImg ::::::::::::::::::::::::::::::::::::::",avatarImg)
+      let avatarImg = (resData.userInfo && resData.userInfo.avatar != undefined) ? host + "/upload/avatar/" + resData.userInfo.avatar + ".png" : host + "/upload/profile-52x52.png"
+
+      console.log("avatarImg ::::::::::::::::::::::::::::::::::::::", avatarImg)
 
       setImageSrc(avatarImg)
 
-      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined && resData.PanOKYCData.pancardfrontimages != "-") ?  host +"/"+ resData.PanOKYCData.pancardfrontimages : host+ "/upload/dashboard2.jpg"
-      
-      console.log("PanImg ::::::::::::::::::::::::::::::::::::::",PanImg)
+      let PanImg = (resData.PanOKYCData && resData.PanOKYCData.pancardfrontimages != undefined && resData.PanOKYCData.pancardfrontimages != "-") ? host + "/" + resData.PanOKYCData.pancardfrontimages : host + "/upload/dashboard2.jpg"
+
+      console.log("PanImg ::::::::::::::::::::::::::::::::::::::", PanImg)
       setImagePanSrc(PanImg)
 
-      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined && resData.UserOKYCData.adharcardfrontimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardfrontimages : host+ "/upload/dashboard2.jpg"
-      
-      console.log("AdhrcardImg1 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg1)
+      let AdhrcardImg1 = (resData.UserOKYCData && resData.UserOKYCData.adharcardfrontimages != undefined && resData.UserOKYCData.adharcardfrontimages != "-") ? host + "/" + resData.UserOKYCData.adharcardfrontimages : host + "/upload/dashboard2.jpg"
+
+      console.log("AdhrcardImg1 ::::::::::::::::::::::::::::::::::::::", AdhrcardImg1)
       setImageAdharfrontSrc(AdhrcardImg1)
 
-      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined && resData.UserOKYCData.adharcardbackimages != "-") ?  host +"/"+ resData.UserOKYCData.adharcardbackimages : host+ "/upload/dashboard2.jpg"
-      
-      console.log("AdhrcardImg2 ::::::::::::::::::::::::::::::::::::::",AdhrcardImg2)
+      let AdhrcardImg2 = (resData.UserOKYCData && resData.UserOKYCData.adharcardbackimages != undefined && resData.UserOKYCData.adharcardbackimages != "-") ? host + "/" + resData.UserOKYCData.adharcardbackimages : host + "/upload/dashboard2.jpg"
+
+      console.log("AdhrcardImg2 ::::::::::::::::::::::::::::::::::::::", AdhrcardImg2)
       setImageAdharbackSrc(AdhrcardImg2)
     }
 
@@ -83,16 +83,16 @@ function kycuserinfo() {
   const handleImageError = () => {
     // If the image fails to load, set the image source to the default image
     setImageSrc('/src/assets/images/avatar/profile-52x52.png');
-  };  
+  };
 
 
   const panhandleImageError = () => {
-    
+
     // If the image fails to load, set the image source to the default image
     setImagePanSrc('/src/assets/images/dashboard/dashboard2.png');
   };
-  
- 
+
+
   const adharfronthandleImageError = () => {
     // If the image fails to load, set the image source to the default image
     setImageAdharfrontSrc('/src/assets/images/dashboard/dashboard2.png');
@@ -108,9 +108,9 @@ function kycuserinfo() {
 
   return (
     <>
-     
 
-      
+
+
       <div className="mb-6 w-full rounded-lg bg-white px-[42px] py-5 dark:border dark:border-darkblack-400 dark:bg-darkblack-600 lg:mb-0 lg:w-1/2 2xl:mb-6 2xl:w-full">
         <div className="my-wallet mb-8 w-full">
           <div className="mb-3 flex items-center justify-between">
@@ -187,7 +187,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
-                <img src={imagePanSrc} alt="card" onError={panhandleImageError}/>
+                <img src={imagePanSrc} alt="card" onError={panhandleImageError} />
               </div>
 
             </div>
@@ -207,15 +207,49 @@ function kycuserinfo() {
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Father's Name :- {userPankycInfo.full_name} 
+              Father's Name :- {userPankycInfo.full_name}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              DOB :- {userPankycInfo.DOB} 
+              DOB :- {userPankycInfo.DOB}
             </p>
           </div>
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Hyperverge :-
+
+              {!userPankycInfo.pancardverified ?
+                " Auto_Declined"
+                : " Auto_Approved"}
+
+
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Hyperverge Remark :- {userPankycInfo.panHypervergemark}
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Admin Status :-
+
+              {!userPankycInfo.pancardadminverified ?
+                " Auto_Declined"
+                : " Auto_Approved"}
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Admin  Remark :- {userPankycInfo.adminremark} || {userPankycInfo.adminname}
+            </p>
+          </div>
+
         </div>
       </div>
 
@@ -239,7 +273,7 @@ function kycuserinfo() {
             <div className="card-slider relative w-[500px] md:w-[500px]">
 
               <div className="w-full">
-                <img src={imageAdharbackSrc}  alt="card" onError={adharbackhandleImageError} />
+                <img src={imageAdharbackSrc} alt="card" onError={adharbackhandleImageError} />
 
               </div>
 
@@ -249,7 +283,7 @@ function kycuserinfo() {
         <div className="w-full">
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Digilocaker Verified :- {userAadharkycInfo.verified == true ? "YES": "NO"}
+              Digilocaker Verified :- {userAadharkycInfo.verified == true ? "YES" : "NO"}
             </p>
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
@@ -270,45 +304,45 @@ function kycuserinfo() {
             </p>
           </div>
 
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Hyperverge :-
+
+              {!userAadharkycInfo.verified ?
+                " Auto_Declined"
+                : " Auto_Approved"}
+
+
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Hyperverge Remark :- {userAadharkycInfo.adharcardHypervergemark}
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Admin Status :-
+
+              {!userAadharkycInfo.adharcardadminverified ?
+                " Auto_Declined"
+                : " Auto_Approved"}
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Admin  Remark :- {userAadharkycInfo.adminremark} || {userAadharkycInfo.adminname}
+            </p>
+          </div>
+
         </div>
       </div>
 
 
-      <div className="mb-6 w-full rounded-lg bg-white px-[42px] py-5 dark:border dark:border-darkblack-400 dark:bg-darkblack-600 lg:mb-0 lg:w-1/2 2xl:mb-6 2xl:w-full">
-        <div className="my-wallet mb-8 w-full">
-          <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-lg font-bold text-bgray-900 dark:text-white">
-              Kyc Status
-            </h3>
-          </div>
-        </div>
-        <div className="w-full">
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Status :- "Status"
-            </p>
-          </div>
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Hyperverge Feedback :- "Hyperverge"
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Admin Feedback :- "Admnin Remakrk" 
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Updated On  :- "10-10-2023"
-            </p>
-          </div>
-
-        </div>
-      </div>
-
+  
     </>
   );
 }
@@ -358,3 +392,38 @@ export default kycuserinfo;
 
 //           <button aria-label="none" onClick={SaveChangeDeduct}
 //           className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Deduct Money</button>
+
+// <div className="mb-6 w-full rounded-lg bg-white px-[42px] py-5 dark:border dark:border-darkblack-400 dark:bg-darkblack-600 lg:mb-0 lg:w-1/2 2xl:mb-6 2xl:w-full">
+// <div className="my-wallet mb-8 w-full">
+//   <div className="mb-3 flex items-center justify-between">
+//     <h3 className="text-lg font-bold text-bgray-900 dark:text-white">
+//       Kyc Status
+//     </h3>
+//   </div>
+// </div>
+// <div className="w-full">
+//   <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+//     <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+//       Status :- "Status"
+//     </p>
+//   </div>
+//   <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+//     <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+//       Hyperverge Feedback :- "Hyperverge"
+//     </p>
+//   </div>
+
+//   <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+//     <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+//       Admin Feedback :- "Admnin Remakrk"
+//     </p>
+//   </div>
+
+//   <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+//     <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+//       Updated On  :- "10-10-2023"
+//     </p>
+//   </div>
+
+// </div>
+// </div>
