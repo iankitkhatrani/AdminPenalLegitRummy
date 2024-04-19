@@ -28,7 +28,7 @@ function SidebarV2() {
   const { pathname: location } = useLocation();
   return (
     <aside className="relative hidden w-[96px] bg-white  dark:bg-darkblack-600 sm:block">
-      <div className="sidebar-wrapper-collapse relative top-0 z-30 w-full">
+      <div className="sidebar-wrapper-collapse top-0 z-30 w-full">
         <div className="sidebar-header sticky top-0 z-20 flex h-[108px] w-full items-center justify-center border-b border-r border-b-[#F7F7F7] border-r-[#F7F7F7] bg-white dark:border-darkblack-500 dark:bg-darkblack-600">
           <Link to="/dashboard">
             <img src={logo} className="block dark:hidden" alt="logo" />
