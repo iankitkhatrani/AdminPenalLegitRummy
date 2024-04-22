@@ -40,9 +40,20 @@ function paymentconfig() {
   const [isCheckedautopay, setIsCheckedautopay] = useState(false);
   //=================================================================================
 
+
+  
+  //==== App Version Configragtion ==========================================================
+
+  const [appversion, setAppversion] = useState({
+    App_Version: "",
+  });
+
+  //=================================================================================
+
+
   const context = useContext(offerContext)
 
-  const { Getpaymentconfig, paymentconfigset, Getwithdrawconfig, withdrawconfigset } = context
+  const { Getpaymentconfig, paymentconfigset, Getwithdrawconfig, withdrawconfigset , Getappversion,appversionset } = context
 
   useEffect(() => {
 
@@ -72,6 +83,15 @@ function paymentconfig() {
       })
       setIsCheckedautopay(WithdrawgatewayData.autopay)
       //=================================================================================
+
+      let versiondata = await Getappversion()
+      console.log("versiondata ::::::::::::::::::", versiondata)
+      setAppversion({
+        App_Version: versiondata.App_Version,
+       
+      })
+     
+      //===================================================================================
     }
     submitdata()
   }, []);
@@ -124,6 +144,7 @@ function paymentconfig() {
     }
     console.log(paymentConfig);
   };
+  
   //===================================================================================
   //================================== withdraw config  ====================================
 
@@ -161,6 +182,34 @@ function paymentconfig() {
     }
     console.log(withdrawConfig);
   };
+
+  //============================================================================================
+
+  //========================== aap version ====================================================
+
+  const handleversionChange = (event) => {
+    const { name, value } = event.target;
+    console.log("NAME :::::::::::::::::", name)
+    console.log("value :::::::::::::::::", value)
+
+    setAppversion({
+      ...appversion,
+      [name]: value,
+    });
+
+    console.log("appversion ::::::::::::::::::::::", appversion)
+
+  };
+
+  const handleSubmitAppverison= async () => {
+    let res = await appversionset(appversion)
+    console.log("REs :::::::::::::::::::::", res)
+    if (res.falgs == true) {
+      alert("Success Save")
+    }
+    console.log(appversion);
+  };
+
   //=================================================================================
 
   //================================== referral Game Bonus ====================================
@@ -491,6 +540,47 @@ function paymentconfig() {
 
         </div>
       </div>
+
+
+
+
+      <h1>
+      <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">App Version Data</p>
+      <hr></hr></h1>
+    <div className="grid grid-cols-1 gap-[24px] lg:grid-cols-1">
+      <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
+       
+
+        <div className="mb-5 flex items-center justify-between">
+          <div className="flex items-center space-x-[113px]">
+            <div className="icon">
+              <span>
+                <p className="text-1xl font-bold leading-[48px] text-bgray-900 dark:text-white">App Version</p>
+              </span>
+            </div>
+            <span className="text-lg font-semibold text-bgray-900 dark:text-white">
+              <input
+                type="text"
+                id="App_Version"
+                name="App_Version"
+                placeholder={appversion.App_Version}
+                className="bg-bgray-500 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+                onChange={handleversionChange}
+              />
+            </span>
+          </div>
+        </div>
+
+        <div className="mb-5 flex items-center justify-between">
+        <button onClick={handleSubmitAppverison}
+          aria-label="none"
+          className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">
+          App Version Sumbit
+        </button>
+      </div>
+
+      </div>
+    </div>
 
     </div>
   );

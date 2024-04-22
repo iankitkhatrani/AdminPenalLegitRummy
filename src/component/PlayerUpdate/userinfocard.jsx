@@ -30,6 +30,12 @@ function userInfo() {
   let [userInfo, SetuserInfo] = useState({})
   let [userkycInfo, SetkycuserInfo] = useState({})
   let [userpanInfo, SetuserpanInfo] = useState({})
+  let [typeofTransaction, setTypeofTransaction] = useState('ReFund');
+  let [typeofAddto, setTypeofAddto] = useState('Main Wallet');
+
+
+  let [typeofDudctfrom, setTypeofDudctfrom] = useState('Main Wallet');
+
 
   const [imageSrc, setImageSrc] = useState("");
 
@@ -83,17 +89,29 @@ function userInfo() {
 
   }
 
+
+  const [remark, setRemark] = useState(0);
+
+  const handleremark = async (event) => {
+    const { name, value } = event.target;
+    await setRemark(value)
+
+    console.log("remark", remark)
+
+  }
+
+
   const SaveChange = async () => {
     console.log("amount ", amount)
 
-    let res = await AddMoney({ money: amount, type: "Deposit", userId: Botinfo.UserId })
+    let res = await AddMoney({ money: amount, txnmode: typeofTransaction, typeofAddto: typeofAddto, type: "Deposit", userId: Botinfo.UserId })
 
     if (res.status == "ok") {
 
       alert("Successfully Added...!!")
       navigateToContacts()
     } else {
-      alert("Error Please enter")
+      alert("Error Please enter proper data ....!!")
     }
 
     setAmount(0)
@@ -105,7 +123,13 @@ function userInfo() {
   const SaveChangeDeduct = async () => {
     console.log("amount ", amount)
 
-    let res = await DeductMoney({ money: amount, type: "Deduct", userId: Botinfo.UserId })
+    if (remark == "") {
+      alert("Error Please Enter proper remark..!!")
+      return
+    }
+
+
+    let res = await DeductMoney({ money: amount, type: "Deduct", txnmode: remark, typeofDudctfrom: typeofDudctfrom, userId: Botinfo.UserId })
 
     if (res.status == "ok") {
 
@@ -121,7 +145,7 @@ function userInfo() {
   const SaveChangeBlockandUnblock = async (isblockstatus) => {
     console.log("amount ", amount)
 
-    let res = await blockandunblock({ userId: Botinfo.UserId,isblock:isblockstatus })
+    let res = await blockandunblock({ userId: Botinfo.UserId, isblock: isblockstatus })
 
     if (res.status == "ok") {
 
@@ -287,6 +311,45 @@ function userInfo() {
                 />
               </label>
             </div>
+
+
+          </div>
+
+          <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Enter amount deposit
+            </p>
+            <div className="flex h-[35px] w-full items-center justify-between">
+              <select
+                className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
+
+                onChange={(e) => setTypeofTransaction(e.target.value)}>
+                <option value="">Txn Mode</option>
+                <option value="ReFund">ReFund</option>
+                <option value="Bonus">Bonus</option>
+                <option value="Admin">Admin</option>
+                <option value="Other">Other</option>
+
+              </select>
+            </div>
+          </div>
+
+
+          <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Add To
+            </p>
+            <div className="flex h-[35px] w-full items-center justify-between">
+              <select
+                className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
+
+                onChange={(e) => setTypeofAddto(e.target.value)}>
+                <option value="">Add To</option>
+                <option value="Main Wallet">Main Wallet</option>
+                <option value="Bonus Wallet">Bonus Wallet</option>
+                <option value="Win Wallte">Win Wallte</option>
+              </select>
+            </div>
           </div>
 
 
@@ -312,6 +375,41 @@ function userInfo() {
             </div>
           </div>
 
+          <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Enter Remark
+            </p>
+            <div className="flex h-[35px] w-full items-center justify-between">
+              <span className="text-2xl font-bold text-bgray-900 dark:text-white">
+
+              </span>
+              <label className="w-full">
+                <input
+                  type="text" onChange={handleremark}
+                  className="w-full border-none p-0 text-2xl font-bold text-bgray-900 focus:outline-none focus:ring-0 dark:border-darkblack-400 dark:bg-darkblack-600 dark:text-white"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Deduct from
+            </p>
+            <div className="flex h-[35px] w-full items-center justify-between">
+              <select
+                className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
+
+                onChange={(e) => setTypeofDudctfrom(e.target.value)}>
+                <option value=""> Deduct from</option>
+                <option value="Main Wallet">Main Wallet</option>
+                <option value="Bonus Wallet">Bonus Wallet</option>
+                <option value="Win Wallte">Win Wallte</option>
+              </select>
+            </div>
+          </div>
+
+
           <button aria-label="none" onClick={SaveChangeDeduct}
             className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Deduct Money</button>
 
@@ -319,10 +417,10 @@ function userInfo() {
 
         <div>
 
-          {userInfo.isBlock ? <button aria-label="none"  onClick={(e) => SaveChangeBlockandUnblock(!userInfo.isBlock)} 
+          {userInfo.isBlock ? <button aria-label="none" onClick={(e) => SaveChangeBlockandUnblock(!userInfo.isBlock)}
             className="mt-7 bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">UnBlock</button>
             :
-            <button aria-label="none" onClick={(e) => SaveChangeBlockandUnblock(!userInfo.isBlock)} 
+            <button aria-label="none" onClick={(e) => SaveChangeBlockandUnblock(!userInfo.isBlock)}
               className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Block</button>}
 
         </div>
