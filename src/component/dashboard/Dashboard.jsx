@@ -32,13 +32,13 @@ function Dashboard() {
       settotalDeposit(apiData.totalDeposit)
 
       if(apiData.totalWithdraw != undefined)
-      settotalWithdraw(apiData.totalWithdraw)
+      settotalWithdraw(Math.abs(apiData.totalWithdraw))
 
       if(apiData.todayDeposit != undefined)
       settodayDeposit(apiData.todayDeposit)
 
       if(apiData.todayWithdraw != undefined)
-      setTodaywithdraw(apiData.todayWithdraw)
+      setTodaywithdraw(Math.abs(apiData.todayWithdraw))
 
       if(apiData.todayKYC != undefined)
       setTodaykYC(apiData.todayKYC)

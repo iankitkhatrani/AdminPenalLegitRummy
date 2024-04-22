@@ -8,7 +8,7 @@ function UserTabstate({ }) {
 
     //-------------------------------------------------------------------------------------------------------
     const [active, setActive] = useState(false);
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [fromDate, setFromDate] = useState('');
     const [toDate, setToDate] = useState('');
@@ -52,8 +52,8 @@ function UserTabstate({ }) {
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.mobileNumber.includes(searchTerm))
+        user._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.total.includes(searchTerm))
     );
   });
 
@@ -97,14 +97,14 @@ function UserTabstate({ }) {
         <tbody>
           <tr className="border-b border-bgray-300 dark:border-darkblack-400">
             
-            <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('statename')}>
+            <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('_id')}>
              
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                 State Name ⬆⬇
                 </span>
                
             </td>
-            <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('users')}>
+            <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('total')}>
               <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                 No Of Users ⬆⬇
                 </span>
@@ -116,15 +116,15 @@ function UserTabstate({ }) {
               ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    statename={user.statename}
-                    users={user.users}
+                    statename={user._id}
+                    users={user.total}
                   />
                 )
               : index < 3 && (
                   <CustomerInfo
                   key={user._id}
-                  statename={user.statename}
-                  users={user.users}
+                  statename={user._id}
+                  users={user.total}
                   />
                 )
           )}

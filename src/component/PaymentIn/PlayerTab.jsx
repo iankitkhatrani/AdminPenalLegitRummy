@@ -4,10 +4,10 @@ import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
-function PlayerTab({ }) {
+function PlayerTab({status }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -26,11 +26,11 @@ function PlayerTab({ }) {
 
   let [userData, setUserData] = useState([]);
   const context = useContext(offerContext)
-  const { PlayerList } = context
+  const { PayInDataList} = context
 
   useEffect(() => {
     const submitdata = async () => {
-      setUserData(await PlayerList())
+      setUserData(await PayInDataList(status))
     }
     submitdata()
   }, []);
@@ -38,20 +38,21 @@ function PlayerTab({ }) {
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   const filteredUsers = userData.filter((user) => {
-    console.log("dddd", user)
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
-
+    
     from != null && from.setHours(0, 0, 0)
     to != null && to.setHours(23, 0, 0)
+
     
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
       (searchTerm === '' ||
-        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.mobileNumber.includes(searchTerm))
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.userId.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     );
   });
 
@@ -105,16 +106,16 @@ function PlayerTab({ }) {
 
 
 
-const handleSort = (key) => {
-  const direction = sortDirection === 'asc' ? 'desc' : 'asc';
-  const sorted = [...userData].sort((a, b) => {
-    if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-    if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-    return 0;
-  });
-  setUserData(sorted);
-  setSortDirection(direction);
-};
+  const handleSort = (key) => {
+    const direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    const sorted = [...userData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setUserData(sorted);
+    setSortDirection(direction);
+  };
 
 
   return (
@@ -151,7 +152,7 @@ const handleSort = (key) => {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by User Name, User Id or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -178,123 +179,100 @@ const handleSort = (key) => {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
-
+          
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
         <table className="table-fixed hover:border-collapse text-center w-full">
-        <tbody>
+          <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              <td className="w-[195px] px-6 py-5 xl:px-0">
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  User Id
-                  </span>
-                 
+              <td className="w-[90px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Order ID
+                </span>
+
+              </td>
+              <td className="w-[215px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  User ID
+                </span>
               </td>
               <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
-               
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   User Name⬆⬇
-                  </span>
+                </span>
               </td>
+             
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Mobile Number⬆⬇
-                  </span>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Amount ⬆⬇
+                </span>
               </td>
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Rummy Game⬆⬇
-                  </span>
+             
+
+              
+              <td className="w-[100px] px-6 py-5 xl:px-0" >
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Payment Status ⬆⬇
+                </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Main Wallet⬆⬇
-                  </span>
+              <td className="w-[100px] px-6 py-5 xl:px-0" >
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Request Date ⬆⬇
+                </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningChips')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Win Wallet ⬆⬇
-                  </span>
+              <td className="w-[110px] px-6 py-5 xl:px-0" >
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Auto-Pay ⬆⬇
+                </span>
               </td>
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Bonus Wallet ⬆⬇
-                  </span>
-              </td>
-              <td className="w-[140px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Registration Date ⬆⬇
-                  </span>
-              </td>
-              <td className="w-[160px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Last Login ⬆⬇
-                  </span>
-              </td>
-              <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('status')}>
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Status ⬆⬇
-                  </span>
-              </td>
-              <td className="w-[60px] px-6 py-5 xl:px-0">
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Action
-                  </span>
-               
-              </td>
+
+              
+
             </tr>
-          
-            
+
+
             {usersOnCurrentPage?.map((user, index) =>
               pageSize
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    UserId={user._id}
-                    UserName={user.username}
-                    MobileNo={user.mobileNumber}
-                    totalMatch={user.counters.totalMatch}
-                    MainWallet={user.chips}
-                    WinWallet={user.winningChips}
-                    BonusWallet={user.chips}
-                    RegistrationDate={user.createdAt}
-                    LastLogin={user.lastLoginDate}
-                    status={user.status ? 'Blocked' : 'Active'}
-                    profileUrl={user.profileUrl}
-                    email={user.email}
-                    uniqueId={user.uniqueId}
-
+                    OrderID={user.OrderID}
+                    userId={user.userId}
+                    Amount={user.amount}
+                    accountNo={user.accountNo}
+                    ifscCode={user.ifscCode}
+                    UserName={user.name}
+                    PaymentMode={user.transferMode}
+                    PaymentStatus={user.paymentStatus}
+                    RequestDate={user.createdAt}
+                    Autopay="yes"
+                    Action="-"
+                    _id={user._id}
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    UserId={user._id}
-                    UserName={user.username}
-                    MobileNo={user.mobileNumber}
-                    totalMatch={user.counters.totalMatch}
-                    MainWallet={user.chips}
-                    WinWallet={user.winningChips}
-                    BonusWallet={user.chips}
-                    RegistrationDate={user.createdAt}
-                    LastLogin={user.lastLoginDate}
-                    status={user.status ? 'Blocked' : 'Active'}
-                    profileUrl={user.profileUrl}
-                    email={user.email}
-                    uniqueId={user.uniqueId}
+                    OrderID={user.OrderID}
+                    userId={user.userId}
+                    Amount={user.amount}
+                    accountNo={user.accountNo}
+                    ifscCode={user.ifscCode}
+                    UserName={user.name}
+                    PaymentMode={user.transferMode}
+                    PaymentStatus={user.paymentStatus}
+                    RequestDate={user.createdAt}
+                    Autopay="yes"
+                    Action="-"
+                    _id={user._id}
                   />
                 )
             )}

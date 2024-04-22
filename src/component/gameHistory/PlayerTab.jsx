@@ -9,7 +9,7 @@ function PlayerTab({ gameName }) {
 
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -242,7 +242,7 @@ function PlayerTab({ gameName }) {
                     gameId={user.gameId}
                     gamePlayType={user.gamePlayType}
                     maxSeat={user.maxSeat}
-                    tableAmount={user.tableAmount}
+                    tableAmount={user.tableAmount.toFixed(2)}
                     date={user.date}
                     entryFee={user.entryFee}
                     srno ={index}
@@ -255,7 +255,7 @@ function PlayerTab({ gameName }) {
                     gameId={user.gameId}
                     gamePlayType={user.gamePlayType}
                     maxSeat={user.maxSeat}
-                    tableAmount={user.tableAmount}
+                    tableAmount={user.tableAmount.toFixed(2)}
                     date={user.date}
                     entryFee={user.entryFee}
                     srno ={index}

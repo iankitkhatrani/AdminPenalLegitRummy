@@ -143,7 +143,7 @@ function kycuserinfo() {
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Gender :- {userAadharkycInfo.gender == "M" ? "MALE" : "FEMALE"}
+              Gender :- {userAadharkycInfo.gender == "-" ? "-" : userAadharkycInfo.gender == "M" ? "MALE" : "FEMALE"}
             </p>
           </div>
 

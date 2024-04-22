@@ -11,7 +11,7 @@ function UserTab({ gameType }) {
 
   //=-----------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');

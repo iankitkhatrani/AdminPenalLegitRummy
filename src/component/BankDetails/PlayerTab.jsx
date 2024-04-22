@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function PlayerTab({status }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -190,7 +190,14 @@ function PlayerTab({status }) {
         <table className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              
+
+              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('userId')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  User Id⬆⬇
+                </span>
+              </td>
+
               <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
@@ -217,14 +224,14 @@ function PlayerTab({status }) {
                   amountNumber⬆⬇
                 </span>
               </td>
-              <td className="w-[60px] px-6 py-5 xl:px-0" onClick={() => handleSort('IFSC')}>
+              <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('IFSC')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   IFSC⬆⬇
                 </span>
               </td>
 
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
+              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   createdAt ⬆⬇
@@ -232,7 +239,7 @@ function PlayerTab({status }) {
               </td>
 
 
-              <td className="w-[70px] px-6 py-5 xl:px-0">
+              <td className="w-[85px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                 Hyperverge Response

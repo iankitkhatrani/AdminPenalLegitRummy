@@ -10,7 +10,7 @@ import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 function PlayerTab({ }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');

@@ -6,7 +6,7 @@ function botList() {
       {/* write your code here */}
       <div className="2xl:flex 2xl:space-x-[48px]">
         <section className="2xl:w-100 w-full 2xl:mb-0 mb-6">
-          <BotManagement pageSize={9} />
+          <BotManagement pageSize={10} />
         </section>
       </div>
     </main>

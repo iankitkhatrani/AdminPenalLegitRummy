@@ -4,7 +4,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
 
-function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNumber, IFSC, createdAt, paymentStatus,paymentreMark,adminStatus, reMark }) {
+function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNumber, IFSC, createdAt, paymentStatus, paymentreMark, adminStatus, reMark }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -82,6 +82,24 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
               "border-radius": "4px"
             }} onClick={() => navigateToContacts(UserId)} >
 
+              {UserId}
+            </button>
+          </p>
+        </td>
+
+        <td className="w-[65px] px-6 py-5 xl:px-0">
+
+          <p className="text-base font-semibold text-bgray-900 dark:text-white">
+            <button styles={{
+              "margin": "1px",
+              "background-color": "white",
+              "color": "white",
+              "border": "none",
+              "padding": "5px 10px",
+              "cursor": "pointer",
+              "border-radius": "4px"
+            }} onClick={() => navigateToContacts(UserId)} >
+
               {name}
             </button>
           </p>
@@ -115,11 +133,11 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
         <td className="w-[165px] px-6 py-5 xl:px-0">
 
 
-          {paymentStatus == "Pending" || paymentStatus ==  "Rejected" ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
+          {paymentStatus == "Pending" || paymentStatus == "Rejected" ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
             Auto_Declined
           </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Auto_Approved</p>}
         </td>
-        
+
         <td className="w-[165px] px-6 py-5 xl:px-0">
           <p className="text-base font-medium text-bgray-900 dark:text-white">
             {paymentreMark}
@@ -130,7 +148,7 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
 
 
           {adminStatus == "Pending" || adminStatus == "Rejected" ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
-          {adminStatus}
+            {adminStatus}
           </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">{adminStatus}</p>}
         </td>
 
