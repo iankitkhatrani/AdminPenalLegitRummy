@@ -1,42 +1,72 @@
 import ProtoTypes from "prop-types";
 
-function PlayerInfo({ date,gameId,gameType,deductAmount,winningAmount,winningStatus}) {
+
+function formatDateTo12hr(dateTimeStr) {
+  const dateTime = new Date(dateTimeStr);
+  const formattedDate = dateTime.toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true // Set to true for 12-hour format
+  });
+  return formattedDate;
+}
+
+function PlayerInfo({ gameId, tableId, player, gamePlayType, amount, gamemode, winningStatus, date }) {
+  console.log("winningStatus ",winningStatus)
   return (
     <tr className="hover:bg-gray-600 border-b dark:border-darkblack-400">
-      
+
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        
-          <p className="text-base font-semibold text-bgray-900 dark:text-white">
-            {date}
-          </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
+
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
           {gameId}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {gameType}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-        ₹{deductAmount}
+          {tableId}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-        ₹{winningAmount}
+          {player}
         </p>
       </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          {gamePlayType}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          ₹{amount}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {gamemode}
+        </p>
+      </td>
+
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {winningStatus}
         </p>
       </td>
-     
-      
+
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+        {formatDateTo12hr(date)}
+        </p>
+      </td>
+
+
+
+
     </tr>
   );
 }

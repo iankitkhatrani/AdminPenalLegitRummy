@@ -317,7 +317,7 @@ function userInfo() {
 
           <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Enter amount deposit
+              Txn Mode
             </p>
             <div className="flex h-[35px] w-full items-center justify-between">
               <select

@@ -61,6 +61,7 @@ import BotConfig from './pages/botconfig'
 import BankUpdate from "./pages/BankUpdate";
 import ReferralManagement from "./pages/ReferralManagement";
 import ReferralUserManagement from "./pages/ReferralUserManagement";
+import KycProfileUpdate from "./pages/KycProfileUpdate";
 
 
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
+      {
+        path: "/kycprofileupdate",
+        element: <KycProfileUpdate />,
+      },
       {
         path: "/ReferralUserManagement",
         element: <ReferralUserManagement />,

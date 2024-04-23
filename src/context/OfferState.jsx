@@ -2164,6 +2164,38 @@ const OfferState = (props) => {
         }
     }
 
+
+    const KYCUpdateprofile = async (data) => {
+        try {
+            console.log("PlayerList :::::::", host)
+            console.log("KYCUpdateprofile :::::::", data)
+
+            const response = await fetch(`${host}/admin/user/KYCUpdateprofile`, {
+                method: 'put',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(d => d.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return {}
+            } else {
+                return json
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
     //===================================================
 
 
@@ -2842,7 +2874,7 @@ const OfferState = (props) => {
             PayoutList, PayoutAccptedList, PayoutRejectedList, PayoutUpdate, UploadScreenshortPayout,
             GetDealBetList, addTableentryAPI, DeleteTableEntry, TableEntryUpdate,
             Chnageidpwd, Chnageidprofile,
-            KYCPageList, KYCUpdate,
+            KYCPageList, KYCUpdate,KYCUpdateprofile,
             BankList,
             TrancationData,
             GetWelComeBonus, WelComeBonusset, GetreferralBonus, referralBonusset, GetreferralgameBonus, referralgameBonusset,

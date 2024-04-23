@@ -226,45 +226,38 @@ function PlayerTab({ UserId, gameName }) {
               
               <td className="w-[165px] px-6 py-5 lg:w-auto xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    Date Time⬆⬇
+                Order Id
                   </span>
                  
               </td>
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 
                   <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                    UniqueId⬆⬇
+                  Txn Amount
                   </span>
                   
               </td>
-              <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('chips')}>
+              <td className="w-[195px] px-6 py-5 xl:px-0" >
                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Chips ⬆⬇
+                 Status
                   </span>
                  
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('transAmount')}>
+              <td className="w-[165px] px-6 py-5 xl:px-0" >
                 
                   <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Withdrawal⬆⬇
+                  Payment Gateway
                   </span>
                 
               </td>
-              <td className="w-[195px] px-6 py-5 xl:px-0" onClick={() => handleSort('totalBucket')}>
+              <td className="w-[195px] px-6 py-5 xl:px-0">
                 
                   <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Current Chips	⬆⬇
+                  Processed On	⬆⬇
                   </span>
                 
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                
-                  <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Type⬆⬇
-                  </span>
-               
-              </td>
-           
+          
               
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
@@ -272,24 +265,22 @@ function PlayerTab({ UserId, gameName }) {
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
+                    OrderID={user.OrderID}
+                    amount={user.amount}
+                    paymentStatus={user.paymentStatus}
+                    paymentGateway={user.paymentGateway}
                     createdAt={user.createdAt}
-                    uniqueId={user.uniqueId}
-                    chips={user.chips}
-                    transAmount={user.transAmount}
-                    totalBucket={user.totalBucket}
-                    transTypeText={user.transTypeText}
 
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
+                    OrderID={user.OrderID}
+                    amount={user.amount}
+                    paymentStatus={user.paymentStatus}
+                    paymentGateway={user.paymentGateway}
                     createdAt={user.createdAt}
-                    uniqueId={user.uniqueId}
-                    chips={user.chips}
-                    transAmount={user.transAmount}
-                    totalBucket={user.totalBucket}
-                    transTypeText={user.transTypeText}
 
                   />
                 )

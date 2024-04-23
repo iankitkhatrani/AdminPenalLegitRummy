@@ -15,7 +15,9 @@ function PlayerTab({ UserId, gameName }) {
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
+  const [refreshData, setRefreshData] = useState(false);
 
+  
   const Dropdown = (item) => {
     setPageSize(item)
     setActive(!active)
@@ -23,41 +25,41 @@ function PlayerTab({ UserId, gameName }) {
   //------------------------------------------------------------------------------------------------------------
   const location = useLocation();
   const Botinfo = location.state;
-  
+
   let [gameHistoryData, setGameHistoryData] = useState([]);
 
   const context = useContext(offerContext)
-  const { GetBlackandWhiteHistoryData, aviatorHistoryData, GetCompleteWithdrawalData, GetCompleteDespositeData, GetRegisterReferralBonusData } = context
+  const { GetBlackandWhiteHistoryData } = context
 
 
   useEffect(() => {
     const submitdata = async () => {
-       setGameHistoryData(await GetBlackandWhiteHistoryData(Botinfo.UserId))
-       
+      setGameHistoryData(await GetBlackandWhiteHistoryData(Botinfo.UserId))
+      console.log("setGameHistoryData ````````````````:::::::::::", gameHistoryData)
     }
     submitdata()
-  }, [gameName]);
+  }, [gameName,refreshData]);
 
+  console.log("gameHistoryData ````````````````:::::::::::", gameHistoryData)
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
   let filteredUsers = []
   if (gameHistoryData && gameHistoryData.length > 0) {
     filteredUsers = gameHistoryData.filter((user) => {
- 
+
       const registrationDate = new Date(user.date);
       const from = fromDate ? new Date(fromDate) : null;
       const to = toDate ? new Date(toDate) : null;
 
       from != null && from.setHours(0, 0, 0)
       to != null && to.setHours(23, 0, 0)
-      
+
       return (
         (!from || registrationDate >= from) &&
         (!to || registrationDate <= to) &&
         (searchTerm === '' ||
           user.gameId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.winningStatus.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.gameType.includes(searchTerm))
+          user.gamePlayType.includes(searchTerm))
       );
     });
   }
@@ -179,10 +181,15 @@ function PlayerTab({ UserId, gameName }) {
             placeholder="To Date"
             value={toDate}
             onChange={handleToDateChange}
-            style={{ marginLeft: "1rem",color: "black" }}
+            style={{ marginLeft: "1rem", color: "black" }}
           />
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
+
+            <button aria-label="none" onClick={() => setRefreshData(!refreshData)}
+            className="bg-blue-300  dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Refresh Data</button>
+
+
 
 
         </div>
@@ -193,6 +200,53 @@ function PlayerTab({ UserId, gameName }) {
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
 
+
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Game Id⬆⬇
+                </span>
+
+              </td>
+
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Table Id
+                </span>
+
+              </td>
+
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Players
+                </span>
+
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameType')}>
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Game Type⬆⬇
+                </span>
+
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0" >
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Amount
+                </span>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Game Mode
+                </span>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Status⬆⬇
+                </span>
+              </td>
               <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('date')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
@@ -200,37 +254,7 @@ function PlayerTab({ UserId, gameName }) {
                 </span>
 
               </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
 
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Game Id⬆⬇
-                </span>
-
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameType')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Game Type⬆⬇
-                </span>
-
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" >
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Deduct Amount⬆⬇
-                </span>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Winning Amount⬆⬇
-                </span>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0" onClick={() => handleSort('winningStatus')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Winning Status⬆⬇
-                </span>
-              </td>
-             
 
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
@@ -238,24 +262,30 @@ function PlayerTab({ UserId, gameName }) {
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    date={user.date}
+                   
                     gameId={user.gameId}
-                    gameType={user.gameType}
-                    deductAmount={user.deductAmount}
-                    winningAmount={user.winningAmount}
-                    winningStatus={user.winningStatus}
+                    tableId={user.tableId}
+                    player={user.maxSeat}
+                    gamePlayType={user.gamePlayType}
+                    amount={user.tableAmount}
+                    gamemode="cash"
+                    winningStatus={user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus != undefined ?  user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus : "LOSS"}
+                    date={user.date}
+                    
 
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    date={user.date}
                     gameId={user.gameId}
-                    gameType={user.gameType}
-                    deductAmount={user.deductAmount}
-                    winningAmount={user.winningAmount}
-                    winningStatus={user.winningStatus}
+                    tableId={user.tableId}
+                    player={user.maxSeat}
+                    gamePlayType={user.gamePlayType}
+                    amount={user.tableAmount}
+                    gamemode="cash"
+                    winningStatus={user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus != undefined ?  user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus : "LOSS"}
+                    date={user.date}
                   />
                 )
             )}
