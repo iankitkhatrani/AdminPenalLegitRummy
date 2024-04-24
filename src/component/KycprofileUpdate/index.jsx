@@ -15,7 +15,7 @@ function kycprofileupdate() {
   const context = useContext(offerContext)
   const { KYCUpdateprofile } = context
 
-  const BotmodeList = ["true", "false"];
+  const BotmodeList = ["Success", "Reject"];
 
   const [statusModeOption, setStatusModeOption] = useState('');
 
@@ -55,13 +55,15 @@ function kycprofileupdate() {
         adminname: cookies.get('name')
       })
       console.log("KycInfo 11111111111111111111111", KycInfo)
-      setStatusModeOption(KycInfo.adharcardadminverified)
-      setStatusPanModeOption(KycInfo.pancardadminverified)
+      setStatusModeOption(KycInfo.adharcardadminverified == true ? "Success" : "Reject" )
+      setStatusPanModeOption(KycInfo.pancardadminverified == true ? "Success" : "Reject" )
 
     }
     submitdata()
   }, []);
 
+  console.log("statusModeOption ",statusModeOption)
+  console.log("statusPanModeOption ",KycInfo.pancardadminverified , statusPanModeOption)
 
 
   const handleChange = (event) => {
@@ -82,7 +84,7 @@ function kycprofileupdate() {
     setStatusModeOption(value);
     SetuserInfo({
       ...userInfo,
-      ["adharcardadminverified"]: value,
+      ["adharcardadminverified"]:  value == "Success" ? true : false,
     });
     console.log("userInfo :::::::::::::::::::::", userInfo)
   };
@@ -93,7 +95,7 @@ function kycprofileupdate() {
     setStatusPanModeOption(value);
     SetuserInfo({
       ...userInfo,
-      ["pancardadminverified"]: value,
+      ["pancardadminverified"]: value == "Success" ? true : false,
     });
     console.log("userInfo :::::::::::::::::::::", userInfo)
   };

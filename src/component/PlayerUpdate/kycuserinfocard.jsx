@@ -361,8 +361,8 @@
 
 
             <button aria-label="none" onClick={() => navigateToContactsProfileUpdate(Botinfo.UserId, userInfo.name, userInfo.email, userAadharkycInfo.adharcard, userPankycInfo.pancard,
-              userAadharkycInfo.adminremark, userAadharkycInfo.adharcardadminverified, userPankycInfo.pancardverified)}
-              className="mt-7 bg-blue-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4  py-3 font-semibold text-sm">Edit Profile</button>
+              userAadharkycInfo.adminremark, userAadharkycInfo.adharcardadminverified, userPankycInfo.pancardadminverified)}
+              className="mt-7 bg-blue-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4  py-3 font-semibold text-sm">Edit Kyc</button>
 
               
             <button aria-label="none" onClick={() => setRefreshData(!refreshData)}
