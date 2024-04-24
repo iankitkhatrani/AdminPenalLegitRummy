@@ -49,7 +49,7 @@ function PlayerTab({ }) {
 
     from != null && from.setHours(0, 0, 0)
     to != null && to.setHours(23, 0, 0)
-    
+
     const typeoftrancation = typeofTransaction == "Bonus" ? ["SingUp Bonus",
       "Deal Playing Entry Deduct bonus", "Pool Playing Entry Deduct bonus",
       "Point Playing Entry Deduct bonus",
@@ -64,18 +64,14 @@ function PlayerTab({ }) {
     ] : typeofTransaction == "Referral" ? ["Reffral Bonus"
     ] : null;
 
-    console.log("typeoftrancation ", typeoftrancation)
-
+    console.log("typeofTransaction ",typeofTransaction)
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
-      (!typeoftrancation || typeoftrancation.indexOf(user.transTypeText)) &&
+      (typeofTransaction === '' || (user.type != undefined  && user.type.includes(searchTerm))) &&
       (searchTerm === '' ||
         (user.OrderId != undefined && user.OrderId.includes(searchTerm)) ||
-        (user.uniqueId != undefined && user.uniqueId.includes(searchTerm)) ||
-        (user.username != undefined && user.username.includes(searchTerm)) 
-
-        
+        (user.username != undefined && user.username.includes(searchTerm))
       )
     );
   });
@@ -136,7 +132,7 @@ function PlayerTab({ }) {
   };
 
   const generatePDF = () => {
-    
+
     const input = document.getElementById("tableId");
     html2canvas(input)
       .then((canvas) => {
@@ -149,7 +145,7 @@ function PlayerTab({ }) {
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
         pdf.save(`${new Date() + 'transcation'}.pdf`);
-        
+
       })
       .catch((error) => console.log(error));
 
@@ -190,7 +186,7 @@ function PlayerTab({ }) {
               <input
                 type="text"
                 id="listSearch"
-                placeholder="Search by name, email, or others..."
+                placeholder="Search by name, or others..."
                 className="search-input w-full border-none bg-bgray-100 px-0 text-sm tracking-wide text-bgray-600 placeholder:text-sm placeholder:font-medium placeholder:text-bgray-500 focus:outline-none focus:ring-0 dark:bg-darkblack-500"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -269,7 +265,7 @@ function PlayerTab({ }) {
 
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={generatePDF}>
-           
+
             Download as PDF
           </button>
 
@@ -300,7 +296,7 @@ function PlayerTab({ }) {
               <td className="w-[125px] px-6 py-5 xl:px-0" onClick={() => handleSort('transAmount')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  transAmount ⬆⬇
+                  Txn Amount(Rs)⬆⬇
                 </span>
               </td>
 
@@ -318,54 +314,33 @@ function PlayerTab({ }) {
                 </span>
               </td>
 
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('bonusChips')}>
+              <td className="w-[170px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Bonus Wallet ⬆⬇
+                  Date ⬆⬇
                 </span>
               </td>
 
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('referralChips')}>
+              <td className="w-[160px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  referral Wallet ⬆⬇
+                  Type ⬆⬇
                 </span>
               </td>
 
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('totalBucket')}>
+              <td className="w-[160px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Total Wallet ⬆⬇
+                  Payment Gateway ⬆⬇
                 </span>
               </td>
 
-              <td className="w-[160px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Registration Date ⬆⬇
-                </span>
-              </td>
-              <td className="w-[110px] px-6 py-5 xl:px-0" onClick={() => handleSort('transType')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  transType ⬆⬇
-                </span>
-              </td>
               <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('transTypeText')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  transTypeText ⬆⬇
+                  Remark ⬆⬇
                 </span>
               </td>
-
-              <td className="w-[70px] px-6 py-5 xl:px-0" onClick={() => handleSort('gameId')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  gameId ⬆⬇
-                </span>
-              </td>
-
-
             </tr>
 
 
@@ -379,13 +354,10 @@ function PlayerTab({ }) {
                     transAmount={user.transAmount}
                     winningChips={user.winningChips != undefined ? user.winningChips.toFixed(2) : "0"}
                     chips={user.chips != undefined ? user.chips.toFixed(2) : "0"}
-                    bonusChips={user.bonusChips != undefined ? user.bonusChips.toFixed(2) : "0"}
-                    referralChips={user.referralChips != undefined ? user.referralChips.toFixed(2) : "0"}
-                    totalBucket={user.totalBucket != undefined ? user.totalBucket.toFixed(2) : "0"}
                     createdAt={user.createdAt}
-                    transType={user.transType}
+                    type={user.type}
+                    paymentGateway={user.paymentGateway}
                     transTypeText={user.transTypeText}
-                    gameId={user.gameId}
                     uid={user.userId}
                   />
                 )
@@ -397,13 +369,10 @@ function PlayerTab({ }) {
                     transAmount={user.transAmount}
                     winningChips={user.winningChips != undefined ? user.winningChips.toFixed(2) : "0"}
                     chips={user.chips != undefined ? user.chips.toFixed(2) : "0"}
-                    bonusChips={user.bonusChips != undefined ? user.bonusChips.toFixed(2) : "0"}
-                    referralChips={user.referralChips != undefined ? user.referralChips.toFixed(2) : "0"}
-                    totalBucket={user.totalBucket != undefined ? user.totalBucket.toFixed(2) : "0"}
                     createdAt={user.createdAt}
-                    transType={user.transType}
+                    type={user.type}
+                    paymentGateway={user.paymentGateway}
                     transTypeText={user.transTypeText}
-                    gameId={user.gameId}
                     uid={user.userId}
                   />
                 )

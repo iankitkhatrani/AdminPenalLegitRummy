@@ -6,7 +6,7 @@ import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ OrderID, userId, UserName, Amount, accountNo, ifscCode, PaymentMode, PaymentStatus, RequestDate, Autopay, Action, _id }) {
+function PlayerInfo({ OrderID, userId, UserName, Amount, accountNo, ifscCode, PaymentMode, PaymentStatus,paymentGateway, RequestDate, Autopay, Action, _id }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -97,6 +97,13 @@ function PlayerInfo({ OrderID, userId, UserName, Amount, accountNo, ifscCode, Pa
           {PaymentStatus}
         </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">{PaymentStatus}</p>}
       </td>
+
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-semibold text-bgray-900 dark:text-white">
+          {paymentGateway}
+        </p>
+      </td>
+      
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
           {formatDateTo12hr(RequestDate)}

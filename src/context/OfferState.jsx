@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-const host = "http://rummylegit.com:3001";//"http://192.168.0.203:3000"//
+const host = "http://192.168.0.203:3000"//"http://rummylegit.com:3001";//
 //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ5Y2NlM2JhNDA4YTJlMjg3ZjJlYzUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQHNpc3VnYW16LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHhZZzVMUlNRRWxiNENOZnVocjdncmUyUjNMOUQ5eDhaWmc0c0QxSW9uY1N6ZWFTSHgzMTIuIiwiY3JlYXRlZEF0IjoiMjAyMy0xMS0wN1QwNTozNjozNS42NjBaIiwibW9kaWZpZWRBdCI6IjIwMjMtMTEtMDdUMDU6MzY6MzUuNjYwWiIsImlhdCI6MTY5OTMzNTQxMywiZXhwIjoxNjk5OTQwMjEzfQ.NrLsWSnyD09P3h30rsng_R3bygn3TsKl8nXyD7qom4c";
 
 const OfferState = (props) => {
@@ -398,6 +398,34 @@ const OfferState = (props) => {
     }
 
    
+    const DeviceData = async (userId) => {
+        try {
+            console.log("DeviceData :::::::", `${host}/admin/user/DeviceData`)
+            const response = await fetch(`${host}/admin/user/DeviceData?userId=` + userId, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :DeviceData :::...", json)
+
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return {}
+            } else {
+                return await json
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
 
     // History 
     const GetBlackandWhiteHistoryData = async (userId) => {
@@ -2722,6 +2750,66 @@ const OfferState = (props) => {
     }
 
 
+    const Getmatchmaking = async () => {
+        try {
+            console.log("Getmatchmaking :::::::", `${host}/admin/payment/Getmatchmaking`)
+            const response = await fetch(`${host}/admin/payment/Getmatchmaking`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :Getmatchmaking :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+    
+    const matchmakingupdateset = async (data) => {
+        try {
+            console.log("appversionset :::::::", `${host}/admin/payment/match-making-update`)
+            const response = await fetch(`${host}/admin/payment/match-making-update`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                },
+                body: JSON.stringify(data)
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return json
+            } else {
+                return await json
+            }
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+
     //============================================================================
 
     //=================== Payment Cofig Setup ============================
@@ -2858,7 +2946,7 @@ const OfferState = (props) => {
         <offerContext.Provider value={{
             host,
             adminname, adminEmail, dashboardData, latatestUser, PlayerList, PlayerData,
-            BankData,BankUpdate, PayoutDataList,PayInDataList,
+            BankData,DeviceData,BankUpdate, PayoutDataList,PayInDataList,
             PlayerAdd, PlayerDelete, RummyGameHistory, AviatorGameHistory, GameLogicSet, GetGameLogic, GetBlackandWhiteHistoryData, aviatorHistoryData, GetCompleteWithdrawalData,
             GetCompleteDespositeData, GetRegisterReferralBonusData, GetMyReferralData,
             SocailURLsList, SocailURLsAdd, DeleteSocailURLs,
@@ -2883,7 +2971,8 @@ const OfferState = (props) => {
             Getbotconfig,Botconfigset,
             ReferralList,blockandunblock,
             ReferralUserList,
-            Getappversion,appversionset
+            Getappversion,appversionset,
+            Getmatchmaking,matchmakingupdateset
         }}>
             {props.children}
         </offerContext.Provider>)

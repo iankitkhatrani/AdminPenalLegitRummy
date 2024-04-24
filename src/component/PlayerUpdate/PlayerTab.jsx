@@ -267,7 +267,7 @@ function PlayerTab({ UserId, gameName }) {
                     tableId={user.tableId}
                     player={user.maxSeat}
                     gamePlayType={user.gamePlayType}
-                    amount={user.tableAmount}
+                    amount={user.tableAmount.toFixed(2)}
                     gamemode="cash"
                     winningStatus={user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus != undefined ?  user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus : "LOSS"}
                     date={user.date}
@@ -282,7 +282,7 @@ function PlayerTab({ UserId, gameName }) {
                     tableId={user.tableId}
                     player={user.maxSeat}
                     gamePlayType={user.gamePlayType}
-                    amount={user.tableAmount}
+                    amount={user.tableAmount.toFixed(2)}
                     gamemode="cash"
                     winningStatus={user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus != undefined ?  user.playerInfo.filter((e)=>{ return e._id ==  Botinfo.UserId } )[0].playerStatus : "LOSS"}
                     date={user.date}

@@ -7,7 +7,7 @@ import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
-function PlayerInfo({ OrderId, username, transAmount, winningChips, chips, bonusChips, referralChips, totalBucket, createdAt, transType, transTypeText, gameId, uid }) {
+function PlayerInfo({ OrderId, username, transAmount, winningChips, chips, createdAt, type, paymentGateway, transTypeText, uid }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -88,10 +88,10 @@ function PlayerInfo({ OrderId, username, transAmount, winningChips, chips, bonus
       <td className="w-[145px] px-6 py-5 xl:px-0">
         {
           transAmount > 0 ?
-            <p style={{ "color": "green" }} className="text-base font-semibold ">
+            <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">
               ₹{transAmount}
             </p> :
-            <p style={{ "color": "red" }} className="text-base font-semibold">
+            <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
               ₹{transAmount}
             </p>
 
@@ -109,21 +109,7 @@ function PlayerInfo({ OrderId, username, transAmount, winningChips, chips, bonus
           ₹{chips}
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{bonusChips}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{referralChips}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ₹{totalBucket}
-        </p>
-      </td>
+
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {formatDateTo12hr(createdAt)}
@@ -131,17 +117,17 @@ function PlayerInfo({ OrderId, username, transAmount, winningChips, chips, bonus
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {transType}
+          {type}
+        </p>
+      </td>
+      <td className="w-[165px] px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {paymentGateway}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {transTypeText}
-        </p>
-      </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-        <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {gameId}
         </p>
       </td>
 

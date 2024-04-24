@@ -1044,6 +1044,15 @@ function Sidebar({ handleActive }) {
                   className={`sub-menu ml-2.5 mt-[22px]  border-l transition-all overflow-hidden border-success-100 pl-5  ${activesetting ? "active" : ""
                     }`}
                 >
+                <li>
+                    <Link
+                      to="/appmaintenance"
+                      className={`text-md inline-block py-1.5 font-medium text-bgray-600 transition-all hover:text-bgray-800 dark:text-bgray-50 hover:dark:text-success-300 ${location === "/home-2" ? "nav-active" : ""
+                        }`}
+                    >
+                      App Maintenance
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       to="/botconfiguration"

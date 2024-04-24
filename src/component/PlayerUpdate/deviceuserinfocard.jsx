@@ -19,19 +19,10 @@ function deviceuserinfo() {
   //console.log("kycuserinfocard User Info  ", Botinfo)
 
   const context = useContext(offerContext)
-  const { host, PlayerData } = context
+  const { host, DeviceData } = context
 
 
-  const navigate = useNavigate();
-  const navigateToContacts = () => {
-    // 👇️ navigate to /contacts 
-    navigate('/transaction');
-  };
-
-  let [userInfo, SetuserInfo] = useState({})
-  let [userPankycInfo, SetkyPancuserInfo] = useState({})
-  let [userAadharkycInfo, SetkyAadharcuserInfo] = useState({})
-
+  let [userdeviceInfo, SetuserdeviceInfo] = useState({})
 
 
   useEffect(() => {
@@ -39,11 +30,9 @@ function deviceuserinfo() {
     const submitdata = async () => {
 
 
-      let resData = await PlayerData(Botinfo.UserId)
+      let resData = await DeviceData(Botinfo.UserId)
 
-      await SetuserInfo(resData.userInfo)
-      await SetkyPancuserInfo(resData.UserOKYC)
-      await SetkyAadharcuserInfo(resData.UserOKYC)
+      await SetuserdeviceInfo(resData.userDecviceInfo)
 
 
 
@@ -53,19 +42,7 @@ function deviceuserinfo() {
 
   }, [Botinfo.UserId]);
 
-  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
-
-  const handleImageError = () => {
-    // If the image fails to load, set the image source to the default image
-    setImageSrc('/src/assets/images/avatar/profile-52x52.png');
-  };
-
-  const [imagePanSrc, setImagePanSrc] = useState(host + "/upload/avatar/" + userInfo.avatar + ".jpg");
-
-  const panhandleImageError = () => {
-    // If the image fails to load, set the image source to the default image
-    setImagePanSrc('/src/assets/images/dashboard/dashboard2.png');
-  };
+  console.log("userdeviceInfo ",userdeviceInfo)
   
   return (
     <>
@@ -83,60 +60,60 @@ function deviceuserinfo() {
         <div className="w-full">
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Device Name :- "Device name"
+              Device Name :- {userdeviceInfo.deviceName}
             </p>
           </div>
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-            Device Model :- "aDevice Model"
-            </p>
-          </div>
-
-          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
-            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Device Type :- "Device Type"
+            Device Model :-  {userdeviceInfo.deviceModel}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              OS :- "Android"
+              Device Type :- {userdeviceInfo.deviceType}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              RAM :- "4 GB"
+              OS :- {userdeviceInfo.operatingSystem}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-            Processer Type :- "Process"
+              RAM :- {userdeviceInfo.systemMemorySize}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-            Processer Count :- 2
+            Processer Type :- {userdeviceInfo.processorType}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Battry Percentage :- 0.33
+            Processer Count :- {userdeviceInfo.processorCount}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Mobile Platform :- "Tab"
+              Battry Percentage :- {userdeviceInfo.batteryLevel}
             </p>
           </div>
 
           <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-              Genuinity Check :- "Genulnity"
+              Mobile Platform :- {userdeviceInfo.platform}
+            </p>
+          </div>
+
+          <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
+            <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
+              Genuinity Check :- {userdeviceInfo.genuineCheckAvailable}
             </p>
           </div>
         </div>

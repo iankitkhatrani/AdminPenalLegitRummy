@@ -4,7 +4,7 @@ import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
-function PlayerTab({status }) {
+function PlayerTab({ status }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
   const [pageSize, setPageSize] = useState(10);
@@ -26,7 +26,7 @@ function PlayerTab({status }) {
 
   let [userData, setUserData] = useState([]);
   const context = useContext(offerContext)
-  const { PayInDataList} = context
+  const { PayInDataList } = context
 
   useEffect(() => {
     const submitdata = async () => {
@@ -41,11 +41,11 @@ function PlayerTab({status }) {
     const registrationDate = new Date(user.createdAt);
     const from = fromDate ? new Date(fromDate) : null;
     const to = toDate ? new Date(toDate) : null;
-    
+
     from != null && from.setHours(0, 0, 0)
     to != null && to.setHours(23, 0, 0)
 
-    
+
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
@@ -179,7 +179,7 @@ function PlayerTab({status }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-          
+
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
@@ -205,22 +205,32 @@ function PlayerTab({status }) {
                   User Name⬆⬇
                 </span>
               </td>
-             
+
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Amount ⬆⬇
                 </span>
               </td>
-             
 
-              
+
+
               <td className="w-[100px] px-6 py-5 xl:px-0" >
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Payment Status ⬆⬇
                 </span>
               </td>
+
+              <td className="w-[110px] px-6 py-5 xl:px-0" >
+
+                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+                  Payment Gateway ⬆⬇
+                </span>
+              </td>
+
+
+
               <td className="w-[100px] px-6 py-5 xl:px-0" >
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
@@ -234,7 +244,7 @@ function PlayerTab({status }) {
                 </span>
               </td>
 
-              
+
 
             </tr>
 
@@ -252,6 +262,8 @@ function PlayerTab({status }) {
                     UserName={user.name}
                     PaymentMode={user.transferMode}
                     PaymentStatus={user.paymentStatus}
+                    paymentGateway={user.paymentGateway}
+
                     RequestDate={user.createdAt}
                     Autopay="yes"
                     Action="-"
@@ -269,6 +281,7 @@ function PlayerTab({status }) {
                     UserName={user.name}
                     PaymentMode={user.transferMode}
                     PaymentStatus={user.paymentStatus}
+                    paymentGateway={user.paymentGateway}
                     RequestDate={user.createdAt}
                     Autopay="yes"
                     Action="-"

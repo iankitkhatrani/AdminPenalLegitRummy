@@ -117,14 +117,14 @@ function UserTab({ }) {
               ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    UserName={user.username}
+                    UserName={user.name}
                     RegistrationDate={user.createdAt}
                   />
                 )
               : index < 3 && (
                   <CustomerInfo
                   key={user._id}
-                  UserName={user.username}
+                  UserName={user.name}
                   RegistrationDate={user.createdAt}
                   />
                 )

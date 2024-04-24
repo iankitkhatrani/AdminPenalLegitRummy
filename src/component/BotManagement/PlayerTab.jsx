@@ -233,7 +233,7 @@ function PlayerTab({ }) {
                     img={user.avatar}
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
-                    MainWallet={user.chips}
+                    MainWallet={user.chips.toFixed(2)}
                     Status={!user.status || user.status == "false" ? 'Blocked' : 'Active'}
                   />
                 )
@@ -244,7 +244,7 @@ function PlayerTab({ }) {
                     img={user.avatar}
                     UserName={user.username}
                     GamePlay={user.counters.totalMatch}
-                    MainWallet={user.chips}
+                    MainWallet={user.chips.toFixed(2)}
                     Status={!user.status || user.status == "false" ? 'Blocked' : 'Active'}
                   />
                 )

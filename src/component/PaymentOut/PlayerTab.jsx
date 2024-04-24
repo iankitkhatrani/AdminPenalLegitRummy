@@ -33,7 +33,7 @@ function PlayerTab({status }) {
       setUserData(await PayoutDataList(status))
     }
     submitdata()
-  }, []);
+  }, [status]);
 
   //--------------------------- Paggeation and No Of Pages ------------------------------------
   // Filter the user data based on date range and search term
@@ -186,7 +186,7 @@ function PlayerTab({status }) {
         <table className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              <td className="w-[90px] px-6 py-5 xl:px-0">
+              <td className="w-[215px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Order ID
@@ -199,17 +199,17 @@ function PlayerTab({status }) {
                   User ID
                 </span>
               </td>
-              <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('username')}>
+              <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   User Name⬆⬇
                 </span>
               </td>
              
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
+              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('amount')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Amount ⬆⬇
+                  Amount⬆⬇
                 </span>
               </td>
               <td className="w-[155px] px-6 py-5 xl:px-0">
@@ -226,38 +226,32 @@ function PlayerTab({status }) {
               </span>
             </td>
 
-              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('counters.totalMatch')}>
+              <td className="w-[130px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Payment Mode ⬆⬇
+                  Payment Mode⬆⬇
                 </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" >
+              <td className="w-[145px] px-6 py-5 xl:px-0" >
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Payment Status ⬆⬇
+                  Payment Status
                 </span>
               </td>
-              <td className="w-[100px] px-6 py-5 xl:px-0" >
+              <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Request Date ⬆⬇
+                  Request Date⬆⬇
                 </span>
               </td>
               <td className="w-[110px] px-6 py-5 xl:px-0" >
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Auto-Pay ⬆⬇
+                  Auto-Pay
                 </span>
               </td>
 
-              <td className="w-[160px] px-6 py-5 xl:px-0" onClick={() => handleSort('lastLoginDate')}>
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Action ⬆⬇
-                </span>
-              </td>
-
+             
             </tr>
 
 
@@ -276,7 +270,6 @@ function PlayerTab({status }) {
                     PaymentStatus={user.paymentStatus}
                     RequestDate={user.createdAt}
                     Autopay="yes"
-                    Action="-"
                     _id={user._id}
                   />
                 )
@@ -293,7 +286,6 @@ function PlayerTab({status }) {
                     PaymentStatus={user.paymentStatus}
                     RequestDate={user.createdAt}
                     Autopay="yes"
-                    Action="-"
                     _id={user._id}
                   />
                 )

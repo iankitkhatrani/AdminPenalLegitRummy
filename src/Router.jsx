@@ -62,6 +62,8 @@ import BankUpdate from "./pages/BankUpdate";
 import ReferralManagement from "./pages/ReferralManagement";
 import ReferralUserManagement from "./pages/ReferralUserManagement";
 import KycProfileUpdate from "./pages/KycProfileUpdate";
+import AppMaintenance from "./pages/appMaintenance";
+import MatchMaking from "./pages/matchMaking";
 
 
 
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
     path: "/",
     Component: Layout,
     children: [
+      {
+        path: "/matchmaking",
+        element: <MatchMaking />,
+      },
+      {
+        path: "/appmaintenance",
+        element: <AppMaintenance />,
+      },
       {
         path: "/kycprofileupdate",
         element: <KycProfileUpdate />,

@@ -25,8 +25,14 @@ function PlayerInfo({ UserId, img, UserName, GamePlay, MainWallet, Status }) {
     await BotDelete(userid)
     window.location.reload();
   }
+  console.log("img :::::::::::::::::::::",img)
+  let value = "/src/assets/images/avatar/"+img+".png"
+  if(img.includes('BotUpload')){
+    value = host+"/"+img
+  } 
 
-  const [imageSrc, setImageSrc] = useState(host + "/upload/avatar/" + img + ".jpg");
+  console.log("value ",value)
+  const [imageSrc, setImageSrc] = useState(value);
 
   const handleImageError = () => {
     // If the image fails to load, set the image source to the default image

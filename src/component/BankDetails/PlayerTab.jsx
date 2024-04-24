@@ -242,15 +242,7 @@ function PlayerTab({status }) {
               <td className="w-[85px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Hyperverge Response
-                </span>
-
-              </td>
-
-              <td className="w-[85px] px-6 py-5 xl:px-0">
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                Hyperverge Remark
+                PennyDrop
                 </span>
 
               </td>
@@ -297,7 +289,7 @@ function PlayerTab({status }) {
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
-                    paymentreMark = {user.paymentreMark}
+                   
                     adminStatus={user.adminStatus}
                     reMark = {user.reMark}
 
@@ -316,7 +308,7 @@ function PlayerTab({status }) {
                     IFSC={user.IFSC}
                     createdAt={user.createdAt}
                     paymentStatus={user.paymentStatus}
-                    paymentreMark = {user.paymentreMark}
+                   
                     adminStatus={user.adminStatus}
                     reMark = {user.reMark}
                   />
