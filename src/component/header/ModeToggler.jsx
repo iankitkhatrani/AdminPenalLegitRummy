@@ -5,16 +5,16 @@ function ModeToggler() {
   // you can change default theme here
   console.log("Module")
   if (
-    localStorage.getItem("theme") !== "" &&
+    localStorage.getItem("theme") !== "dark" &&
     localStorage.getItem("theme") !== "dark"
   ) {
-    localStorage.setItem("theme", "");
+    localStorage.setItem("theme", "dark");
   }
   const { theme, setTheme } = useContext(ThemeContext);
   const toggleMode = () => {
     if (theme === "dark") {
       setTheme("");
-      localStorage.setItem("theme", "");
+      localStorage.setItem("theme", "dark");
     } else {
       setTheme("dark");
       localStorage.setItem("theme", "dark");

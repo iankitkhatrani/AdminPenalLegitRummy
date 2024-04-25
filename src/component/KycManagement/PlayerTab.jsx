@@ -213,18 +213,18 @@ function PlayerTab({ status }) {
                   Created Date ⬆⬇
                 </span>
               </td>
-              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('verified')}>
+               <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('verified')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Hyperverge Adharcard Response ⬆⬇
                 </span>
 
               </td>
-              <td className="w-[150px] px-6 py-5 xl:px-0">
+              {status == "Rejected" ? <td className="w-[150px] px-6 py-5 xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Hyperverge Adharcard Remark ⬆⬇
                 </span>
 
-              </td>
+              </td> : ""}
 
               <td className="w-[150px] px-6 py-5 xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
@@ -239,17 +239,17 @@ function PlayerTab({ status }) {
                   Pan Card ⬆⬇
                 </span>
               </td>
-              <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('Pancardverified')}>
+             <td className="w-[150px] px-6 py-5 xl:px-0" onClick={() => handleSort('Pancardverified')}>
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Hyperverge Pancard Response ⬆⬇
                 </span>
               </td>
-              <td className="w-[150px] px-6 py-5 xl:px-0">
+              {status == "Rejected" ?  <td className="w-[150px] px-6 py-5 xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
                   Hyperverge Pancard Remark ⬆⬇
                 </span>
 
-              </td>
+              </td> : "" }
 
               <td className="w-[150px] px-6 py-5 xl:px-0">
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
@@ -276,14 +276,7 @@ function PlayerTab({ status }) {
                 </span>
               </td>
 
-              <td className="w-[60px] px-6 py-5 xl:px-0">
-
-                <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Action
-                </span>
-
-              </td>
-
+             
 
             </tr>
             {usersOnCurrentPage?.map((user, index) =>
@@ -310,6 +303,7 @@ function PlayerTab({ status }) {
                     dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
                     ReId={user._id}
                     adminname={user.adminname}
+                    status={status}
                   />
                 )
                 : index < 3 && (
@@ -331,6 +325,7 @@ function PlayerTab({ status }) {
                     dob={user.userInfo != undefined && user.userInfo.user_dob != undefined ? user.userInfo.user_dob : "-"}
                     ReId={user._id}
                     adminname={user.adminname}
+                    status={status}
                   />
                 )
             )}
@@ -451,3 +446,13 @@ PlayerTab.propTypes = {
 };
 
 export default PlayerTab;
+
+
+
+// <td className="w-[60px] px-6 py-5 xl:px-0">
+
+// <span className="text-base font-medium text-bgray-600 dark:text-black-50">
+//   Action
+// </span>
+
+// </td>

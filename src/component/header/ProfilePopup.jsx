@@ -99,16 +99,7 @@ function ProfilePopup({ active }) {
                   </div>
                 </Link>
               </li>
-              <li className="w-full">
-
-                <div className="flex items-center space-x-[18px] rounded-lg p-[14px] text-success-300">
-
-                  <div className="flex-1">
-
-                    <ModeToggler />
-                  </div>
-                </div>
-              </li>
+           
             </ul>
           </div>
           <div className="my-[14px] h-[1px] w-full bg-bgray-300"></div>
@@ -124,6 +115,18 @@ ProfilePopup.propTypes = {
 };
 
 export default ProfilePopup;
+
+
+// <li className="w-full">
+
+// <div className="flex items-center space-x-[18px] rounded-lg p-[14px] text-success-300">
+
+//   <div className="flex-1">
+
+//     <ModeToggler />
+//   </div>
+// </div>
+// </li>
 
 // <li className="w-full">
 //                 <Link to="/settings">

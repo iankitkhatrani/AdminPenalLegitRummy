@@ -142,9 +142,7 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
         <td className="w-[165px] px-6 py-5 xl:px-2">
 
 
-          {adminStatus == "Pending" || adminStatus == "Rejected" ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
-            {adminStatus}
-          </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">{adminStatus}</p>}
+          {adminStatus == "Pending" || adminStatus == "Rejected" ? "-" : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">{adminStatus}</p>}
         </td>
 
         <td className="w-[165px] px-6 py-5 xl:px-0">

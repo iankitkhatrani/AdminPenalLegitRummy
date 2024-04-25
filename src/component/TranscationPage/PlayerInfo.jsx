@@ -92,7 +92,7 @@ function PlayerInfo({ OrderId, username, transAmount, winningChips, chips, creat
               ₹{transAmount}
             </p> :
             <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
-              ₹{transAmount}
+              ₹{Math.abs(transAmount)}
             </p>
 
 

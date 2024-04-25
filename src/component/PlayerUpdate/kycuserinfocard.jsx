@@ -130,8 +130,8 @@
     return (
       <>
 
-
-
+      { userAadharkycInfo.isdata == false ? <div> Data Not Found </div> :
+      <div>
         <div className="mb-6 w-full rounded-lg bg-white px-[42px] py-5 dark:border dark:border-darkblack-400 dark:bg-darkblack-600 lg:mb-0 lg:w-1/2 2xl:mb-6 2xl:w-full">
           <div className="my-wallet mb-8 w-full">
             <div className="mb-3 flex items-center justify-between">
@@ -208,7 +208,7 @@
               <div className="card-slider relative w-[500px] md:w-[500px]">
 
                 <div className="w-full">
-                  <img src={imagePanSrc} alt="card" onError={panhandleImageError} />
+                  {imagePanSrc == "/src/assets/images/dashboard/dashboard2.png" == "" ? "" : <img src={imagePanSrc} alt="card" onError={panhandleImageError} /> }
                 </div>
 
               </div>
@@ -286,15 +286,16 @@
               <div className="card-slider relative w-[500px] md:w-[500px]">
 
                 <div className="w-full">
-                  <img src={imageAdharfrontSrc} alt="card" onError={adharfronthandleImageError} />
-
+                  
+                  {imageAdharfrontSrc == "/src/assets/images/dashboard/dashboard2.png" == "" ? "" : <img src={imageAdharfrontSrc} alt="card" onError={adharfronthandleImageError} /> }
                 </div>
 
               </div>
               <div className="card-slider relative w-[500px] md:w-[500px]">
 
                 <div className="w-full">
-                  <img src={imageAdharbackSrc} alt="card" onError={adharbackhandleImageError} />
+                  
+                  {imageAdharbackSrc == "/src/assets/images/dashboard/dashboard2.png" == "" ? "" : <img src={imageAdharbackSrc} alt="card" onError={adharbackhandleImageError} /> }
 
                 </div>
 
@@ -369,7 +370,8 @@
               className="mt-7 bg-blue-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 ml-10 py-3 font-semibold text-sm">Refresh Data</button>
 
           </div>
-        </div>
+        </div></div> 
+            }
 
 
 

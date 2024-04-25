@@ -7,7 +7,7 @@ import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
 
 function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,adharcardHypervergemark,adharcardadminverified,
-  Pancard,Pancardverified,panHypervergemark,pancardadminverified, adminremark,adminremarkcd,dob,ReId,adminname }) {
+  Pancard,Pancardverified,panHypervergemark,pancardadminverified, adminremark,adminremarkcd,dob,ReId,adminname,status }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
@@ -116,19 +116,17 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,adharcardH
 
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      {status == "Rejected" ? <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {adharcardHypervergemark}
         </p>
-      </td>
+      </td> : ""}
 
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           
 
-          {!adharcardadminverified ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
-          Admin_Declined
-        </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Admin_Approved</p>}
+          {!adharcardadminverified ? "-" : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Admin_Approved</p>}
 
 
         </p>
@@ -151,18 +149,16 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,adharcardH
 
         </p>
       </td>
-      <td className="w-[165px] px-6 py-5 xl:px-0">
+      {status == "Rejected" ? <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {panHypervergemark}
         </p>
-      </td>
+      </td> : ""}
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           
 
-          {!pancardadminverified ? <p style={{ "backgroundColor": "red" }} className="text-base font-semibold text-bgray-900 dark:text-white">
-          Admin_Declined
-        </p> : <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Admin_Approved</p>}
+          {!pancardadminverified ?"-": <p style={{ "backgroundColor": "green" }} className="text-base font-semibold text-bgray-900 dark:text-white">Admin_Approved</p>}
 
 
         </p>
@@ -184,32 +180,34 @@ function PlayerInfo({ UserId,userName, adharcard, createdAt, verified,adharcardH
         </p>
       </td>
       
-      <td className="w-[165px] px-6 py-5 xl:px-0">
-          <p className="text-base font-medium text-bgray-900 dark:text-white">
-
-
-            <button styles={{
-              "margin": "1px",
-              "background-color": "white",
-              "color": "white",
-              "border": "none",
-              "padding": "5px 10px",
-              "cursor": "pointer",
-              "border-radius": "4px"
-            }} onClick={() => navigateToContactsApprove(UserId, adminremark,adharcardadminverified,pancardadminverified)} >
-
-            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
-            </button>
-
-          </p>
-
-        </td>
+ 
 
     </tr>
   );
 }
 
 
+
+// <td className="w-[165px] px-6 py-5 xl:px-0">
+// <p className="text-base font-medium text-bgray-900 dark:text-white">
+
+
+//   <button styles={{
+//     "margin": "1px",
+//     "background-color": "white",
+//     "color": "white",
+//     "border": "none",
+//     "padding": "5px 10px",
+//     "cursor": "pointer",
+//     "border-radius": "4px"
+//   }} onClick={() => navigateToContactsApprove(UserId, adminremark,adharcardadminverified,pancardadminverified)} >
+
+//   <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
+//   </button>
+
+// </p>
+
+// </td>
 
 // <td className="w-[165px] px-6 py-5 xl:px-0">
 //         <div className="flex justify-center">
