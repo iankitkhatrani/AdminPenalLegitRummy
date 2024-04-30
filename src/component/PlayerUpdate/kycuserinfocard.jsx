@@ -9,13 +9,17 @@
   import Button from 'react-bootstrap/Button';
   import FloatingLabel from 'react-bootstrap/FloatingLabel';
   import Form from 'react-bootstrap/Form';
+  import Cookies from 'universal-cookie';
+  const cookies = new Cookies();
+
+
   function kycuserinfo() {
 
 
     const location = useLocation();
     //console.log("location ", location.state)
     const Botinfo = location.state;
-
+    const name = cookies.get('name')
     //console.log("kycuserinfocard User Info  ", Botinfo)
 
     const context = useContext(offerContext)
@@ -361,10 +365,10 @@
             </div>
 
 
-            <button aria-label="none" onClick={() => navigateToContactsProfileUpdate(Botinfo.UserId, userInfo.name, userInfo.email, userAadharkycInfo.adharcard, userPankycInfo.pancard,
+            { name == "Support" ? "" : <button aria-label="none" onClick={() => navigateToContactsProfileUpdate(Botinfo.UserId, userInfo.name, userInfo.email, userAadharkycInfo.adharcard, userPankycInfo.pancard,
               userAadharkycInfo.adminremark, userAadharkycInfo.adharcardadminverified, userPankycInfo.pancardadminverified)}
               className="mt-7 bg-blue-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4  py-3 font-semibold text-sm">Edit Kyc</button>
-
+            }
               
             <button aria-label="none" onClick={() => setRefreshData(!refreshData)}
               className="mt-7 bg-blue-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 ml-10 py-3 font-semibold text-sm">Refresh Data</button>

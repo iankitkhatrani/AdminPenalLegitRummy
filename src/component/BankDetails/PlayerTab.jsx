@@ -4,6 +4,7 @@ import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
 import { useNavigate } from 'react-router-dom';
 
+
 function PlayerTab({status }) {
   //-------------------------------------------------------------------------------------------------------
   const [active, setActive] = useState(false);
@@ -13,6 +14,7 @@ function PlayerTab({status }) {
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
+
 
   console.log("status ", status)
 

@@ -8,7 +8,13 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 function userInfo() {
+
+
+  const name = cookies.get('name')
 
 
   const location = useLocation();
@@ -295,7 +301,8 @@ function userInfo() {
             </div>
           </div>
 
-
+          
+          {name == "TeamLead" || name == "Support" ? "" : <div>
           <div className="flex h-[98px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
             <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
               Enter amount deposit
@@ -412,10 +419,12 @@ function userInfo() {
 
           <button aria-label="none" onClick={SaveChangeDeduct}
             className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Deduct Money</button>
-
+  
+          </div>
+          }
         </div>
 
-        <div>
+        {name == "TeamLead"  || name == "Support" ? "" : <div>
 
           {userInfo.isBlock ? <button aria-label="none" onClick={(e) => SaveChangeBlockandUnblock(!userInfo.isBlock)}
             className="mt-7 bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">UnBlock</button>
@@ -423,7 +432,7 @@ function userInfo() {
             <button aria-label="none" onClick={(e) => SaveChangeBlockandUnblock(!userInfo.isBlock)}
               className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Block</button>}
 
-        </div>
+        </div> }
       </div>
     </>
   );

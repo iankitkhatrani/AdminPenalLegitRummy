@@ -5,6 +5,8 @@ import logoW from "../../assets/images/logo/logo-white.png";
 import profileImg from "../../assets/images/avatar/profile-xs.png";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function Sidebar({ handleActive }) {
   const [activeDashboard, setActiveDashboard] = useState(false);
@@ -14,7 +16,7 @@ function Sidebar({ handleActive }) {
 
   const [activesetting, setActivesetting] = useState(false);
 
-
+  const name = cookies.get('name')
 
 
   const [activebackandwhite, setActivebackandwhite] = useState(false);
@@ -987,7 +989,7 @@ function Sidebar({ handleActive }) {
               </li>
 
 
-              <li
+              {name == "Support" ? "" : <li
                 className={`item py-[11px] text-bgray-900 dark:text-white`}
 
               >
@@ -1100,7 +1102,7 @@ function Sidebar({ handleActive }) {
                   </li>
                 </ul>
               </li>
-
+                      }
             </ul>
           </div>
 

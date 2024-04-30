@@ -2,8 +2,15 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo/logo-short.png";
 import logoW from "../../assets/images/logo/logo-short-white.png";
 import { useState } from "react";
+
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
+
 function SidebarV2() {
   const [activeDashboard, setActiveDashboard] = useState(false);
+
+  const name = cookies.get('name')
 
 
   const [activebackandwhite, setActivebackandwhite] = useState(false);
@@ -628,7 +635,7 @@ function SidebarV2() {
                   
 
 
-                  <li className="item px-[43px] py-[11px]">
+                  {name == "Support" ? "" :  <li className="item px-[43px] py-[11px]">
 
                     <span className="item-ico">
                       <svg
@@ -697,7 +704,7 @@ function SidebarV2() {
                         </Link>
                       </li>
                     </ul>
-                  </li>
+                  </li> }
 
 
                 </ul>

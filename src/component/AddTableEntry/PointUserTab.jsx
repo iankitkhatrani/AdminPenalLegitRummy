@@ -5,6 +5,9 @@ import offerContext from '../../context/offerContext'
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 
 function UserTab({ gameType }) {
   const context = useContext(offerContext)
@@ -14,6 +17,9 @@ function UserTab({ gameType }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
+
+  const name = cookies.get('name')
+
 
   const Dropdown = (item) => {
     setPageSize(item)
@@ -132,9 +138,9 @@ function UserTab({ gameType }) {
       </div>
       <div className="filter-content w-full">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-          <button aria-label="none"
+          {name == "Support" ? "" : <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={navigateToUserRegister} >Add Point Table Entry</button>
-
+          }
 
         </div>
       </div>

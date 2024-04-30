@@ -3,6 +3,8 @@ import offerContext from '../../context/offerContext'
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
@@ -12,6 +14,7 @@ function CustomerInfo({ gamePlayType, deal, tableName, entryFee, maxSeat, commis
   const context = useContext(offerContext)
 
   const { DeleteTableEntry } = context
+  const name = cookies.get('name')
 
 
   const navigateToContactsEdit = (gamePlayType, deal, tableName, entryFee, maxSeat, commission, status, id) => {
@@ -80,7 +83,7 @@ function CustomerInfo({ gamePlayType, deal, tableName, entryFee, maxSeat, commis
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex justify-center">
+      {name == "Support" ? "" : <div className="flex justify-center">
           <button styles={{
             "margin": "1px",
             "background-color": "white",
@@ -103,7 +106,7 @@ function CustomerInfo({ gamePlayType, deal, tableName, entryFee, maxSeat, commis
           }} onClick={() => deleteTable(id)} >
           <img style={{"width": "30px","height": "30px","margin": "10px"}} src={trash} />
           </button>
-        </div>
+        </div> }
       </td>
     </tr>
   );

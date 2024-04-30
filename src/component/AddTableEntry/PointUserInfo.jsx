@@ -6,12 +6,16 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import edit from "../../assets/images/edit.png";
 import trash from "../../assets/images/trash.png";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function CustomerInfo({ gamePlayType, tableName, entryFee, maxSeat, commission, status, id }) {
 
   const context = useContext(offerContext)
 
   const { DeleteTableEntry } = context
+
+  const name = cookies.get('name')
 
 
   const navigate = useNavigate();
@@ -78,7 +82,7 @@ function CustomerInfo({ gamePlayType, tableName, entryFee, maxSeat, commission, 
 
 
       <td className="w-[165px] px-6 py-5 xl:px-0">
-        <div className="flex justify-center">
+        {name == "Support" ? "-" : <div className="flex justify-center">
           <button styles={{
             "margin": "1px",
             "background-color": "white",
@@ -101,7 +105,7 @@ function CustomerInfo({ gamePlayType, tableName, entryFee, maxSeat, commission, 
           }} onClick={() => deleteTable(id)} >
             <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={trash} />
           </button>
-        </div>
+        </div> }
       </td>
     </tr>
   );

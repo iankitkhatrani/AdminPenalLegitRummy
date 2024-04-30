@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext, useEffect } from 'react';
 import offerContext from '../../context/offerContext';
 import edit from "../../assets/images/edit.png";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNumber, IFSC, createdAt, paymentStatus, adminStatus, reMark }) {
 
   const context = useContext(offerContext)
   const { PlayerData } = context
+  const Adminname = cookies.get('name')
+  
 
 
   const navigate = useNavigate();
@@ -155,7 +159,7 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
           <p className="text-base font-medium text-bgray-900 dark:text-white">
 
 
-            <button styles={{
+          {Adminname == "Support" ? " - " : <button styles={{
               "margin": "1px",
               "background-color": "white",
               "color": "white",
@@ -167,6 +171,7 @@ function PlayerInfo({ Id, UserId, name, email, phone, BeneficiaryName, accountNu
 
               <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={edit} />
             </button>
+          }
 
           </p>
 

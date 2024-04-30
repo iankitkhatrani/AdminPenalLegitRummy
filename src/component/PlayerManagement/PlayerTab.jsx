@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 
 function PlayerTab({ }) {
   //-------------------------------------------------------------------------------------------------------
@@ -16,6 +19,7 @@ function PlayerTab({ }) {
   const [toDate, setToDate] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
+  const name = cookies.get('name')
 
   const Dropdown = (item) => {
     setPageSize(item)
@@ -51,7 +55,7 @@ function PlayerTab({ }) {
 
     from != null && from.setHours(0, 0, 0)
     to != null && to.setHours(23, 0, 0)
-    
+
     return (
       (!from || registrationDate >= from) &&
       (!to || registrationDate <= to) &&
@@ -126,18 +130,18 @@ function PlayerTab({ }) {
 
   const generatePDF = async () => {
     //style={{"background-color": "lightgray"}}
-   await setBackgroundColor("#1D1E24"); // Change to the desired color
+    await setBackgroundColor("#1D1E24"); // Change to the desired color
 
     const input = document.getElementById("tableId");
 
-    console.log("input ::::::::::::::: ",input)
+    console.log("input ::::::::::::::: ", input)
     html2canvas(input)
       .then(async (canvas) => {
-        console.log("canvas ",canvas)
+        console.log("canvas ", canvas)
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF();
-        pdf.setFillColor(204, 204,204,0);
-        
+        pdf.setFillColor(204, 204, 204, 0);
+
         const imgWidth = 210;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
@@ -211,49 +215,50 @@ function PlayerTab({ }) {
           <button aria-label="none"
             className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={resetDate}>Reset</button>
 
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
+          {name == "Support" ? "" :
+            <div> <button aria-label="none"
+              className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={() => navigateToUserRegister()} >Add User</button>
+              </div>}
+              <button aria-label="none"
+                className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">
+                <ReactHTMLTableToExcel
+                  id="test-table-xls-button"
+                  className="download-table-xls-button"
+                  table="tableId"
+                  filename={new Date() + 'UserPage'}
+                  sheet="tablexls"
+                  buttonText="Download as XLS" />
+              </button>
 
-            <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">
-            <ReactHTMLTableToExcel
-              id="test-table-xls-button"
-              className="download-table-xls-button"
-              table="tableId"
-              filename={new Date() + 'UserPage'}
-              sheet="tablexls"
-              buttonText="Download as XLS" />
-          </button>
+              <button aria-label="none"
+                className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={generatePDF}>
 
-          <button aria-label="none"
-            className="bg-success-300 dark:bg-success-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm" onClick={generatePDF}>
-           
-            Download as PDF
-          </button>
+                Download as PDF
+              </button> 
         </div>
       </div>
       <div className="text-center table-content w-full overflow-x-auto">
-        <table style={{"backgroundColor":backgroundColor }} id="tableId" className="table-fixed hover:border-collapse text-center w-full">
+        <table style={{ "backgroundColor": backgroundColor }} id="tableId" className="table-fixed hover:border-collapse text-center w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
               <td className="w-[65px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                  Profile 
+                  Profile
                 </span>
 
               </td>
               <td className="w-[195px] px-6 py-5 xl:px-0">
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                User Id
+                  User Id
                 </span>
 
               </td>
               <td className="w-[155px] px-6 py-5 xl:px-0" onClick={() => handleSort('name')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
-                User Name⬆⬇
+                  User Name⬆⬇
                 </span>
               </td>
               <td className="w-[130px] px-6 py-5 xl:px-0" onClick={() => handleSort('mobileNumber')}>
@@ -281,7 +286,7 @@ function PlayerTab({ }) {
                   Main Wallet⬆⬇
                 </span>
               </td>
-              
+
               <td className="w-[170px] px-6 py-5 xl:px-0" onClick={() => handleSort('createdAt')}>
 
                 <span className="text-base font-medium text-bgray-600 dark:text-black-50">
@@ -322,7 +327,7 @@ function PlayerTab({ }) {
                     profileUrl={user.profileUrl}
                     email={user.email}
                     uniqueId={user.uniqueId}
-                    avatar={user.avatar} 
+                    avatar={user.avatar}
 
                   />
                 )
@@ -342,7 +347,7 @@ function PlayerTab({ }) {
                     profileUrl={user.profileUrl}
                     email={user.email}
                     uniqueId={user.uniqueId}
-                    avatar={user.avatar} 
+                    avatar={user.avatar}
                   />
                 )
             )}
