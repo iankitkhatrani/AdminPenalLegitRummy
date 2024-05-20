@@ -221,7 +221,7 @@
           <div className="w-full">
             <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
               <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-                Name :- {userPankycInfo.pancardname}
+                Name :- {userPankycInfo.full_name}
               </p>
             </div>
             <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
@@ -232,7 +232,7 @@
 
             <div className="flex h-[50px] w-full flex-col justify-between rounded-lg border border-bgray-200 p-4 focus-within:border-success-300 dark:border-darkblack-400">
               <p className="text-sm font-medium text-bgray-600 dark:text-bgray-50">
-                Father's Name :- {userPankycInfo.full_name}
+                Father's Name :- "-"
               </p>
             </div>
 
